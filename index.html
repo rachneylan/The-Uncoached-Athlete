@@ -179,8 +179,8 @@
     background: var(--ink);
   }
   .s-title .right {
-    background-image: url('project/assets/surgeon-lights-1.png');
-    background-size: cover; background-position: center;
+    background-image: url('project/assets/surgeon-cover-ok.jpg');
+    background-size: cover; background-position: center 30%;
     position: relative;
   }
   .s-title .right::after {
@@ -272,14 +272,15 @@
 
   /* ── Slide 04 — The Lens (Venn) ── */
   .venn-wrap { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; padding: 30px 0 30px 0; }
-  .venn { position: relative; width: 900px; height: 700px; }
+  .venn { position: relative; width: 820px; height: 720px; }
   .venn .circle {
-    position: absolute; width: 440px; height: 440px; border-radius: 50%;
-    border: 1.5px solid var(--ink); mix-blend-mode: multiply;
+    position: absolute; width: 460px; height: 460px; border-radius: 50% !important;
+    border: 1.5px solid rgba(28,30,34,0.55);
+    mix-blend-mode: multiply;
   }
-  .venn .c1 { left: 0; top: 40px; background: rgba(30,122,122,0.10); }
-  .venn .c2 { right: 0; top: 40px; background: rgba(30,122,122,0.10); }
-  .venn .c3 { left: 230px; top: 220px; background: rgba(30,122,122,0.10); }
+  .venn .c1 { left: 0;   top: 0;   background: rgba(30,122,122,0.18); border-color: rgba(30,122,122,0.6); }
+  .venn .c2 { right: 0;  top: 0;   background: rgba(217,119,87,0.18); border-color: rgba(217,119,87,0.65); }
+  .venn .c3 { left: 180px; top: 250px; background: rgba(196,156,79,0.22); border-color: rgba(196,156,79,0.7); }
   .venn .label {
     position: absolute;
     font-family: 'JetBrains Mono', monospace;
@@ -290,9 +291,9 @@
   .venn .label .disc-title { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 28px; letter-spacing: -0.01em; text-transform: none; color: var(--ink); margin-bottom: 8px; line-height: 1.0; }
   .venn .label .disc-sub { font-size: 13px; color: var(--mute-dark); letter-spacing: 0.06em; display: block; line-height: 1.4; text-transform: none; font-family: 'Inter Tight', sans-serif; font-weight: 400; }
   .venn .label .disc-sub.caps { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-  .venn .l-olympic { left: 0; top: 130px; width: 220px; text-align: center; }
-  .venn .l-physio { right: 0; top: 130px; width: 220px; text-align: center; }
-  .venn .l-coach { left: 50%; transform: translateX(-50%); top: 570px; width: 260px; text-align: center; }
+  .venn .l-olympic { left: 30px;  top: 70px;  width: 240px; text-align: center; }
+  .venn .l-physio  { right: 30px; top: 70px;  width: 240px; text-align: center; }
+  .venn .l-coach   { left: 50%; transform: translateX(-50%); top: 600px; width: 280px; text-align: center; }
   .venn .inter {
     position: absolute; font-family: 'JetBrains Mono', monospace;
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -303,12 +304,18 @@
   .venn .i-behav   { left: 140px; top: 310px; width: 130px; }
   .venn .i-change  { right: 140px; top: 310px; width: 130px; }
   .venn .core {
-    position: absolute; left: 50%; top: 350px; transform: translateX(-50%);
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 320px; height: 320px; border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 0 10px 40px rgba(28,30,34,0.22);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 20px;
+    z-index: 5;
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 500; font-style: italic; font-size: 24px;
-    color: var(--accent); text-align: center; line-height: 1.2;
-    width: 220px;
-    z-index: 3;
+    font-weight: 700; font-style: normal;
+    font-size: 30px; line-height: 1.05;
+    color: var(--ink); letter-spacing: -0.01em;
   }
 
   .s-lens { display: grid; grid-template-columns: 1.15fr 1fr; position: relative; }
@@ -325,7 +332,7 @@
   .s-paradigm { position: relative; overflow: hidden; }
   .s-paradigm::before {
     content: ""; position: absolute; top: 0; right: 0; width: 52%; height: 100%;
-    background-image: url('project/assets/surgeon-gowning.png');
+    background-image: url('project/assets/surgeon-tying-cap.jpg');
     background-size: cover; background-position: 60% center;
     opacity: 0.22;
     filter: grayscale(0.5) contrast(1.05);
@@ -585,26 +592,23 @@
   .s-cta .cta-img {
     position: absolute; top: 0; right: 0; bottom: 0;
     width: 33.333%;
-    background:
-      repeating-linear-gradient(135deg, rgba(28,30,34,0.06) 0 2px, transparent 2px 14px),
-      var(--paper-2);
+    background-image: url('project/assets/surgeon-female-gloves.jpg');
+    background-size: cover; background-position: 65% center;
+    background-color: var(--paper-2);
     z-index: 1;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    border-left: 1px solid var(--rule-light);
   }
-  .s-cta .cta-img .ph-frame {
-    width: 60%; aspect-ratio: 3/4; border: 1px dashed var(--rule);
-    display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center;
-    background: rgba(241,233,219,0.5);
-  }
-  .s-cta .cta-img .ph-frame span {
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--ink-3); line-height: 1.6;
+  .s-cta .cta-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(241,233,219,0.0) 70%, rgba(241,233,219,0.18) 100%);
+    pointer-events: none;
   }
   .s-cta .cta-img .cap {
-    margin-top: 22px;
-    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent);
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 22px 32px 28px 32px;
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--paper); z-index: 2;
+    text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+    display: flex; justify-content: flex-end;
   }
   .s-cta .pull {
     font-family: var(--f-sans); font-weight: 300;
@@ -686,8 +690,9 @@
     display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
   }
   .s-close .img {
-    background-image: url('project/assets/surgeon-bw.png');
+    background-image: url('project/assets/surgeon-smile-side.jpg');
     background-size: cover; background-position: center;
+    filter: grayscale(1) contrast(1.05);
   }
   .s-close .text {
     padding: 120px 110px; display: flex; flex-direction: column; justify-content: center;
@@ -795,12 +800,12 @@
         <div class="track-rule"></div>
       </div>
       <h2 class="title" style="margin-top: 0;">The intersection <em>that matters.</em></h2>
-      <div class="subtitle" style="max-width:900px;">Three disciplines. One focus. The surgeon as a human performer.</div>
+      <div class="subtitle" style="max-width:900px;"></div>
       <div class="venn-wrap">
         <div class="venn">
-          <div class="circle c1" style="border-radius: 50px"></div>
-          <div class="circle c2" style="border-radius: 60px"></div>
-          <div class="circle c3" style="border-radius: 60px"></div>
+          <div class="circle c1"></div>
+          <div class="circle c2"></div>
+          <div class="circle c3"></div>
 
           <div class="label l-olympic">
             <span class="disc-title" style="text-align: right; font-size: 40px">Olympic Sport</span>
@@ -819,7 +824,7 @@
           <div class="inter i-behav"></div>
           <div class="inter i-change"></div>
 
-          <div class="core" style="font-size: 40px">Human<br/>Performance<br/>Optimisation</div>
+          <div class="core">Human<br/>Performance<br/>Optimisation</div>
         </div>
       </div>
     </div>
@@ -1109,10 +1114,7 @@
 
   <!-- 11 — SHIFTING THE PARADIGM / CTA -->
   <section data-label="11 Shifting the Paradigm" class="light s-cta">
-    <div class="cta-img">
-      <div class="ph-frame"><span>Female surgeon<br/>fit · strong<br/>holding a tool</span></div>
-      <div class="cap">Photo placeholder · drop in</div>
-    </div>
+    <div class="cta-img"><div class="cap"></div></div>
     <div class="frame">
       <div class="track">
         <div class="track-left"><span class="track-num">11</span><span>SHIFTING THE PARADIGM</span></div>
