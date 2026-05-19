@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>The Uncoached Athlete — Rachel Neylan</title>
+<title>The Uncoached Athlete — US Advisory Board — Rachel Neylan</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,7 +179,7 @@
     background: var(--ink);
   }
   .s-title .right {
-    background-image: url('project/assets/surgeon-cover-ok.jpg');
+    background-image: url('project/assets/surgeon-cover-teal.jpg');
     background-size: cover; background-position: center 30%;
     position: relative;
   }
@@ -223,7 +223,7 @@
     display: grid; grid-template-columns: 45% 55%;
   }
   .s-quote-open .img {
-    background-image: url('project/assets/rachel-cycling.png');
+    background-image: url('project/assets/surgeon-shadow-quiet.jpg');
     background-size: cover; background-position: center;
     position: relative;
   }
@@ -251,7 +251,7 @@
   .s-gap { display: grid; grid-template-columns: 1.15fr 1fr; }
   .s-gap .left { padding: 100px; display: flex; flex-direction: column; justify-content: center; }
   .s-gap .right {
-    background-image: url('project/assets/surgeon-instruments.png');
+    background-image: url('project/assets/or-imaging-tech.jpg');
     background-size: cover; background-position: center;
     background-color: #0E0F10;
   }
@@ -563,7 +563,43 @@
   .s-domains .cell h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 38px; margin: 0; line-height: 1.0; color: var(--ink); }
   .s-domains .cell p { font-family: var(--f-sans); font-weight: 400; font-size: 17px; line-height: 1.5; color: var(--mute-dark); margin: 0; text-wrap: pretty; }
 
-  /* ── Slide 10 — Integrated System (Hub & Spoke) ── */
+  /* ── Slide 10 — Six Pillars ── */
+  .s-pillars { position: relative; overflow: hidden; }
+  .s-pillars::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: url('project/assets/surgeons-operating.png');
+    background-size: cover; background-position: center;
+    opacity: 0.09; filter: grayscale(0.8) contrast(1.1);
+    pointer-events: none; z-index: 0;
+  }
+  .s-pillars::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(241,233,219,0.97) 0%, rgba(241,233,219,0.88) 60%, rgba(241,233,219,0.97) 100%);
+    pointer-events: none; z-index: 1;
+  }
+  .s-pillars > .frame { position: relative; z-index: 2; }
+  .s-pillars .pillar-row {
+    flex: 1; display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 0; margin-top: 32px;
+    border-top: 1px solid var(--rule-light); border-left: 1px solid var(--rule-light);
+  }
+  .s-pillars .pillar {
+    padding: 36px 28px 32px 28px;
+    border-right: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light);
+    display: flex; flex-direction: column;
+    background: rgba(241,233,219,0.80); backdrop-filter: blur(2px);
+    border-top: 3px solid transparent;
+  }
+  .s-pillars .pillar:nth-child(odd) { border-top-color: var(--accent); }
+  .s-pillars .pillar:nth-child(even) { border-top-color: var(--accent-2); }
+  .s-pillars .pillar .p-icon { width: 44px; height: 44px; color: var(--accent); margin-bottom: 24px; flex-shrink: 0; }
+  .s-pillars .pillar:nth-child(even) .p-icon { color: var(--accent-2); }
+  .s-pillars .pillar .p-num { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .s-pillars .pillar:nth-child(even) .p-num { color: var(--accent-2); }
+  .s-pillars .pillar h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 36px; margin: 0 0 16px 0; color: var(--ink); line-height: 1.0; }
+  .s-pillars .pillar p { font-family: var(--f-sans); font-weight: 400; font-size: 17px; line-height: 1.55; color: var(--mute-dark); margin: 0; text-wrap: pretty; margin-top: auto; padding-top: 16px; }
+
+  /* ── Slide 11 — Integrated System (Hub &amp; Spoke) ── */
   .hub-wrap { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
   .hub { position: relative; width: 1400px; height: 700px; }
   .hub-center {
@@ -604,13 +640,21 @@
   }
   .s-hub > .frame { position: relative; z-index: 2; }
 
-  /* ── Slide 11 — Shifting the Paradigm / CTA ── */
+  /* Hub caption */
+  .s-hub .hub-caption {
+    text-align: center; font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 400; font-size: 30px;
+    color: rgba(243,238,230,0.65); margin-top: 16px; padding-bottom: 50px;
+  }
+  .s-hub .hub-caption em { color: var(--accent-2); font-style: italic; }
+
+  /* ── Slide 12 — Shifting the Paradigm / CTA ── */
   .s-cta { position: relative; }
   .s-cta > .frame { padding-right: calc(33.333% + 60px); }
   .s-cta .cta-img {
     position: absolute; top: 0; right: 0; bottom: 0;
     width: 33.333%;
-    background-image: url('project/assets/surgeon-female-gloves.jpg');
+    background-image: url('project/assets/surgeon-smiling-ok.jpg');
     background-size: cover; background-position: 65% center;
     background-color: var(--paper-2);
     z-index: 1;
@@ -651,12 +695,19 @@
   .s-cta .cta h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26px; margin: 0 0 12px 0; color: var(--ink); line-height: 1.1; }
   .s-cta .cta p { font-family: var(--f-sans); font-weight: 400; font-size: 16px; line-height: 1.5; color: var(--ink-3); margin: 0; text-wrap: pretty; }
 
-  /* ── Slide 12 — Surgeon Voices ── */
+  /* CTA closing line */
+  .s-cta .closing-line {
+    margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--rule-light);
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
+    font-size: 30px; color: var(--accent); line-height: 1.3; text-wrap: pretty;
+  }
+
+  /* ── Slide 13 — Surgeon Voices ── */
   .s-voices { position: relative; }
   .s-voices .voices-photo {
     position: absolute; top: 0; left: 0; bottom: 0;
     width: 33.333%;
-    background-image: url('project/assets/rachel-stefan.jpg');
+    background-image: url('project/assets/surgical-team-portrait.jpg');
     background-size: cover; background-position: center 18%;
     z-index: 1;
   }
@@ -713,12 +764,12 @@
   }
   .s-voices .q .who { margin-top: 26px; font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2); }
 
-  /* ── Slide 13 — Closing Quote ── */
+  /* ── Slide 14 — Closing Quote ── */
   .s-close {
     display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
   }
   .s-close .img {
-    background-image: url('project/assets/surgeon-smile-side.jpg');
+    background-image: url('project/assets/surgeon-halo-close.jpg');
     background-size: cover; background-position: center;
     filter: grayscale(1) contrast(1.05);
   }
@@ -734,7 +785,7 @@
   }
   .s-close .q .acc { color: var(--warm-2); }
 
-  /* ── Slide 14 — Thank You / Contact ── */
+  /* ── Slide 15 — Thank You / Contact ── */
   .s-contact { display: grid; grid-template-columns: 1.1fr 1fr; }
   .s-contact .img {
     background-image: url('project/assets/rachel-thankyou.png');
@@ -778,6 +829,15 @@
     font-family: var(--f-sans); font-weight: 400; font-size: 28px;
     color: var(--paper); letter-spacing: -0.005em;
   }
+  .s-contact .qr-box {
+    width: 180px; height: 180px;
+    border: 1.5px dashed rgba(243,238,230,0.3);
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px;
+  }
+  .s-contact .qr-box span {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(243,238,230,0.35); line-height: 1.6;
+  }
 </style>
 </head>
 <body>
@@ -788,7 +848,7 @@
   <section data-label="01 Title" class="dark s-title">
     <div class="left">
       <div class="topbar">
-        <span>RN · 05.2026</span>
+        <span>RN · US Advisory Board · 05.2026</span>
         <span>THE UNCOACHED ATHLETE</span>
       </div>
       <div>
@@ -837,7 +897,7 @@
     <div class="right"></div>
     <div class="slide-foot">
       <span class="citation">Han et al. (2019) · Whelehan et al. (2021)</span>
-      <span>03 / 14</span>
+      <span>03 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span>
     </div>
   </section>
 
@@ -880,7 +940,7 @@
     <div class="right"></div>
     <div class="slide-foot">
       <span></span>
-      <span>04 / 14</span>
+      <span>04 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span>
     </div>
   </section>
 
@@ -919,7 +979,7 @@
         </div>
       </div>
       <div class="closing">Excellence is not what you endure. It is what you build.</div>
-      <div class="slide-foot"><span></span><span>05 / 14</span></div>
+      <div class="slide-foot"><span></span><span>05 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span></div>
     </div>
   </section>
 
@@ -977,7 +1037,7 @@
         <span></span>
         <span class="line">Imagine if we built one.</span>
       </div>
-      <div class="slide-foot"><span></span><span>06 / 14</span></div>
+      <div class="slide-foot"><span></span><span>06 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span></div>
     </div>
   </section>
 
@@ -1043,7 +1103,7 @@
         <span class="citation" style="color:var(--mute-dark);">Torkamani-Azar (2022) · Jevsevar (2021) · Vasireddi (2024) · Dupuy (2018) · Kirksey (2022) · Vitous (2023)</span>
         <span class="line"></span>
       </div>
-      <div class="slide-foot"><span></span><span>07 / 14</span></div>
+      <div class="slide-foot"><span></span><span>07 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span></div>
     </div>
   </section>
 
@@ -1069,10 +1129,10 @@
           <div class="v">Exercise, sleep, hydration, recovery, stress regulation. What surgeons can act on directly.</div>
         </div>
       </div>
-      <div class="footline" style="margin-top: 40px;">Athletes don't do programmes. <strong style="color:var(--accent);">They build systems.</strong></div>
+      <div class="footline" style="margin-top: 40px;">Athletes don't do programs. <strong style="color:var(--accent);">They build systems.</strong></div>
       <div class="slide-foot">
         <span class="citation">Vitous et al. (2023) · Minervini et al. (2025) · Hughes et al. (2023)</span>
-        <span>08 / 14</span>
+        <span>08 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span>
       </div>
     </div>
     <div class="sys-img"></div>
@@ -1098,16 +1158,88 @@
       </div>
       <div class="slide-foot">
         <span class="citation">Hasan, Kelly &amp; Ramkumar (2026) · Journal of Bone and Joint Surgery</span>
-        <span>09 / 14</span>
+        <span>09 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span>
       </div>
     </div>
   </section>
 
-  <!-- 10 — INTEGRATED SYSTEM (Hub &amp; Spoke) -->
-  <section data-label="10 Integrated System" class="dark s-hub">
+  <!-- 10 — SIX PILLARS -->
+  <section data-label="10 Six Pillars" class="light s-pillars">
     <div class="frame">
       <div class="track">
-        <div class="track-left"><span class="track-num">10</span><span>INTEGRATED SYSTEM</span></div>
+        <div class="track-left"><span class="track-num">10</span><span>THE SIX PILLARS</span></div>
+        <div class="track-rule"></div>
+      </div>
+      <h2 class="title" style="margin-top:12px; max-width:1400px;">Surgical excellence is a <em>long-term performance system.</em></h2>
+      <div class="subtitle" style="margin-top:-8px; font-size:24px; opacity:0.65;">Not an accumulation of case volume.</div>
+      <div class="pillar-row">
+        <div class="pillar">
+          <svg class="p-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="22" cy="10" r="4.5"/><path d="M12 26l10-9 10 9"/><line x1="22" y1="17" x2="22" y2="32"/><path d="M15 40l7-9 7 9"/>
+          </svg>
+          <div class="p-num">01</div>
+          <h5>Physical Capacity</h5>
+          <p>Strength, endurance, and postural resilience. The physical foundation that sustains a thirty-year career.</p>
+        </div>
+        <div class="pillar">
+          <svg class="p-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M36 22a14 14 0 1 1-4.5-10.3"/><path d="M32 8l0 6 6 0"/>
+          </svg>
+          <div class="p-num">02</div>
+          <h5>Recovery</h5>
+          <p>Structured, deliberate, and measured. The interval between demands is where adaptation happens.</p>
+        </div>
+        <div class="pillar">
+          <svg class="p-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 7c-7 0-13 5-13 13 0 4 1.8 7.5 4.5 10V34h17v-4c2.7-2.5 4.5-6 4.5-10 0-8-6-13-13-13z"/>
+            <line x1="18" y1="34" x2="18" y2="38"/><line x1="26" y1="34" x2="26" y2="38"/><line x1="16" y1="38" x2="28" y2="38"/>
+            <line x1="22" y1="12" x2="22" y2="18"/><line x1="19" y1="15" x2="25" y2="15"/>
+          </svg>
+          <div class="p-num">03</div>
+          <h5>Mental Performance</h5>
+          <p>Attention control, stress regulation, and cognitive readiness. Trainable, measurable, and directly applicable in the OR.</p>
+        </div>
+        <div class="pillar">
+          <svg class="p-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="22" cy="22" r="15"/><circle cx="22" cy="22" r="9"/><circle cx="22" cy="22" r="3"/>
+            <line x1="22" y1="4" x2="22" y2="9"/><line x1="40" y1="22" x2="35" y2="22"/>
+          </svg>
+          <div class="p-num">04</div>
+          <h5>Deliberate Practice</h5>
+          <p>Simulation, structured debrief, and skill acquisition beyond volume. What separates good from elite.</p>
+        </div>
+        <div class="pillar">
+          <svg class="p-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6,34 16,22 24,28 38,12"/>
+            <line x1="6" y1="38" x2="38" y2="38"/><line x1="6" y1="8" x2="6" y2="38"/>
+          </svg>
+          <div class="p-num">05</div>
+          <h5>Performance Metrics</h5>
+          <p>HRV, readiness scores, fatigue markers. What gets measured gets managed. What gets managed improves.</p>
+        </div>
+        <div class="pillar">
+          <svg class="p-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="22" cy="12" r="5"/><circle cx="8" cy="34" r="5"/><circle cx="36" cy="34" r="5"/>
+            <line x1="18" y1="16" x2="11" y2="30"/><line x1="26" y1="16" x2="33" y2="30"/>
+            <line x1="13" y1="34" x2="31" y2="34"/>
+          </svg>
+          <div class="p-num">06</div>
+          <h5>Leadership</h5>
+          <p>Brief, debrief, psychological safety, and team culture. Performance in the OR is never a solo pursuit.</p>
+        </div>
+      </div>
+      <div class="slide-foot">
+        <span class="citation">Hasan, Kelly and Ramkumar (2026) · Journal of Bone and Joint Surgery</span>
+        <span>10 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — INTEGRATED SYSTEM (Hub &amp; Spoke) -->
+  <section data-label="11 Integrated System" class="dark s-hub">
+    <div class="frame">
+      <div class="track">
+        <div class="track-left"><span class="track-num">11</span><span>INTEGRATED SYSTEM</span></div>
         <div class="track-rule"></div>
       </div>
       <h2 class="title" style="color:var(--paper); margin-top:12px;">An integrated <em>system.</em></h2>
@@ -1157,57 +1289,59 @@
           </div>
         </div>
       </div>
-      <div class="slide-foot"><span></span><span>10 / 14</span></div>
+      <div class="hub-caption">This exists in every high-performance domain. <em>Except the OR.</em></div>
+      <div class="slide-foot"><span></span><span>11 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span></div>
     </div>
   </section>
 
-  <!-- 11 — SHIFTING THE PARADIGM / CTA -->
-  <section data-label="11 Shifting the Paradigm" class="light s-cta">
+  <!-- 12 — SHIFTING THE PARADIGM / CTA -->
+  <section data-label="12 Shifting the Paradigm" class="light s-cta">
     <div class="cta-img"><div class="cap"></div></div>
     <div class="frame">
       <div class="track">
-        <div class="track-left"><span class="track-num">11</span><span>SHIFTING THE PARADIGM</span></div>
+        <div class="track-left"><span class="track-num">12</span><span>SHIFTING THE PARADIGM</span></div>
         <div class="track-rule"></div>
       </div>
-      <h2 class="title" style="margin-top:12px; max-width:1500px;">You were trained to withstand. You deserve to be supported.</h2>
+      <h2 class="title" style="margin-top:12px; max-width:1500px;">You were trained to withstand. You deserve to be <em>supported.</em></h2>
       <div class="pull">
-        <span class="quote-body">"I stood on Olympic start lines for fourteen years. The answer was never to push harder; it was to build systems around it. The best athlete in the room is not always the one who trained hardest. It is the one who trained most deliberately and recovered most completely. <span class="accent-line">You deserve the same infrastructure</span>"</span><br/><span class="attr">&mdash; Rachel Neylan</span>
+        <span class="quote-body">"I stood on Olympic start lines for fourteen years. The answer was never to push harder through it. It was to build systems around it. The most prepared athlete in the room is never the one who trained hardest. It is the one who trained most deliberately and recovered most completely. <span class="accent-line">You deserve the same infrastructure. So do your patients.</span>"</span><br/><span class="attr">Rachel Neylan</span>
       </div>
       <div class="cta-grid">
         <div class="cta">
           <div class="k">For yourself</div>
-          <h5>Choose one recovery input</h5>
-          <p>Track it. Treat it as training data</p>
+          <h5>Choose one recovery input this week.</h5>
+          <p>Track it. Treat it as training data, not self-indulgence.</p>
         </div>
         <div class="cta">
           <div class="k">For your team</div>
-          <h5>Name one OR variable to change.</h5>
+          <h5>Name one OR environment variable you can change.</h5>
           <p>Brief before you cut. Debrief after. Make the invisible visible.</p>
         </div>
         <div class="cta">
           <div class="k">For your institution</div>
-          <h5>Ask for the infrastructure</h5>
-          <p>Coaching. Monitoring. Ergonomic support.</p>
+          <h5>Ask for the infrastructure by name.</h5>
+          <p>Coaching. Monitoring. Ergonomic support. It exists in every high-performance domain. Time to say it belongs in surgery.</p>
         </div>
       </div>
-      <div class="slide-foot"><span></span><span>11 / 14</span></div>
+      <div class="closing-line">The culture of endurance is not a mark of excellence. It is the absence of excellent infrastructure.</div>
+      <div class="slide-foot"><span></span><span>12 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span></div>
     </div>
   </section>
 
-  <!-- 12 — SURGEON VOICES -->
-  <section data-label="12 Surgeon Voices" class="dark s-voices">
+  <!-- 13 — SURGEON VOICES -->
+  <section data-label="13 Surgeon Voices" class="dark s-voices">
     <div class="voices-photo">
       <div class="cap">
-        <span class="who">Rachel &nbsp;·&nbsp; Dr Stefan Kreuzer</span>
-        <span class="ctx">Inov8 Surgical, Houston</span>
+        <span class="who">Surgical Performance</span>
+        <span class="ctx">Advisory Board 2026</span>
       </div>
     </div>
     <div class="frame">
       <div class="track">
-        <div class="track-left"><span class="track-num">12</span><span>THE SURGEONS' VOICE</span></div>
+        <div class="track-left"><span class="track-num">13</span><span>THE SURGEONS' VOICE</span></div>
         <div class="track-rule"></div>
       </div>
-      <h2 class="title" style="color:var(--paper); margin-top:12px;">The surgeons who have lived it <em>are already saying it.</em></h2>
+      <h2 class="title" style="color:var(--paper); margin-top:12px;">The surgeons who have experienced this <em>are already saying it.</em></h2>
       <div class="q-col">
         <div class="q feature-q">
           <div class="text">When I started treating my preparation and recovery with the same seriousness as my technical training, I noticed an immediate difference in focus, endurance, and decision-making. Human performance science is the missing link in surgery.</div>
@@ -1216,23 +1350,23 @@
         <div class="q-row">
           <div class="q q-tenner">
             <div class="text">For years we have optimised instruments, workflows, and operating theatres, but not ourselves. This approach reframes the surgeon as a high performer, and it is exactly the mindset shift our profession needs.</div>
-            <div class="who">Dr Jit Balakumar</div>
+            <div class="who">Dr Dirk Tenner</div>
           </div>
           <div class="q q-newman">
             <div class="text">An athlete is one whose performance depends on a carefully choreographed interplay between mind and body. This is wholly within the job description of a surgeon.</div>
-            <div class="who">Prof Bill Walter</div>
+            <div class="who">Dr Lawrence Newman</div>
           </div>
         </div>
       </div>
-      <div class="slide-foot"><span></span><span>12 / 14</span></div>
+      <div class="slide-foot"><span></span><span>13 / 15 &nbsp;·&nbsp; © Rachel Neylan 2026</span></div>
     </div>
   </section>
 
-  <!-- 13 — CLOSING QUOTE -->
-  <section data-label="13 Close" class="dark s-close">
+  <!-- 14 — CLOSING QUOTE -->
+  <section data-label="14 Close" class="dark s-close">
     <div class="img"></div>
     <div class="text">
-      <div class="eyebrow" style="margin-bottom:48px;">13</div>
+      <div class="eyebrow" style="margin-bottom:48px;">14</div>
       <p class="q">The most advanced tool in the OR <span class="acc">will always be the surgeon.</span></p>
       <div style="margin-top: 60px; display:flex; align-items:center; gap: 20px;">
         <div style="width:40px; height:1px; background: var(--paper);"></div>
@@ -1241,12 +1375,12 @@
     </div>
   </section>
 
-  <!-- 14 — THANK YOU / CONTACT -->
-  <section data-label="14 Contact" class="dark s-contact">
+  <!-- 15 — THANK YOU / CONTACT -->
+  <section data-label="15 Contact" class="dark s-contact">
     <div class="img"></div>
     <div class="info">
       <div>
-        <div class="eyebrow" style="margin-bottom: 40px;">End · 14 of 14</div>
+        <div class="eyebrow" style="margin-bottom: 40px;">End · 15 of 15</div>
         <h2 class="serif">Thank <em>you.</em></h2>
         <div class="name-line" style="margin-top: 40px;">
           Rachel Neylan <span class="sep">/</span> OLY · MSc · BAppSc
@@ -1256,12 +1390,8 @@
         </div>
       </div>
       <div class="footer">
-        <div class="qr"><img src="project/assets/whatsapp-qr.png" alt="WhatsApp QR" /></div>
+        <div class="qr-box"><span>Insert<br/>QR Code<br/>Here</span></div>
         <div class="details">
-          <div class="qr-cap">
-            Scan to connect on WhatsApp
-            <span class="sub">Rachel Neylan · Direct line</span>
-          </div>
           <div class="det-row">
             <div class="k">Web</div>
             <div class="v">www.rachelneylan.com</div>
