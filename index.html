@@ -10,37 +10,21 @@
 <script src="deck-stage.js"></script>
 <style>
   :root {
-    --ink: #1C1E22;
-    --ink-2: #2A2D32;
-    --ink-3: #3A3E44;
-    --paper: #F1E9DB;
-    --paper-2: #E8DDC6;
-    --paper-warm: #F7EFD9;
-    --rule: #5B5E64;
-    --rule-light: #C9BFA8;
-    --mute: #8B8378;
-    --mute-dark: #7E7B74;
-    --accent: #1E7A7A;
-    --accent-2: #3E9898;
-    --warm: var(--accent);
-    --warm-2: var(--accent-2);
-    --gold: var(--accent);
-    --surface-dark: #2B3340;
-    --surface-dark-2: #384150;
-  }
-  html, body { background: #1A1D22; }
-  body { margin: 0; font-family: 'Inter Tight', system-ui, sans-serif; color: var(--ink); }
+    --ink:          #1C0F0A;
+    --ink-2:        #2A1810;
+    --ink-3:        #3A2418;
+    --paper:        #FFF8F2;
+    --paper-2:      #F5EDE3;
+    --paper-warm:   #FDEEE4;
+    --rule:         #7A5A4A;
+    --rule-light:   #D4BCA8;
+    --mute:         #9A7A6A;
+    --mute-dark:    #8A6A5A;
+    --accent:       #C4503A;
+    --accent-2:     #E87A5A;
+    --surface-dark: #1C0F0A;
+    --surface-dark-2:#2A1810;
 
-  deck-stage section {
-    font-family: 'Inter Tight', system-ui, sans-serif;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .dark { background: var(--surface-dark); color: var(--paper); }
-  .light { background: var(--paper); color: var(--ink); }
-
-  :root {
     --f-serif: 'Cormorant Garamond', 'Times New Roman', serif;
     --f-sans:  'Inter Tight', system-ui, sans-serif;
     --f-mono:  'JetBrains Mono', ui-monospace, monospace;
@@ -48,1347 +32,1337 @@
     --tk-snug:  -0.015em;
     --tk-wide:  0.14em;
   }
+
+  html, body { background: var(--ink); margin: 0; }
+  body { font-family: var(--f-sans); color: var(--ink); }
+
+  deck-stage section { font-family: var(--f-sans); overflow: hidden; position: relative; }
+
+  .dark  { background: var(--surface-dark);  color: var(--paper); }
+  .light { background: var(--paper);          color: var(--ink); }
+  .warm  { background: var(--paper-2);        color: var(--ink); }
+
   .serif { font-family: var(--f-serif); font-weight: 500; letter-spacing: var(--tk-snug); }
-  .mono  { font-family: var(--f-mono); letter-spacing: var(--tk-wide); }
-  .sans  { font-family: var(--f-sans); }
+  .mono  { font-family: var(--f-mono);  letter-spacing: var(--tk-wide); }
 
-  .track, .eyebrow, .attribution, .tracked,
-  .s-title .byline, .s-title .topbar,
-  .slide-foot, .s-gap .tool,
-  .s-paradigm .col h4,
-  .s-reality .col .idx, .s-reality .col h6,
-  .s-gaps .card .idx, .s-gaps .card .label,
-  .s-system .bar .k .tag,
-  .s-domains .cell .num,
-  .hub-node p,
-  .s-cta .pull .attr, .s-cta .cta .k,
-  .s-voices .q .who,
-  .s-contact .row .k, .s-contact .name-line {
-    letter-spacing: var(--tk-wide);
-    font-feature-settings: "ss01", "cv11";
-  }
-
+  /* ── Global type ── */
   .frame {
     position: absolute; inset: 0;
-    padding: 100px 100px 80px 100px;
+    padding: 90px 100px 72px;
     display: flex; flex-direction: column;
   }
 
   .track {
     display: flex; align-items: center; justify-content: space-between;
-    font-family: var(--f-mono);
-    font-size: 17px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--mute);
+    font-family: var(--f-mono); font-size: 15px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--mute); flex-shrink: 0;
   }
-  .track-left { display: flex; gap: 28px; align-items: center; }
-  .track-num { color: var(--accent-2); }
-  .track-rule { flex: 1; height: 1px; background: currentColor; opacity: 0.2; margin: 0 32px; }
-  .dark .track { color: #8E877B; }
-  .dark .track-rule { background: #4A4842; opacity: 1; }
-  .light .track-rule { background: var(--rule-light); }
+  .track-left  { display: flex; gap: 24px; align-items: center; }
+  .track-num   { color: var(--accent-2); }
+  .track-rule  { flex: 1; height: 1px; background: currentColor; opacity: 0.18; margin: 0 28px; }
+  .dark .track { color: rgba(255,248,242,0.45); }
+  .dark .track-rule { background: rgba(255,248,242,0.2); opacity: 1; }
 
   .slide-foot {
-    position: absolute; left: 100px; right: 100px; bottom: 40px;
+    position: absolute; left: 100px; right: 100px; bottom: 36px;
     display: flex; align-items: center; justify-content: space-between;
-    font-family: var(--f-mono);
-    font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
     color: var(--mute);
   }
-  .dark .slide-foot { color: #6E685E; }
-  .citation { font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.06em; text-transform: none; color: inherit; opacity: 0.7; }
+  .dark .slide-foot { color: rgba(255,248,242,0.35); }
 
   .eyebrow {
-    font-family: var(--f-mono);
-    font-size: 17px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent-2);
-    margin-bottom: 36px;
+    font-family: var(--f-mono); font-size: 15px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 32px; flex-shrink: 0;
   }
-  .light .eyebrow { color: var(--accent); }
+  .light .eyebrow, .warm .eyebrow { color: var(--accent); }
+  .dark .eyebrow { color: var(--accent-2); }
 
   h1.hero {
-    font-family: var(--f-serif);
-    font-weight: 500;
-    font-size: 112px;
-    line-height: 1.0;
-    letter-spacing: var(--tk-tight);
-    margin: 0;
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 108px; line-height: 1.0;
+    letter-spacing: var(--tk-tight); margin: 0;
   }
   h2.title {
-    font-family: var(--f-serif);
-    font-weight: 500;
-    font-size: 76px;
-    line-height: 1.05;
-    letter-spacing: var(--tk-snug);
-    margin: 0 0 24px 0;
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 72px; line-height: 1.05;
+    letter-spacing: var(--tk-snug); margin: 0 0 22px;
     text-wrap: balance;
   }
   h2.title em { font-style: italic; color: var(--accent-2); }
-  .light h2.title em { color: var(--accent); }
+  .light h2.title em, .warm h2.title em { color: var(--accent); }
 
   .subtitle {
-    font-family: var(--f-sans);
-    font-weight: 300;
-    font-size: 28px;
-    line-height: 1.4;
-    letter-spacing: 0;
-    color: inherit; opacity: 0.78;
-    max-width: 1100px;
-    text-wrap: pretty;
+    font-family: var(--f-sans); font-weight: 300;
+    font-size: 26px; line-height: 1.45;
+    opacity: 0.78; max-width: 1050px; text-wrap: pretty;
   }
-
   .body {
-    font-family: var(--f-sans);
-    font-size: 26px; line-height: 1.5; font-weight: 400;
-    text-wrap: pretty;
-  }
-  .body-lg {
-    font-family: var(--f-sans);
-    font-size: 32px; line-height: 1.45; font-weight: 400;
-    text-wrap: pretty;
+    font-family: var(--f-sans); font-size: 24px;
+    line-height: 1.55; font-weight: 400; text-wrap: pretty;
   }
 
   .quote-serif {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 68px;
-    line-height: 1.15;
+    font-family: var(--f-serif); font-style: italic;
+    font-weight: 400; font-size: 64px; line-height: 1.18;
     letter-spacing: -0.01em;
   }
   .attribution {
-    font-family: var(--f-mono);
-    font-size: 17px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--f-mono); font-size: 15px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
     color: var(--accent-2);
   }
-  .light .attribution { color: var(--accent); }
+  .light .attribution, .warm .attribution { color: var(--accent); }
 
-  .hair {
-    display: block; height: 1px; width: 100%;
-    background: currentColor; opacity: 0.15;
+  .hair { display: block; height: 1px; width: 100%; background: currentColor; opacity: 0.15; }
+  .accent-color { color: var(--accent-2); }
+  .dark .accent-color { color: var(--accent-2); }
+  .light .accent-color, .warm .accent-color { color: var(--accent); }
+
+  /* ── LEVER BAND (Stack slides) ── */
+  .lever-band {
+    background: var(--accent);
+    color: #fff;
+    padding: 22px 40px;
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-size: 38px;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    flex-shrink: 0;
+  }
+  .lever-num {
+    font-family: var(--f-mono);
+    font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7; margin-bottom: 6px;
   }
 
-  .accent { color: var(--accent-2); }
-  .light .accent { color: var(--accent); }
-  .dim { opacity: 0.65; }
-  .tracked { letter-spacing: 0.14em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
-
-  /* ── Slide 01 — Title ── */
+  /* ── SLIDE 01 — Title ── */
   .s-title { display: grid; grid-template-columns: 1fr 1fr; }
   .s-title .left {
-    padding: 100px; display: flex; flex-direction: column; justify-content: space-between;
+    padding: 90px 100px;
+    display: flex; flex-direction: column; justify-content: space-between;
     background: var(--ink);
   }
   .s-title .right {
-    background-image: url('project/assets/surgeon-cover-ok.jpg');
-    background-size: cover; background-position: center 30%;
+    background-image: url('project/assets/surgeon-tying-cap.jpg');
+    background-size: cover; background-position: center 20%;
     position: relative;
   }
   .s-title .right::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(14,15,16,0.55) 0%, rgba(14,15,16,0) 40%);
+    background: linear-gradient(90deg, rgba(28,15,10,0.5) 0%, rgba(28,15,10,0) 45%);
   }
   .s-title h1 {
-    font-family: var(--f-serif);
-    font-weight: 500;
-    font-size: 156px; line-height: 0.95;
-    letter-spacing: var(--tk-tight);
-    margin: 0 0 36px 0;
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 140px; line-height: 0.95;
+    letter-spacing: var(--tk-tight); margin: 0 0 32px;
+    color: var(--paper);
   }
   .s-title h1 em { font-style: italic; font-weight: 400; color: var(--accent-2); }
   .s-title .sub {
-    font-family: var(--f-sans);
-    font-weight: 300;
-    font-size: 26px; line-height: 1.4;
-    color: rgba(243,238,230,0.78);
-    max-width: 600px;
-    margin-top: 0;
-    text-wrap: pretty;
+    font-family: var(--f-sans); font-weight: 300;
+    font-size: 24px; line-height: 1.45;
+    color: rgba(255,248,242,0.75); max-width: 560px; text-wrap: pretty;
   }
   .s-title .byline {
-    font-family: var(--f-mono);
-    font-size: 16px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(243,238,230,0.85);
+    font-family: var(--f-mono); font-size: 14px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: rgba(255,248,242,0.8);
   }
-  .s-title .byline .name { color: var(--accent-2); display: block; margin-bottom: 10px; font-size: 18px; }
-  .s-title .byline .role { opacity: 0.7; font-size: 15px; }
+  .s-title .byline .name { color: var(--accent-2); display: block; margin-bottom: 8px; font-size: 16px; }
+  .s-title .byline .role { opacity: 0.6; font-size: 13px; }
   .s-title .topbar {
     display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--f-mono); font-size: 15px;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(243,238,230,0.55);
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: rgba(255,248,242,0.45);
   }
 
-  /* ── Slide 02 — Opening Quote ── */
-  .s-quote-open {
-    display: grid; grid-template-columns: 45% 55%;
-  }
+  /* ── SLIDE 02 — Opening Quote ── */
+  .s-quote-open { display: grid; grid-template-columns: 44% 56%; }
   .s-quote-open .img {
-    background-image: url('project/assets/rachel-cycling.png');
+    background-image: url('project/assets/athlete-barbell.jpg');
     background-size: cover; background-position: center;
     position: relative;
   }
   .s-quote-open .img::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0) 55%, rgba(14,15,16,0.85) 100%);
+    background: linear-gradient(90deg, rgba(28,15,10,0) 50%, rgba(28,15,10,0.82) 100%);
   }
   .s-quote-open .text {
-    padding: 120px 110px; display: flex; flex-direction: column; justify-content: center;
+    padding: 110px 100px;
+    display: flex; flex-direction: column; justify-content: center;
   }
   .s-quote-open .q {
-    font-family: var(--f-serif);
-    font-style: italic; font-weight: 400;
-    font-size: 64px; line-height: 1.2;
-    letter-spacing: var(--tk-snug);
-    color: var(--paper);
-    text-wrap: pretty;
-  }
-  .s-quote-open .q .highlight { font-style: italic; color: var(--accent-2); }
-  .s-quote-open .attr { margin-top: 60px; display:flex; align-items:center; gap: 20px; }
-  .s-quote-open .attr .dash { width: 40px; height: 1px; background: var(--accent-2); }
-  .s-quote-open .attr .name { font-family: var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; font-size: 16px; color: var(--accent-2); }
-
-  /* ── Slide 03 — The Gap ── */
-  .s-gap { display: grid; grid-template-columns: 1.15fr 1fr; }
-  .s-gap .left { padding: 100px; display: flex; flex-direction: column; justify-content: center; }
-  .s-gap .right {
-    background-image: url('project/assets/surgeon-instruments.png');
-    background-size: cover; background-position: center;
-    background-color: #0E0F10;
-  }
-  .s-gap .tools {
-    display: flex; gap: 42px; align-items: center;
-    margin: 50px 0 50px 0; padding: 28px 0;
-    border-top: 1px solid rgba(243,238,230,0.18);
-    border-bottom: 1px solid rgba(243,238,230,0.18);
-  }
-  .s-gap .tool {
-    font-family: var(--f-mono);
-    font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--paper);
-  }
-  .s-gap .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); display: inline-block; margin-right: 14px; vertical-align: middle; }
-  .s-gap p { font-family: var(--f-sans); font-size: 26px; line-height: 1.5; color: rgba(243,238,230,0.85); max-width: 820px; margin: 0 0 22px 0; font-weight: 300; text-wrap: pretty; }
-  .s-gap .kicker { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 40px; color: var(--accent-2); margin-top: 40px; }
-
-  /* ── Slide 04 — The Lens (Venn) ── */
-  .venn-wrap { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; padding: 30px 0 30px 0; }
-  .venn { position: relative; width: 820px; height: 720px; }
-  .venn .circle {
-    position: absolute; width: 460px; height: 460px; border-radius: 50% !important;
-    border: 1.5px solid rgba(28,30,34,0.55);
-    mix-blend-mode: multiply;
-  }
-  .venn .c1 { left: 0;   top: 0;   background: rgba(30,122,122,0.18); border-color: rgba(30,122,122,0.6); }
-  .venn .c2 { right: 0;  top: 0;   background: rgba(217,119,87,0.18); border-color: rgba(217,119,87,0.65); }
-  .venn .c3 { left: 180px; top: 250px; background: rgba(196,156,79,0.22); border-color: rgba(196,156,79,0.7); }
-  .venn .label {
-    position: absolute;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink);
-    z-index: 3;
-  }
-  .venn .label .disc-title { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 28px; letter-spacing: -0.01em; text-transform: none; color: var(--ink); margin-bottom: 8px; line-height: 1.0; }
-  .venn .label .disc-sub { font-size: 13px; color: var(--mute-dark); letter-spacing: 0.06em; display: block; line-height: 1.4; text-transform: none; font-family: 'Inter Tight', sans-serif; font-weight: 400; }
-  .venn .label .disc-sub.caps { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-  .venn .l-olympic { left: 30px;  top: 70px;  width: 240px; text-align: center; }
-  .venn .l-physio  { right: 30px; top: 70px;  width: 240px; text-align: center; }
-  .venn .l-coach   { left: 50%; transform: translateX(-50%); top: 600px; width: 280px; text-align: center; }
-  .venn .inter {
-    position: absolute; font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); text-align: center; line-height: 1.3;
-    z-index: 3;
-  }
-  .venn .i-applied { left: 50%; transform: translateX(-50%); top: 80px; width: 160px; }
-  .venn .i-behav   { left: 140px; top: 310px; width: 130px; }
-  .venn .i-change  { right: 140px; top: 310px; width: 130px; }
-  .venn .core {
-    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-    width: 320px; height: 320px; border-radius: 50%;
-    background: var(--paper);
-    border: 2px solid var(--ink);
-    box-shadow: 0 10px 40px rgba(28,30,34,0.22);
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    padding: 20px;
-    z-index: 5;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700; font-style: normal;
-    font-size: 30px; line-height: 1.05;
-    color: var(--ink); letter-spacing: -0.01em;
-  }
-
-  .s-lens { display: grid; grid-template-columns: 1.15fr 1fr; position: relative; }
-  .s-lens .left { padding: 100px; display: flex; flex-direction: column; justify-content: flex-start; background: var(--paper); }
-  .s-lens .right {
-    background-image: url('project/assets/rachel-podium.png');
-    background-size: cover; background-position: 48% 28%;
-    background-color: #1a1b1d;
-  }
-  .s-lens .venn-wrap { padding: 30px 0 0 0; justify-content: flex-start; }
-  .s-lens .venn { transform: scale(0.78); transform-origin: top left; }
-
-  /* ── Slide 05 — Paradigm Shift ── */
-  .s-paradigm { position: relative; overflow: hidden; }
-  .s-paradigm::before {
-    content: ""; position: absolute; top: 0; right: 0; width: 52%; height: 100%;
-    background-image: url('project/assets/surgeon-tying-cap.jpg');
-    background-size: cover; background-position: 60% center;
-    opacity: 0.22;
-    filter: grayscale(0.5) contrast(1.05);
-    pointer-events: none;
-    mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%);
-    z-index: 0;
-  }
-  .s-paradigm::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(241,233,219,0.0) 0%, rgba(241,233,219,0.55) 70%, rgba(241,233,219,0.9) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-paradigm > .frame { position: relative; z-index: 2; }
-  .s-paradigm .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 40px; }
-  .s-paradigm .col h4 {
-    font-family: var(--f-mono);
-    font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase;
-    margin: 0 0 32px 0; padding-bottom: 14px;
-    border-bottom: 1px solid var(--rule-light);
-    display: flex; justify-content: flex-start; gap: 14px;
-  }
-  .s-paradigm .to h4 { flex-direction: row-reverse; justify-content: flex-end; border-bottom-color: var(--warm); border-bottom-width: 2px; }
-  .s-paradigm .col h4 .caret { color: var(--warm); }
-  .s-paradigm .from h4 { color: var(--mute); }
-  .s-paradigm ul { list-style: none; padding: 0; margin: 0; }
-  .s-paradigm li {
-    font-family: var(--f-sans);
-    font-weight: 400;
-    font-size: 24px; line-height: 1.45;
-    letter-spacing: 0;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--rule-light);
-  }
-  .s-paradigm .from li { color: var(--mute-dark); text-decoration: line-through; text-decoration-color: var(--mute); text-decoration-thickness: 1px; }
-  .s-paradigm .to li { color: var(--ink); font-weight: 400; }
-  .s-paradigm .closing {
-    margin-top: 36px; text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-weight: 400; font-size: 44px;
-    color: var(--warm);
-  }
-  .s-paradigm .title em { color: var(--warm); }
-
-  /* ── Slide 06 — Reality Check ── */
-  .s-reality::before {
-    content: ""; position: absolute; top: 0; right: 0; width: 55%; height: 100%;
-    background-image: url('project/assets/gymnast-rings.png');
-    background-size: cover; background-position: center;
-    opacity: 0.28;
-    filter: grayscale(1) contrast(1.1) brightness(0.9);
-    pointer-events: none;
-    mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
-  }
-  .s-reality::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(46,53,64,0.0) 0%, rgba(46,53,64,0.25) 30%, rgba(46,53,64,0.85) 100%);
-    pointer-events: none;
-  }
-  .s-reality > .frame { position: relative; z-index: 2; }
-  .s-reality .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; margin-top: 40px; flex: 1; align-content: center; align-self: center; }
-  .s-reality .col {
-    border-top: 1px solid rgba(243,238,230,0.25);
-    padding-top: 28px;
-    display: flex; flex-direction: column;
-  }
-  .s-reality .col.surgeon { border-top-color: var(--accent-2); border-top-width: 2px; }
-  .s-reality .col .idx { font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; color: rgba(243,238,230,0.4); margin-bottom: 14px; }
-  .s-reality .col h5 {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-weight: 500; font-size: 40px;
-    margin: 0 0 22px 0; color: var(--paper); line-height: 1.0;
-  }
-  .s-reality .surgeon h5 { color: var(--accent-2); }
-  .s-reality .col h6 {
-    font-family: var(--f-mono);
-    font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(243,238,230,0.55);
-    margin: 20px 0 10px 0;
-  }
-  .s-reality .col p {
-    font-family: var(--f-sans); font-weight: 400;
-    font-size: 19px; line-height: 1.5;
-    color: rgba(243,238,230,0.82);
-    margin: 0;
-    text-wrap: pretty;
-  }
-  .s-reality .col .sys-unk {
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 40px; color: var(--accent-2);
-  }
-  .s-reality .closing {
-    margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(243,238,230,0.15);
-    display: flex; justify-content: space-between; align-items: baseline;
-  }
-  .s-reality .closing .line {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 46px; color: var(--accent-2);
-  }
-
-  /* ── Slide 07 — Performance Gaps ── */
-  .s-gaps { position: relative; overflow: hidden; }
-  .s-gaps::before {
-    content: ""; position: absolute; inset: 0;
-    background-image: url('project/assets/surgeons-operating.png');
-    background-size: cover; background-position: center;
-    opacity: 0.12;
-    filter: grayscale(1) contrast(1.05);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .s-gaps::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(241,233,219,0.85) 0%, rgba(241,233,219,0.6) 45%, rgba(241,233,219,0.92) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-gaps > .frame { position: relative; z-index: 2; }
-  .s-gaps .card { background: rgba(241,233,219,0.82); backdrop-filter: blur(2px); }
-  .s-gaps .cards { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 0; border-top: 1px solid var(--rule-light); border-left: 1px solid var(--rule-light); margin-top: 30px; }
-  .s-gaps .card {
-    padding: 26px 26px 28px 26px;
-    border-right: 1px solid var(--rule-light);
-    border-bottom: 1px solid var(--rule-light);
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .s-gaps .card .idx { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.14em; color: var(--accent); }
-  .s-gaps .card:nth-child(2) .idx,
-  .s-gaps .card:nth-child(5) .idx { color: var(--warm); }
-  .s-gaps .card:nth-child(3) .idx,
-  .s-gaps .card:nth-child(6) .idx { color: var(--gold); }
-  .s-gaps .card:nth-child(1) { border-top: 2px solid var(--accent); }
-  .s-gaps .card:nth-child(2) { border-top: 2px solid var(--warm); }
-  .s-gaps .card:nth-child(3) { border-top: 2px solid var(--gold); }
-  .s-gaps .card:nth-child(4) { border-top: 2px solid var(--accent); }
-  .s-gaps .card:nth-child(5) { border-top: 2px solid var(--warm); }
-  .s-gaps .card:nth-child(6) { border-top: 2px solid var(--gold); }
-  .s-gaps .card h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 32px; margin: 4px 0 10px 0; color: var(--ink); line-height: 1.05; }
-  .s-gaps .card .label {
-    font-family: var(--f-mono);
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--mute-dark);
-    margin-top: 10px;
-  }
-  .s-gaps .card p {
-    font-family: var(--f-sans); font-weight: 400;
-    font-size: 21px; line-height: 1.5; color: var(--ink-3);
-    margin: 0;
-    text-wrap: pretty;
-  }
-  .s-gaps .card p.op { color: var(--accent); }
-  .s-gaps .closing {
-    margin-top: 28px; margin-bottom: 40px;
-    display: flex; justify-content: space-between; align-items: baseline;
-  }
-  .s-gaps .closing .line {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 32px; color: var(--accent);
-  }
-
-  /* ── Slide 08 — System Required ── */
-  .s-system { position: relative; }
-  .s-system > .frame { padding-right: min(calc(33.333% + 40px), 700px); }
-  .s-system .sys-img {
-    position: absolute; top: 0; right: 0; bottom: 0;
-    width: 33.333%;
-    background-image: url('project/assets/rachel-training.jpg');
-    background-size: cover; background-position: 50% 40%;
-    background-color: #0E0F10;
-  }
-  .s-system .sys-img::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(14,15,16,0.55) 0%, rgba(14,15,16,0.0) 25%, rgba(14,15,16,0.0) 100%);
-    pointer-events: none;
-  }
-  .s-system .bars { display: flex; flex-direction: column; gap: 16px; margin-top: 50px; }
-  .s-system .bar {
-    display: grid; grid-template-columns: 320px 1fr; align-items: stretch;
-    border: 1px solid rgba(243,238,230,0.22);
-    background: rgba(255,255,255,0.015);
-  }
-  .s-system .bar .k {
-    padding: 40px 40px; border-right: 1px solid rgba(243,238,230,0.22);
-    display: flex; flex-direction: column; gap: 8px;
-    background: rgba(30,122,122,0.06);
-  }
-  .s-system .bar .k .tag { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-2); }
-  .s-system .bar .k h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 42px; margin: 0; color: var(--paper); line-height: 1; }
-  .s-system .bar .v { padding: 40px 50px; display: flex; align-items: center; font-family: var(--f-sans); font-weight: 400; font-size: 22px; line-height: 1.5; color: rgba(243,238,230,0.88); text-wrap: pretty; }
-  .s-system .footline {
-    margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(243,238,230,0.15);
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 28px; color: rgba(243,238,230,0.85);
-  }
-  .s-system .footline strong { font-style: normal; font-family: 'Inter Tight', sans-serif; font-weight: 500; color: var(--accent-2); }
-
-  /* ── Slide 09 — Eight Domains ── */
-  .s-domains { position: relative; overflow: hidden; }
-  .s-domains::before {
-    content: ""; position: absolute; inset: 0;
-    background-image: url('project/assets/surgeon-gowning.png');
-    background-size: cover; background-position: 70% center;
-    opacity: 0.18;
-    filter: grayscale(0.6) contrast(1.05);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .s-domains::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(241,233,219,0.95) 0%, rgba(241,233,219,0.75) 50%, rgba(241,233,219,0.95) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-domains > .frame { position: relative; z-index: 2; }
-  .s-domains .cell { background: rgba(241,233,219,0.78); backdrop-filter: blur(2px); }
-  .s-domains .grid { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr; border-top: 1px solid var(--rule-light); border-left: 1px solid var(--rule-light); flex: 1; }
-  .s-domains .cell {
-    padding: 30px 28px; border-right: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light);
-    display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
-  }
-  .s-domains .cell .num { font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; color: var(--accent); }
-  .s-domains .cell:nth-child(2) .num,
-  .s-domains .cell:nth-child(6) .num { color: var(--warm); }
-  .s-domains .cell:nth-child(3) .num,
-  .s-domains .cell:nth-child(7) .num { color: var(--gold); }
-  .s-domains .cell:nth-child(4) .num,
-  .s-domains .cell:nth-child(8) .num { color: var(--accent-2); }
-  .s-domains .cell h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 38px; margin: 0; line-height: 1.0; color: var(--ink); }
-  .s-domains .cell p { font-family: var(--f-sans); font-weight: 400; font-size: 17px; line-height: 1.5; color: var(--mute-dark); margin: 0; text-wrap: pretty; }
-
-  /* ── Slide 10 — Integrated System (Hub & Spoke) ── */
-  .hub-wrap { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
-  .hub { position: relative; width: 1400px; height: 700px; }
-  .hub-center {
-    position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-    width: 280px; height: 280px; border-radius: 50%;
-    background: var(--accent); color: var(--paper);
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    z-index: 3;
-  }
-  .hub-center .c-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-style: italic; font-size: 38px; line-height: 1.0; padding: 0 28px; }
-  .hub-node {
-    position: absolute; width: 270px;
-    display: flex; flex-direction: column; gap: 6px;
-    z-index: 2;
-  }
-  .hub-node .dot {
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--paper); border: 2px solid var(--accent-2);
-  }
-  .hub-node h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 28px; margin: 0; color: var(--paper); line-height: 1.1; }
-  .hub-node p { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.14em; color: rgba(243,238,230,0.7); margin: 0; line-height: 1.4; text-transform: uppercase; }
-  .hub-svg { position: absolute; inset: 0; pointer-events: none; }
-  .s-hub { position: relative; overflow: hidden; }
-  .s-hub::before {
-    content: ""; position: absolute; inset: 0;
-    background-image: url('project/assets/or-wide.png');
-    background-size: cover; background-position: center;
-    opacity: 0.35;
-    filter: grayscale(0.2) contrast(1.1);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .s-hub::after {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(46,53,64,0.35) 0%, rgba(14,15,16,0.82) 70%, rgba(14,15,16,0.95) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-hub > .frame { position: relative; z-index: 2; }
-
-  /* ── Slide 11 — Shifting the Paradigm / CTA ── */
-  .s-cta { position: relative; }
-  .s-cta > .frame { padding-right: calc(33.333% + 60px); }
-  .s-cta .cta-img {
-    position: absolute; top: 0; right: 0; bottom: 0;
-    width: 33.333%;
-    background-image: url('project/assets/surgeon-female-gloves.jpg');
-    background-size: cover; background-position: 65% center;
-    background-color: var(--paper-2);
-    z-index: 1;
-  }
-  .s-cta .cta-img::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(241,233,219,0.0) 70%, rgba(241,233,219,0.18) 100%);
-    pointer-events: none;
-  }
-  .s-cta .cta-img .cap {
-    position: absolute; left: 0; right: 0; bottom: 0;
-    padding: 22px 32px 28px 32px;
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--paper); z-index: 2;
-    text-shadow: 0 1px 12px rgba(0,0,0,0.5);
-    display: flex; justify-content: flex-end;
-  }
-  .s-cta .pull {
-    font-family: var(--f-sans); font-weight: 300;
-    font-size: 28px; line-height: 1.5;
-    max-width: 1400px; color: var(--ink-3);
-    margin-top: 20px;
-    text-wrap: pretty;
-  }
-  .s-cta .pull .attr { display: inline-block; margin-top: 22px; font-family: var(--f-mono); font-style: normal; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-  .s-cta .pull .quote-body {
     font-family: var(--f-serif); font-style: italic; font-weight: 400;
-    font-size: 36px; line-height: 1.35; letter-spacing: var(--tk-snug);
-    color: var(--ink-2);
+    font-size: 58px; line-height: 1.22;
+    letter-spacing: var(--tk-snug); color: var(--paper); text-wrap: pretty;
   }
-  .s-cta .pull .accent-line { color: var(--accent); font-weight: 500; font-style: italic; }
-  .s-cta .cta-grid { margin-top: 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .s-cta .cta {
-    border-top: 2px solid var(--accent);
-    padding-top: 22px;
+  .s-quote-open .q .hi { color: var(--accent-2); font-style: italic; }
+  .s-quote-open .attr { margin-top: 52px; display: flex; align-items: center; gap: 18px; }
+  .s-quote-open .attr .dash { width: 36px; height: 1px; background: var(--accent-2); }
+  .s-quote-open .attr .name {
+    font-family: var(--f-mono); letter-spacing: var(--tk-wide);
+    text-transform: uppercase; font-size: 14px; color: var(--accent-2);
   }
-  .s-cta .cta .k { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .s-cta .cta h5 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26px; margin: 0 0 12px 0; color: var(--ink); line-height: 1.1; }
-  .s-cta .cta p { font-family: var(--f-sans); font-weight: 400; font-size: 16px; line-height: 1.5; color: var(--ink-3); margin: 0; text-wrap: pretty; }
 
-  /* ── Slide 12 — Surgeon Voices ── */
-  .s-voices { position: relative; }
-  .s-voices .voices-photo {
-    position: absolute; top: 0; left: 0; bottom: 0;
-    width: 33.333%;
-    background-image: url('project/assets/rachel-stefan.jpg');
-    background-size: cover; background-position: center 18%;
-    z-index: 1;
-  }
-  .s-voices .voices-photo .cap {
-    position: absolute; left: 0; right: 0; bottom: 0;
-    padding: 22px 32px 28px 32px;
-    background: linear-gradient(to top, rgba(20,22,26,0.92), rgba(20,22,26,0.0) 80%);
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(243,238,230,0.85);
-    display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
-  }
-  .s-voices .voices-photo .cap .who { color: var(--paper); }
-  .s-voices .voices-photo .cap .ctx { color: var(--accent-2); text-align: right; }
-  .s-voices > .frame {
-    position: absolute; inset: 0;
-    padding-left: calc(33.333% + 80px);
-    z-index: 2;
-  }
-  .s-voices .q-col { flex: 1; display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
-  .s-voices .q-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; min-height: 0; }
-  .s-voices .feature-q { padding: 36px 42px 30px 42px; }
-  .s-voices .q-tenner { border-top-color: var(--warm-2); }
-  .s-voices .q-tenner::before { color: var(--warm-2); }
-  .s-voices .q-tenner .who { color: var(--warm-2); }
-  .s-voices .q-newman { border-top-color: var(--gold); }
-  .s-voices .q-newman::before { color: var(--gold); }
-  .s-voices .q-newman .who { color: var(--gold); }
-  .s-voices .q {
-    display: flex; flex-direction: column; justify-content: space-between;
-    padding: 32px 36px 28px 36px;
-    border-top: 2px solid var(--accent-2);
+  /* ── SLIDE 03 — The Work ── */
+  .s-work { display: grid; grid-template-columns: 55% 45%; }
+  .s-work .left { padding: 90px 100px; display: flex; flex-direction: column; justify-content: space-between; }
+  .s-work .right {
+    background-image: url('project/assets/surgeon-smiling-crossed.jpg');
+    background-size: cover; background-position: center top;
     position: relative;
   }
-  .s-voices .q::before {
-    content: '"'; position: absolute; top: 14px; left: 28px;
-    font-family: 'Cormorant Garamond', serif; font-size: 110px; line-height: 1;
-    color: var(--accent-2); opacity: 0.4;
+  .s-work .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.92) 0%, rgba(255,248,242,0) 55%);
+    z-index: 1;
   }
-  .s-voices .feature-q { border-top-color: var(--accent-2); }
-  .s-voices .feature-q::before { color: var(--accent-2); }
-  .s-voices .feature-q .who { color: var(--accent-2); }
-  .s-voices .q .text {
-    font-family: var(--f-serif); font-style: italic; font-weight: 400;
-    font-size: 26px; line-height: 1.4;
-    letter-spacing: var(--tk-snug);
-    color: rgba(243,238,230,0.94);
-    margin-top: 36px;
-    text-wrap: pretty;
+  .s-work .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; align-content: center; }
+  .s-work .col h4 {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 20px;
   }
-  .s-voices .feature-q .text {
-    font-size: 32px; line-height: 1.4;
-    color: var(--paper);
-    margin-top: 28px;
+  .s-work .col ul { margin: 0; padding: 0; list-style: none; }
+  .s-work .col ul li {
+    font-family: var(--f-sans); font-size: 20px;
+    line-height: 1.5; color: var(--ink-2);
+    padding: 10px 0; border-bottom: 1px solid var(--rule-light);
   }
-  .s-voices .q .who { margin-top: 26px; font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2); }
+  .s-work .col ul li:first-child { border-top: 1px solid var(--rule-light); }
+  .s-work .banner {
+    background: var(--accent); color: #fff;
+    padding: 20px 0; margin-top: 40px;
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 28px; text-align: center; flex-shrink: 0;
+  }
 
-  /* ── Slide 13 — Closing Quote ── */
-  .s-close {
-    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+  /* ── SLIDE 04 — The Lens (Venn) ── */
+  .s-lens { }
+  .s-lens .venn-wrap {
+    flex: 1; display: flex; align-items: center;
+    justify-content: center; position: relative; padding: 20px 0;
   }
-  .s-close .img {
-    background-image: url('project/assets/surgeon-smile-side.jpg');
+  .s-lens .venn { position: relative; width: 780px; height: 680px; }
+  .s-lens .circle {
+    position: absolute; width: 440px; height: 440px; border-radius: 50%;
+    mix-blend-mode: multiply;
+  }
+  .s-lens .c1 { left: 0;    top: 0;    background: rgba(196,80,58,0.16);  border: 1.5px solid rgba(196,80,58,0.55); }
+  .s-lens .c2 { right: 0;   top: 0;    background: rgba(232,122,90,0.16); border: 1.5px solid rgba(232,122,90,0.55); }
+  .s-lens .c3 { left: 170px; top: 235px; background: rgba(180,100,60,0.16); border: 1.5px solid rgba(180,100,60,0.55); }
+  .s-lens .label {
+    position: absolute; font-family: var(--f-mono);
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink); text-align: center; line-height: 1.4;
+    max-width: 160px;
+  }
+  .s-lens .l1 { left:  12px; top:  40px; }
+  .s-lens .l2 { right: 12px; top:  40px; }
+  .s-lens .l3 { left:  50%; transform: translateX(-50%); bottom: 0; }
+  .s-lens .center-label {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -65%);
+    text-align: center;
+  }
+  .s-lens .center-label strong {
+    display: block; font-family: var(--f-serif); font-weight: 600;
+    font-size: 28px; color: var(--accent); margin-bottom: 4px;
+  }
+  .s-lens .center-label span {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+  }
+  .s-lens .subline {
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 30px; color: var(--accent); text-align: center;
+    margin-top: 12px; flex-shrink: 0;
+  }
+
+  /* ── SLIDE 05 — Surgeons Are Athletes ── */
+  .s-athletes { display: grid; grid-template-columns: 55% 45%; }
+  .s-athletes .left { padding: 90px 100px; display: flex; flex-direction: column; justify-content: space-between; }
+  .s-athletes .right {
+    background-image: url('project/assets/surgeon-flex-yellow.jpg');
     background-size: cover; background-position: center;
-    filter: grayscale(1) contrast(1.05);
+    position: relative;
   }
-  .s-close .text {
-    padding: 120px 110px; display: flex; flex-direction: column; justify-content: center;
-    background: var(--ink);
+  .s-athletes .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.85) 0%, rgba(255,248,242,0) 50%);
+    z-index: 1;
   }
+  .s-athletes .points { flex: 1; display: flex; flex-direction: column; gap: 0; justify-content: center; }
+  .s-athletes .pt {
+    padding: 20px 0; border-bottom: 1px solid var(--rule-light);
+    font-family: var(--f-sans); font-size: 22px; line-height: 1.45;
+    color: var(--ink-2);
+  }
+  .s-athletes .pt:first-child { border-top: 1px solid var(--rule-light); }
+  .s-athletes .authority {
+    font-family: var(--f-sans); font-size: 18px; line-height: 1.55;
+    color: var(--mute); margin-top: 28px; flex-shrink: 0;
+    font-style: italic;
+  }
+  .s-athletes .pivot {
+    background: var(--accent); color: #fff;
+    padding: 20px 0; margin-top: 28px;
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 26px; text-align: center; flex-shrink: 0;
+  }
+
+  /* ── SLIDE 06 — Paradigm Shift ── */
+  .s-paradigm .grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; flex: 1; margin-top: 36px;
+    border: 1px solid var(--rule-light);
+  }
+  .s-paradigm .col {
+    padding: 40px 44px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .s-paradigm .col + .col { border-left: 1px solid var(--rule-light); }
+  .s-paradigm .col h4 {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mute); margin: 0 0 28px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .s-paradigm .col.to h4 { color: var(--accent); border-bottom-color: var(--accent); border-bottom-width: 2px; }
+  .s-paradigm .col li {
+    font-family: var(--f-sans); font-size: 22px; line-height: 1.5;
+    color: var(--ink); padding: 14px 0;
+    border-bottom: 1px solid var(--rule-light);
+    list-style: none;
+  }
+  .s-paradigm .col.to li { color: var(--ink); }
+  .s-paradigm .col.to li::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 14px; vertical-align: middle; }
+  .s-paradigm .closing {
+    margin-top: 32px; flex-shrink: 0;
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 32px; color: var(--accent); text-align: center;
+    padding: 16px 0; border-top: 1px solid var(--rule-light);
+  }
+
+  /* ── STACK SLIDES (07–14) — shared ── */
+  .s-stack {
+    display: flex; flex-direction: column;
+  }
+  .s-stack .stack-body {
+    flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin-top: 0;
+    border-top: 1px solid var(--rule-light);
+  }
+  .s-stack .evidence {
+    padding: 40px 50px 40px 0;
+    border-right: 1px solid var(--rule-light);
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .s-stack .evidence h4 {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 24px;
+  }
+  .s-stack .evidence .point {
+    font-family: var(--f-sans); font-size: 21px; line-height: 1.55;
+    color: var(--ink-2); padding: 14px 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .s-stack .evidence .point cite {
+    display: block; font-style: italic;
+    font-size: 15px; color: var(--mute); margin-top: 4px;
+  }
+  .s-stack .inweek {
+    padding: 40px 0 40px 50px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .s-stack .inweek h4 {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 24px;
+  }
+  .s-stack .inweek .action {
+    font-family: var(--f-sans); font-size: 21px; line-height: 1.5;
+    color: var(--ink); padding: 14px 0;
+    border-bottom: 1px solid var(--rule-light);
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .s-stack .inweek .action::before {
+    content: ""; display: inline-block; flex-shrink: 0;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent-2); margin-top: 9px;
+  }
+  .s-stack .warmth {
+    flex-shrink: 0;
+    background: var(--paper-2);
+    padding: 18px 0 18px;
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 26px; color: var(--accent);
+    text-align: center;
+    border-top: 1px solid var(--rule-light);
+  }
+
+  /* ── SLIDE 15 — The Opportunity ── */
+  .s-opportunity .cards {
+    flex: 1; display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 0; margin-top: 32px;
+    border-top: 1px solid var(--rule-light);
+    border-left: 1px solid var(--rule-light);
+  }
+  .s-opportunity .card {
+    padding: 28px 32px;
+    border-right: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .s-opportunity .card .num {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .s-opportunity .card h5 {
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 28px; color: var(--ink); margin: 0 0 12px;
+    line-height: 1.1;
+  }
+  .s-opportunity .card p {
+    font-family: var(--f-sans); font-size: 18px; line-height: 1.5;
+    color: var(--ink-3); margin: 0;
+  }
+  .s-opportunity .banner {
+    flex-shrink: 0; margin-top: 28px;
+    background: var(--accent); color: #fff;
+    padding: 18px 0;
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 28px; text-align: center;
+  }
+
+  /* ── SLIDE 16 — Surgeon Voices ── */
+  .s-voices .quotes-grid {
+    flex: 1; display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0; margin-top: 32px;
+    border-top: 1px solid rgba(255,248,242,0.2);
+  }
+  .s-voices .anchor {
+    padding: 40px 48px 40px 0;
+    border-right: 1px solid rgba(255,248,242,0.15);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .s-voices .anchor .q-text {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 38px; line-height: 1.3;
+    color: var(--paper); text-wrap: pretty;
+  }
+  .s-voices .anchor .who {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent-2); margin-top: 24px;
+  }
+  .s-voices .supporting {
+    padding: 0 0 0 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .s-voices .sq {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,248,242,0.12);
+  }
+  .s-voices .sq:first-child { padding-top: 40px; }
+  .s-voices .sq .q-text {
+    font-family: var(--f-sans); font-size: 18px; line-height: 1.55;
+    color: rgba(255,248,242,0.82); font-style: italic;
+  }
+  .s-voices .sq .who {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent-2); margin-top: 10px;
+  }
+  .s-voices .status-note {
+    font-family: var(--f-mono); font-size: 12px;
+    color: rgba(255,248,242,0.3); letter-spacing: 0.1em;
+    margin-top: 20px; text-align: right; flex-shrink: 0;
+  }
+
+  /* ── SLIDE 17 — Where Your Influence Sits ── */
+  .s-influence .tiers {
+    flex: 1; display: flex; flex-direction: column;
+    gap: 0; justify-content: center; margin-top: 36px;
+  }
+  .s-influence .tier {
+    display: flex; align-items: flex-start; gap: 40px;
+    padding: 28px 0; border-bottom: 1px solid var(--rule-light);
+  }
+  .s-influence .tier:first-child { border-top: 1px solid var(--rule-light); }
+  .s-influence .tier .num {
+    font-family: var(--f-mono); font-size: 42px;
+    color: var(--accent); opacity: 0.3; line-height: 1; flex-shrink: 0; width: 56px;
+  }
+  .s-influence .tier .content h5 {
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 36px; color: var(--ink); margin: 0 0 8px; line-height: 1.0;
+  }
+  .s-influence .tier .content p {
+    font-family: var(--f-sans); font-size: 20px;
+    line-height: 1.5; color: var(--ink-3); margin: 0;
+  }
+  .s-influence .closing {
+    flex-shrink: 0; margin-top: 28px;
+    font-family: var(--f-serif); font-style: italic;
+    font-size: 30px; color: var(--accent); text-align: center;
+    padding: 16px 0; border-top: 1px solid var(--rule-light);
+  }
+
+  /* ── SLIDE 18 — No Longer a Paradox ── */
+  .s-synthesis { display: grid; grid-template-columns: 50% 50%; }
+  .s-synthesis .left {
+    padding: 90px 80px 90px 100px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .s-synthesis .right {
+    background-image: url('project/assets/athlete-rest-dock.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-synthesis .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(28,15,10,0.8) 0%, rgba(28,15,10,0) 60%);
+  }
+  .s-synthesis .body-text {
+    font-family: var(--f-serif); font-weight: 400;
+    font-size: 36px; line-height: 1.45;
+    color: var(--paper); text-wrap: pretty;
+  }
+  .s-synthesis .body-text em { font-style: italic; color: var(--accent-2); }
+
+  /* ── SLIDE 19 — Close ── */
+  .s-close { position: relative; }
+  .s-close .bg-img {
+    position: absolute; inset: 0;
+    background-image: url('project/assets/surgeon-ok-sign.jpg');
+    background-size: cover; background-position: center;
+    filter: brightness(0.35);
+  }
+  .s-close .frame { position: relative; z-index: 2; justify-content: center; align-items: center; text-align: center; }
   .s-close .q {
     font-family: var(--f-serif); font-style: italic; font-weight: 400;
-    font-size: 76px; line-height: 1.1; color: var(--paper);
-    letter-spacing: var(--tk-snug);
-    text-wrap: balance;
+    font-size: 80px; line-height: 1.15;
+    color: var(--paper); text-wrap: balance; max-width: 1100px;
   }
-  .s-close .q .acc { color: var(--warm-2); }
+  .s-close .attr { margin-top: 48px; display: flex; align-items: center; justify-content: center; gap: 18px; }
+  .s-close .attr .dash { width: 40px; height: 1px; background: var(--accent-2); }
+  .s-close .attr .name {
+    font-family: var(--f-mono); font-size: 15px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent-2);
+  }
 
-  /* ── Slide 14 — Thank You / Contact ── */
-  .s-contact { display: grid; grid-template-columns: 1.1fr 1fr; }
-  .s-contact .img {
-    background-image: url('project/assets/rachel-thankyou.png');
-    background-size: cover; background-position: 50% 30%;
-    background-color: #1a1b1d;
+  /* ── SLIDE 20 — Discussion ── */
+  .s-discussion .qs {
+    flex: 1; display: flex; flex-direction: column;
+    gap: 0; justify-content: center; margin-top: 32px;
   }
-  .s-contact .info { padding: 90px 90px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
-  .s-contact h2 { font-family: var(--f-serif); font-weight: 500; font-size: 112px; line-height: 1.0; margin: 0; letter-spacing: var(--tk-tight); }
-  .s-contact h2 em { font-style: italic; color: var(--accent-2); }
+  .s-discussion .dq {
+    padding: 24px 0; border-bottom: 1px solid var(--rule-light);
+    display: flex; gap: 28px; align-items: flex-start;
+  }
+  .s-discussion .dq:first-child { border-top: 1px solid var(--rule-light); }
+  .s-discussion .dq .num {
+    font-family: var(--f-mono); font-size: 14px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent); flex-shrink: 0; padding-top: 4px;
+  }
+  .s-discussion .dq .text {
+    font-family: var(--f-serif); font-size: 32px;
+    line-height: 1.35; color: var(--ink); text-wrap: pretty;
+  }
+
+  /* ── SLIDE 21 — Contact ── */
+  .s-contact { display: grid; grid-template-columns: 55% 45%; }
+  .s-contact .left {
+    padding: 90px 100px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .s-contact .right {
+    background-image: url('project/assets/surgeon-female-glasses.jpg');
+    background-size: cover; background-position: center top;
+    position: relative;
+  }
+  .s-contact .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.7) 0%, rgba(255,248,242,0) 40%);
+  }
   .s-contact .name-line {
-    font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(243,238,230,0.7);
+    font-family: var(--f-mono); font-size: 14px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent);
   }
-  .s-contact .name-line .sep { color: var(--accent-2); margin: 0 10px; }
-
-  .s-contact .footer {
-    display: grid; grid-template-columns: 220px 1fr; gap: 48px;
-    align-items: center;
-    padding-top: 40px;
-    border-top: 1px solid rgba(243,238,230,0.18);
+  .s-contact .name-line .name { font-size: 18px; color: var(--ink); display: block; margin-bottom: 6px; }
+  .s-contact .rows { display: flex; flex-direction: column; gap: 0; flex: 1; justify-content: center; }
+  .s-contact .row {
+    display: flex; gap: 24px; align-items: baseline;
+    padding: 18px 0; border-bottom: 1px solid var(--rule-light);
   }
-  .s-contact .qr {
-    width: 220px; height: 220px;
-    background: var(--paper);
-    padding: 14px;
+  .s-contact .row:first-child { border-top: 1px solid var(--rule-light); }
+  .s-contact .row .k {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mute); width: 90px; flex-shrink: 0;
+  }
+  .s-contact .row .v {
+    font-family: var(--f-sans); font-size: 22px;
+    color: var(--ink); font-weight: 400;
+  }
+  .s-contact .qr-block {
+    width: 140px; height: 140px;
+    border: 1.5px solid var(--rule-light);
     display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
   }
-  .s-contact .qr img { width: 100%; height: 100%; display: block; object-fit: contain; }
-  .s-contact .details { display: flex; flex-direction: column; gap: 22px; }
-  .s-contact .qr-cap {
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent-2);
-    margin-bottom: 14px;
+  .s-contact .qr-block span {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mute); text-align: center; padding: 8px;
   }
-  .s-contact .qr-cap .sub { display: block; color: rgba(243,238,230,0.55); margin-top: 6px; letter-spacing: 0.14em; }
-  .s-contact .det-row { display: grid; grid-template-columns: 110px 1fr; align-items: baseline; gap: 28px; }
-  .s-contact .det-row .k {
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent-2);
-  }
-  .s-contact .det-row .v {
-    font-family: var(--f-sans); font-weight: 400; font-size: 28px;
-    color: var(--paper); letter-spacing: -0.005em;
+  .s-contact .bottom-row { display: flex; align-items: flex-end; justify-content: space-between; }
+  .s-contact .copy {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.12em; color: var(--mute);
   }
 </style>
 </head>
 <body>
+<deck-stage>
 
-<deck-stage width="1920" height="1080">
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 01 · TITLE
+═══════════════════════════════════════════════════════ -->
+<section class="s-title">
+  <div class="left">
+    <div class="topbar">
+      <span>RN · KOL / US Advisory Board · 05.2026</span>
+      <span>01 / 21</span>
+    </div>
+    <div>
+      <h1>The <em>Uncoached</em> Athlete</h1>
+      <p class="sub">Performance Readiness and the Surgical Profession</p>
+    </div>
+    <div class="byline">
+      <span class="name">Rachel Neylan, OLY, MSc, BAppSc</span>
+      <span class="role">Human Performance Consultant · Olympian · Physiotherapist</span>
+    </div>
+  </div>
+  <div class="right"></div>
+</section>
 
-  <!-- 01 — TITLE -->
-  <section data-label="01 Title" class="dark s-title">
-    <div class="left">
-      <div class="topbar">
-        <span>RN · 05.2026</span>
-        <span>THE UNCOACHED ATHLETE</span>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 02 · OPENING QUOTE
+═══════════════════════════════════════════════════════ -->
+<section class="s-quote-open dark">
+  <div class="img"></div>
+  <div class="text">
+    <p class="q">"At the Olympic Games, one mistake can cost a medal. In surgery, one mistake can cost <span class="hi">a life.</span> Both depend on human performance. Sport has spent a century learning to optimise it. <span class="hi">Surgery is just beginning.</span>"</p>
+    <div class="attr">
+      <span class="dash"></span>
+      <span class="name">Rachel Neylan</span>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>02 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 03 · THE WORK
+═══════════════════════════════════════════════════════ -->
+<section class="s-work light">
+  <div class="left">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">03</span>
+        <span>The Work</span>
       </div>
-      <div>
-        <div class="eyebrow">A Performance Thesis</div>
-        <h1 class="serif">The <em>Uncoached</em><br/>Athlete.</h1>
-        <div class="sub">Performance readiness and the surgical profession.</div>
+      <span class="track-rule"></span>
+      <span>01 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="eyebrow" style="margin-top:40px;">The body of work, and where it is operating</div>
+    <h2 class="title">Not theory. The field, and <em>it is moving.</em></h2>
+    <div class="cols">
+      <div class="col">
+        <h4>Built on</h4>
+        <ul>
+          <li>Positioning paper: The Uncoached Athlete</li>
+          <li>Frameworks: Surgical Performance Readiness program suite</li>
+          <li>MSc Coaching Psychology · BAppSc Physiotherapy</li>
+          <li>14 years professional sport · Olympian · World Championship medallist</li>
+        </ul>
       </div>
-      <div class="byline">
-        <span class="name">Rachel Neylan · OLY · MSc · BAppSc</span>
-        <span class="role">Performance Consultant · Olympian · Physiotherapist</span>
+      <div class="col">
+        <h4>In practice</h4>
+        <ul>
+          <li>Surgeon clients: KOLs across orthopaedics, cardiothoracic, and general surgery</li>
+          <li>Institutional partnerships: Ramsay, St Vincent's S+N OFA</li>
+          <li>Product: Surgical Performance Readiness app in build</li>
+          <li>Speaking: current and upcoming engagements, MedTech and hospital audiences</li>
+        </ul>
       </div>
     </div>
-    <div class="right"></div>
-  </section>
+    <div class="banner">The question for this room is not whether this is happening. It is what part of it belongs in your practice.</div>
+  </div>
+  <div class="right"></div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>03 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 02 — OPENING QUOTE -->
-  <section data-label="02 Opening" class="dark s-quote-open">
-    <div class="img"></div>
-    <div class="text">
-      <div class="eyebrow" style="margin-bottom:48px;">Prologue · 02</div>
-      <p class="q">At the Olympic Games, <span class="highlight">one mistake can cost a medal.</span> In surgery, one mistake can cost a life.<br/><br/>The difference is that athletes have systems to prevent that mistake. Surgeons largely do not.</p>
-      <div class="attr">
-        <div class="dash"></div>
-        <div class="name">Rachel Neylan</div>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 04 · THE LENS
+═══════════════════════════════════════════════════════ -->
+<section class="s-lens light">
+  <div class="frame">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">04</span>
+        <span>The Lens</span>
+      </div>
+      <span class="track-rule"></span>
+      <span>04 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="eyebrow" style="margin-top:36px;">The intersection that matters</div>
+    <h2 class="title">Three disciplines. <em>One focus.</em></h2>
+    <div class="venn-wrap">
+      <div class="venn">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+        <div class="label l1">Olympian<br><span style="opacity:0.6;font-size:11px;">14 years professional sport</span></div>
+        <div class="label l2">Physiotherapy<br>&amp; MSK Health<br><span style="opacity:0.6;font-size:11px;">BAppSc</span></div>
+        <div class="label l3">Coaching<br>Psychology<br><span style="opacity:0.6;font-size:11px;">MSc</span></div>
+        <div class="center-label">
+          <strong>Human Performance<br>Strategy</strong>
+          <span>The surgeon as performer</span>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="subline">The surgeon as a human performer.</div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>04 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 03 — THE GAP -->
-  <section data-label="03 The Gap" class="dark s-gap">
-    <div class="left">
-      <div class="track" style="margin-bottom: 40px;">
-        <div class="track-left"><span class="track-num">03</span><span>THE GAP</span></div>
-        <div class="track-rule"></div>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 05 · SURGEONS ARE ALREADY ATHLETES
+═══════════════════════════════════════════════════════ -->
+<section class="s-athletes light">
+  <div class="left">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">05</span>
+        <span>Surgeons Are Already Athletes</span>
       </div>
-      <h2 class="title" style="color:var(--paper); max-width: 900px;">We have upgraded the tools.<br/><em>Not the surgeon.</em></h2>
-      <div class="tools">
-        <div class="tool"><span class="dot"></span>Robotics</div>
-        <div class="tool"><span class="dot"></span>Navigation</div>
-        <div class="tool"><span class="dot"></span>Devices</div>
-      </div>
-      <p>Surgery has invested enormously in the instruments in the surgeon's hands. Almost nothing in the surgeon as a human performer.</p>
-      <p>The gap is not knowledge. It is system, culture, and infrastructure.</p>
-      <div class="kicker">That changes now.</div>
+      <span class="track-rule"></span>
+      <span>05 / 21 · © Rachel Neylan 2026</span>
     </div>
-    <div class="right"></div>
-    <div class="slide-foot">
-      <span class="citation">Han et al. (2019) · Whelehan et al. (2021)</span>
-      <span>03 / 14</span>
+    <div class="eyebrow" style="margin-top:36px;">You are already operating at the limit</div>
+    <div class="points">
+      <div class="pt">Deliberate practice at a volume elite athletes never reach</div>
+      <div class="pt">Sustained performance under genuine fatigue, across decades not seasons</div>
+      <div class="pt">Cognitive load and decision-making most professions never approach</div>
+      <div class="pt">Stakes that carry real consequence</div>
     </div>
-  </section>
+    <p class="authority">From the podium of the American College of Surgeons, a master surgeon argued that mindset, grit, deliberate practice, and coaching are essential to performance. <em>(Verrier, 2017)</em></p>
+    <div class="pivot">Human performance is treated as a determinant of outcome in every other high-stakes domain. It is time for surgery to arrive.</div>
+  </div>
+  <div class="right"></div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>05 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 04 — THE LENS (Venn) -->
-  <section data-label="04 The Lens" class="light s-lens">
-    <div class="left">
-      <div class="track" style="margin-bottom: 40px;">
-        <div class="track-left"><span class="track-num">04</span><span>THE LENS</span></div>
-        <div class="track-rule"></div>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 06 · THE PARADIGM SHIFT
+═══════════════════════════════════════════════════════ -->
+<section class="s-paradigm light">
+  <div class="frame">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">06</span>
+        <span>The Paradigm Shift</span>
       </div>
-      <h2 class="title" style="margin-top: 0;">The intersection <em>that matters.</em></h2>
-      <div class="subtitle" style="max-width:900px;"></div>
-      <div class="venn-wrap">
-        <div class="venn">
-          <div class="circle c1"></div>
-          <div class="circle c2"></div>
-          <div class="circle c3"></div>
+      <span class="track-rule"></span>
+      <span>06 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="eyebrow" style="margin-top:36px;">From endurance to readiness</div>
+    <div class="grid">
+      <div class="col from">
+        <h4>From</h4>
+        <ul>
+          <li>Performance as a personal trait</li>
+          <li>Outcomes attributed to volume and experience</li>
+          <li>Human performance as background</li>
+          <li>Fatigue managed individually</li>
+          <li>Coaching and conditioning as extracurricular</li>
+        </ul>
+      </div>
+      <div class="col to">
+        <h4>To</h4>
+        <ul>
+          <li>Performance as a system</li>
+          <li>Outcomes shaped by measurable inputs</li>
+          <li>Human performance as a clinical variable</li>
+          <li>Fatigue as a managed parameter</li>
+          <li>Coaching and conditioning as infrastructure</li>
+        </ul>
+      </div>
+    </div>
+    <div class="closing">Outcomes are shaped by the system around the performer. The next eight slides walk through what that system looks like.</div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>06 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-          <div class="label l-olympic">
-            <span class="disc-title" style="text-align: right; font-size: 40px">Olympic Sport</span>
-            <span class="disc-sub caps" style="text-align: right">High Performance Science</span>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 07 · STACK — SLEEP
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">01 of 08 · Sleep</div>
+    Sleep is the highest-leverage recovery determinant in the system.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">Sleep relative to individual baseline produced the largest improvements in next-day HRV — the highest-leverage recovery input available.
+            <cite>Jevsevar et al., 2021</cite>
           </div>
-          <div class="label l-physio">
-            <span class="disc-title" style="text-align: left; font-size: 40px">Physiotherapy</span>
-            <span class="disc-sub caps" style="text-align: left">Applied Science</span>
-          </div>
-          <div class="label l-coach">
-            <span class="disc-title" style="font-size: 35px">Coaching Psychology</span>
-            <span class="disc-sub caps">Behaviour Change</span>
-          </div>
-
-          <div class="inter i-applied"></div>
-          <div class="inter i-behav"></div>
-          <div class="inter i-change"></div>
-
-          <div class="core">Human<br/>Performance<br/>Optimisation</div>
-        </div>
-      </div>
-    </div>
-    <div class="right"></div>
-    <div class="slide-foot">
-      <span></span>
-      <span>04 / 14</span>
-    </div>
-  </section>
-
-  <!-- 05 — PARADIGM SHIFT -->
-  <section data-label="05 Paradigm Shift" class="light s-paradigm">
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">05</span><span>THE PARADIGM SHIFT</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="margin-top:12px;">From endurance <em>to readiness.</em></h2>
-      <div class="cols">
-        <div class="col from">
-          <h4><span>FROM</span><span class="caret">&#8592;</span></h4>
-          <ul>
-            <li>Endurance as identity</li>
-            <li>Self-sacrifice as professionalism</li>
-            <li>Fatigue as a badge of honour</li>
-            <li>Performance as a byproduct of volume</li>
-            <li>Self-care as indulgence</li>
-            <li>Struggling in silence as strength</li>
-            <li>Recovery as weakness</li>
-          </ul>
-        </div>
-        <div class="col to">
-          <h4><span class="caret">&#8594;</span><span>TO</span></h4>
-          <ul>
-            <li>Readiness as a professional standard</li>
-            <li>Performance as a managed system</li>
-            <li>Fatigue as a measurable variable</li>
-            <li>Deliberate practice over volume</li>
-            <li>Recovery as a clinical imperative</li>
-            <li>Coaching as infrastructure, not luxury</li>
-            <li>Sustainability across a career</li>
-          </ul>
-        </div>
-      </div>
-      <div class="closing">Excellence is not what you endure. It is what you build.</div>
-      <div class="slide-foot"><span></span><span>05 / 14</span></div>
-    </div>
-  </section>
-
-  <!-- 06 — REALITY CHECK -->
-  <section data-label="06 Reality Check" class="dark s-reality">
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">06</span><span>THE REALITY CHECK</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="color:var(--paper); margin-top:12px; max-width:1400px;">Every other high-performance profession <em>figured this out.</em></h2>
-      <div class="grid">
-        <div class="col">
-          <div class="idx">01</div>
-          <h5>F1 Driver</h5>
-          <h6>Demands</h6>
-          <p>Split-second decisions under extreme pressure.</p>
-          <h6>System</h6>
-          <p>Engineers, physiologists, biometrics, simulation, recovery.</p>
-        </div>
-        <div class="col">
-          <div class="idx">02</div>
-          <h5>Fighter Pilot</h5>
-          <h6>Demands</h6>
-          <p>Life-or-death decisions at speed. No margin for error.</p>
-          <h6>System</h6>
-          <p>Stress inoculation, fatigue risk, crew resource management, debrief.</p>
-        </div>
-        <div class="col">
-          <div class="idx">03</div>
-          <h5>Navy SEAL</h5>
-          <h6>Demands</h6>
-          <p>High-risk precision under extreme load. Lives at stake.</p>
-          <h6>System</h6>
-          <p>Physiological monitoring, cognitive training, sleep, team cohesion.</p>
-        </div>
-        <div class="col">
-          <div class="idx">04</div>
-          <h5>Olympic Athlete</h5>
-          <h6>Demands</h6>
-          <p>Peak output. Career-long performance. Outcomes that matter.</p>
-          <h6>System</h6>
-          <p>Coaches, sports scientists, nutrition, recovery, readiness data.</p>
-        </div>
-        <div class="col surgeon">
-          <div class="idx" style="color:var(--accent-2)">05</div>
-          <h5>The Surgeon</h5>
-          <h6>Demands</h6>
-          <p>All of the above. Stakes: a life, not a podium. Career: three decades.</p>
-          <h6>System</h6>
-          <p class="sys-unk">?</p>
-        </div>
-      </div>
-      <div class="closing">
-        <span></span>
-        <span class="line">Imagine if we built one.</span>
-      </div>
-      <div class="slide-foot"><span></span><span>06 / 14</span></div>
-    </div>
-  </section>
-
-  <!-- 07 — PERFORMANCE GAPS -->
-  <section data-label="07 Performance Gaps" class="light s-gaps">
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">07</span><span>THE PERFORMANCE GAPS</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="margin-top:12px; max-width:1200px;">Six domains where surgery <em>is uncoached.</em></h2>
-      <div class="cards">
-        <div class="card">
-          <div class="idx">01</div>
-          <h5>Stress &amp; Arousal</h5>
-          <div class="label">Problem</div>
-          <p>Surgeons are not trained to regulate.</p>
-          <div class="label">Opportunity</div>
-          <p class="op">The optimal is findable, trainable, and measurable.</p>
-        </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h5>Sleep &amp; Fatigue</h5>
-          <div class="label">Problem</div>
-          <p>Treated as a virtue. Debt accumulates faster than it resolves.</p>
-          <div class="label">Opportunity</div>
-          <p class="op">The most potent recovery lever.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h5>Musculoskeletal Health</h5>
-          <div class="label">Problem</div>
-          <p>High prevalence of injury, low ergonomic awareness.</p>
-          <div class="label">Opportunity</div>
-          <p class="op">The same interventions protecting elite athletes are directly transferable.</p>
-        </div>
-        <div class="card">
-          <div class="idx">04</div>
-          <h5>Recovery</h5>
-          <div class="label">Problem</div>
-          <p>Without structured recovery, each case begins more depleted.</p>
-          <div class="label">Opportunity</div>
-          <p class="op">Evidence-based protocols exist and are ready to implement today.</p>
-        </div>
-        <div class="card">
-          <div class="idx">05</div>
-          <h5>OR Environment</h5>
-          <div class="label">Problem</div>
-          <p>Noise, distraction and flow disruption raise error rates.</p>
-          <div class="label">Opportunity</div>
-          <p class="op">Every environmental variable is measurable and optimisable.</p>
-        </div>
-        <div class="card">
-          <div class="idx">06</div>
-          <h5>Well-being &amp; Longevity</h5>
-          <div class="label">Problem</div>
-          <p>A culture of extraction over sustainability.</p>
-          <div class="label">Opportunity</div>
-          <p class="op">A career-spanning performance system that redefines what is possible.</p>
-        </div>
-      </div>
-      <div class="closing">
-        <span class="citation" style="color:var(--mute-dark);">Torkamani-Azar (2022) · Jevsevar (2021) · Vasireddi (2024) · Dupuy (2018) · Kirksey (2022) · Vitous (2023)</span>
-        <span class="line"></span>
-      </div>
-      <div class="slide-foot"><span></span><span>07 / 14</span></div>
-    </div>
-  </section>
-
-  <!-- 08 — HIGH PERFORMANCE REQUIRES A SYSTEM -->
-  <section data-label="08 System Required" class="dark s-system">
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">08</span><span>THE ARCHITECTURE</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="color:var(--paper); margin-top:12px; max-width: 1100px;">High performance <em>requires a system.</em></h2>
-      <div class="bars">
-        <div class="bar">
-          <div class="k"><div class="tag">LAYER 01</div><h5>Systemic</h5></div>
-          <div class="v">Long-term frameworks that shift professional norms across an entire career. Not a program. A paradigm.</div>
-        </div>
-        <div class="bar">
-          <div class="k"><div class="tag">LAYER 02</div><h5>Institutional</h5></div>
-          <div class="v">Workload redesign, ergonomic strategies, cultures that normalise recovery as professional practice.</div>
-        </div>
-        <div class="bar">
-          <div class="k"><div class="tag">LAYER 03</div><h5>Individual</h5></div>
-          <div class="v">Exercise, sleep, hydration, recovery, stress regulation. What surgeons can act on directly.</div>
-        </div>
-      </div>
-      <div class="footline" style="margin-top: 40px;">Athletes don't do programmes. <strong style="color:var(--accent);">They build systems.</strong></div>
-      <div class="slide-foot">
-        <span class="citation">Vitous et al. (2023) · Minervini et al. (2025) · Hughes et al. (2023)</span>
-        <span>08 / 14</span>
-      </div>
-    </div>
-    <div class="sys-img"></div>
-  </section>
-
-  <!-- 09 — EIGHT DOMAINS -->
-  <section data-label="09 Eight Domains" class="light s-domains">
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">09</span><span>THE DOMAINS</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="margin-top:12px; max-width:1400px;">Surgical excellence is a <em>long-term performance system.</em></h2>
-      <div class="grid">
-        <div class="cell"><div><div class="num">01</div><h5>Physical<br/>Conditioning</h5></div><p>Capacity, strength, durability. The body that sustains the career.</p></div>
-        <div class="cell"><div><div class="num">02</div><h5>Recovery</h5></div><p>Structured, measured, prescribed. Not reactive or absent.</p></div>
-        <div class="cell"><div><div class="num">03</div><h5>MSK Health</h5></div><p>Ergonomics, movement quality, injury prevention as daily practice.</p></div>
-        <div class="cell"><div><div class="num">04</div><h5>Sleep<br/>&amp; Fatigue</h5></div><p>The most potent lever for cognition, accuracy and error reduction.</p></div>
-        <div class="cell"><div><div class="num">05</div><h5>Stress<br/>Regulation</h5></div><p>Trainable arousal control. Findable, measurable, repeatable.</p></div>
-        <div class="cell"><div><div class="num">06</div><h5>Cognitive<br/>Performance</h5></div><p>Attention, decision-making, mental preparation, visualisation.</p></div>
-        <div class="cell"><div><div class="num">07</div><h5>Environment</h5></div><p>The OR as a performance environment. Every variable optimisable.</p></div>
-        <div class="cell"><div><div class="num">08</div><h5>Team<br/>Culture</h5></div><p>Brief, debrief, psychological safety. Performance is a team sport.</p></div>
-      </div>
-      <div class="slide-foot">
-        <span class="citation">Hasan, Kelly &amp; Ramkumar (2026) · Journal of Bone and Joint Surgery</span>
-        <span>09 / 14</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 10 — INTEGRATED SYSTEM (Hub &amp; Spoke) -->
-  <section data-label="10 Integrated System" class="dark s-hub">
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">10</span><span>INTEGRATED SYSTEM</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="color:var(--paper); margin-top:12px;">An integrated <em>system.</em></h2>
-      <div class="hub-wrap">
-        <div class="hub">
-          <svg class="hub-svg" viewBox="0 0 1400 700" preserveAspectRatio="none">
-            <g stroke="#5FB8B8" stroke-width="1.75" fill="none" opacity="0.9" stroke-linecap="round">
-              <line x1="572" y1="293" x2="290" y2="168"/>
-              <line x1="700" y1="210" x2="700" y2="135"/>
-              <line x1="828" y1="293" x2="1110" y2="168"/>
-              <line x1="572" y1="407" x2="290" y2="532"/>
-              <line x1="700" y1="490" x2="700" y2="565"/>
-              <line x1="828" y1="407" x2="1110" y2="532"/>
-            </g>
-          </svg>
-          <div class="hub-center"><div class="c-title">Surgeon<br/>Performance</div></div>
-
-          <div class="hub-node" style="left: 0; top: 60px;">
-            <div class="dot"></div>
-            <h5>Metrics &amp; Wearables</h5>
-            <p>HRV · Sleep · Readiness</p>
-          </div>
-          <div class="hub-node" style="left: 565px; top: 0;">
-            <div class="dot"></div>
-            <h5>Sleep &amp; Fatigue</h5>
-            <p>Coaching · Nap strategy</p>
-          </div>
-          <div class="hub-node" style="right: 0; top: 60px; text-align:right;">
-            <div class="dot" style="margin-left:auto;"></div>
-            <h5>Physical Training</h5>
-            <p>Conditioning · Micro-breaks</p>
-          </div>
-          <div class="hub-node" style="left: 0; bottom: 60px;">
-            <div class="dot"></div>
-            <h5>Recovery &amp; Resilience</h5>
-            <p>Cold water · Percussion · Nutrition</p>
-          </div>
-          <div class="hub-node" style="left: 565px; bottom: 0;">
-            <div class="dot"></div>
-            <h5>Mental &amp; Cognitive</h5>
-            <p>Visualisation · Stress inoculation · Team comms</p>
-          </div>
-          <div class="hub-node" style="right: 0; bottom: 60px; text-align:right;">
-            <div class="dot" style="margin-left:auto;"></div>
-            <h5>Environment &amp; Culture</h5>
-            <p>Ergonomics · Noise · Briefings</p>
+          <div class="point">Disrupted or insufficient sleep degrades performance in simulation and in real procedures alike.
+            <cite>Shin et al., 2024</cite>
           </div>
         </div>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">Anchor wake time</div>
+          <div class="action">20-minute nap pre-list where possible</div>
+          <div class="action">Caffeine cut-off 8 hours before sleep</div>
+        </div>
       </div>
-      <div class="slide-foot"><span></span><span>10 / 14</span></div>
+      <div class="warmth">Sleep is now treated as performance infrastructure in every elite domain. The science supports the same standing in surgery.</div>
     </div>
-  </section>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>07 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 11 — SHIFTING THE PARADIGM / CTA -->
-  <section data-label="11 Shifting the Paradigm" class="light s-cta">
-    <div class="cta-img"><div class="cap"></div></div>
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">11</span><span>SHIFTING THE PARADIGM</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="margin-top:12px; max-width:1500px;">You were trained to withstand. You deserve to be supported.</h2>
-      <div class="pull">
-        <span class="quote-body">"I stood on Olympic start lines for fourteen years. The answer was never to push harder; it was to build systems around it. The best athlete in the room is not always the one who trained hardest. It is the one who trained most deliberately and recovered most completely. <span class="accent-line">You deserve the same infrastructure</span>"</span><br/><span class="attr">&mdash; Rachel Neylan</span>
-      </div>
-      <div class="cta-grid">
-        <div class="cta">
-          <div class="k">For yourself</div>
-          <h5>Choose one recovery input</h5>
-          <p>Track it. Treat it as training data</p>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 08 · STACK — AROUSAL REGULATION
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">02 of 08 · Neurobiology and Arousal Regulation</div>
+    Arousal is regulated, not endured. The optimum is measurable.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">HRV is a validated real-time biomarker of stress and resilience in surgeons.
+            <cite>The et al., 2020; Nandhra et al., 2024</cite>
+          </div>
+          <div class="point">Higher sympathovagal balance in the first five minutes of surgery was associated with fewer major complications.
+            <cite>Awtry et al., 2025</cite>
+          </div>
+          <div class="point">Optimal performance is not the absence of stress. It is its regulation.</div>
         </div>
-        <div class="cta">
-          <div class="k">For your team</div>
-          <h5>Name one OR variable to change.</h5>
-          <p>Brief before you cut. Debrief after. Make the invisible visible.</p>
-        </div>
-        <div class="cta">
-          <div class="k">For your institution</div>
-          <h5>Ask for the infrastructure</h5>
-          <p>Coaching. Monitoring. Ergonomic support.</p>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">4-7-8 breath pre or between cases (4-second inhale, 7-second hold, 8-second exhale)</div>
+          <div class="action">Pre-scrub visualisation, 60 seconds</div>
+          <div class="action">HRV-guided readiness check on demanding list days</div>
         </div>
       </div>
-      <div class="slide-foot"><span></span><span>11 / 14</span></div>
+      <div class="warmth">The relationship between physiological state, focus, and stress regulation is no longer theoretical.</div>
     </div>
-  </section>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>08 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 12 — SURGEON VOICES -->
-  <section data-label="12 Surgeon Voices" class="dark s-voices">
-    <div class="voices-photo">
-      <div class="cap">
-        <span class="who">Rachel &nbsp;·&nbsp; Dr Stefan Kreuzer</span>
-        <span class="ctx">Inov8 Surgical, Houston</span>
-      </div>
-    </div>
-    <div class="frame">
-      <div class="track">
-        <div class="track-left"><span class="track-num">12</span><span>THE SURGEONS' VOICE</span></div>
-        <div class="track-rule"></div>
-      </div>
-      <h2 class="title" style="color:var(--paper); margin-top:12px;">The surgeons who have lived it <em>are already saying it.</em></h2>
-      <div class="q-col">
-        <div class="q feature-q">
-          <div class="text">When I started treating my preparation and recovery with the same seriousness as my technical training, I noticed an immediate difference in focus, endurance, and decision-making. Human performance science is the missing link in surgery.</div>
-          <div class="who">Dr Stefan Kreuzer</div>
-        </div>
-        <div class="q-row">
-          <div class="q q-tenner">
-            <div class="text">For years we have optimised instruments, workflows, and operating theatres, but not ourselves. This approach reframes the surgeon as a high performer, and it is exactly the mindset shift our profession needs.</div>
-            <div class="who">Dr Jit Balakumar</div>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 09 · STACK — NUTRITION
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">03 of 08 · Nutrition</div>
+    Stable substrate, stable performance.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">Nutritional habits directly affect surgical performance, longevity, and decision-making under fatigue.
+            <cite>Faran et al., 2025</cite>
           </div>
-          <div class="q q-newman">
-            <div class="text">An athlete is one whose performance depends on a carefully choreographed interplay between mind and body. This is wholly within the job description of a surgeon.</div>
-            <div class="who">Prof Bill Walter</div>
+          <div class="point">Irregular meal patterns, skipped meals, and stress eating are common — institutional support is essential to address them.
+            <cite>Como et al., 2025</cite>
           </div>
         </div>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">Pre-list protein and fibre anchored meal</div>
+          <div class="action">Prepare or pre-order lunch</div>
+          <div class="action">One-handed snacks between cases: glucose and fructose (e.g. dried fruit)</div>
+          <div class="action">Avoid alcohol before long list days</div>
+        </div>
       </div>
-      <div class="slide-foot"><span></span><span>12 / 14</span></div>
+      <div class="warmth">The same nutritional principles that sustain elite output translate directly.</div>
     </div>
-  </section>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>09 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 13 — CLOSING QUOTE -->
-  <section data-label="13 Close" class="dark s-close">
-    <div class="img"></div>
-    <div class="text">
-      <div class="eyebrow" style="margin-bottom:48px;">13</div>
-      <p class="q">The most advanced tool in the OR <span class="acc">will always be the surgeon.</span></p>
-      <div style="margin-top: 60px; display:flex; align-items:center; gap: 20px;">
-        <div style="width:40px; height:1px; background: var(--paper);"></div>
-        <div style="font-family:'JetBrains Mono',monospace; letter-spacing: 0.12em; text-transform: uppercase; font-size: 18px; color: var(--paper);">Rachel Neylan</div>
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 10 · STACK — HYDRATION
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">04 of 08 · Hydration</div>
+    Hydration sits underneath concentration, reaction time, and decision-making.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">Dehydration impairs concentration, reaction time, and decision-making.
+            <cite>Faran et al., 2025</cite>
+          </div>
+          <div class="point">The barriers here have historically been operational and workload-driven.
+            <cite>Qi et al., 2026</cite>
+          </div>
+        </div>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">Pre-list hydration target — not post-list catch-up</div>
+          <div class="action">Electrolyte-anchored fluids on long lists</div>
+          <div class="action">Build into workflow — reduce reliance on memory</div>
+        </div>
       </div>
+      <div class="warmth">The barriers here have been operational. The infrastructure to address them is increasingly available.</div>
     </div>
-  </section>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>10 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
 
-  <!-- 14 — THANK YOU / CONTACT -->
-  <section data-label="14 Contact" class="dark s-contact">
-    <div class="img"></div>
-    <div class="info">
-      <div>
-        <div class="eyebrow" style="margin-bottom: 40px;">End · 14 of 14</div>
-        <h2 class="serif">Thank <em>you.</em></h2>
-        <div class="name-line" style="margin-top: 40px;">
-          Rachel Neylan <span class="sep">/</span> OLY · MSc · BAppSc
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 11 · STACK — MSK + ERGONOMICS
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">05 of 08 · MSK Load and Ergonomics</div>
+    The body that delivers the surgery is an asset. It needs to be protected.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">A multicentre RCT found that combining OR ergonomics with supervised exercise significantly reduced low back pain and halved analgesic use at six months.
+            <cite>Giagio et al., 2019</cite>
+          </div>
+          <div class="point">MSK pain prevalence ranges from 51.7 to 97 percent, with lower back, neck, and shoulder pain dominating.
+            <cite>Richard et al., 2025</cite>
+          </div>
         </div>
-        <div style="font-family:'Inter Tight',sans-serif; font-weight: 300; font-size: 22px; color: rgba(243,238,230,0.65); margin-top: 10px; white-space: nowrap;">
-          Performance Consultant · Olympian · Physiotherapist
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">Table height calibrated to elbow, not assumption</div>
+          <div class="action">90 seconds of micro-movement between cases</div>
+          <div class="action">Helmet and headlamp ergonomic audit</div>
+          <div class="action">Impact mat always</div>
         </div>
       </div>
-      <div class="footer">
-        <div class="qr"><img src="project/assets/whatsapp-qr.png" alt="WhatsApp QR" /></div>
-        <div class="details">
-          <div class="qr-cap">
-            Scan to connect on WhatsApp
-            <span class="sub">Rachel Neylan · Direct line</span>
+      <div class="warmth">Career longevity is now a measurable and modifiable outcome. The evidence base is mature and transferable.</div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>11 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 12 · STACK — PHYSICAL CONDITIONING
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">06 of 08 · Physical Training and Conditioning</div>
+    Conditioning is a determinant of resilience, recovery, and longevity.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">Daily physical activity improves HRV, reduces stress, and is linked to better cardiovascular and MSK outcomes across surgical careers.
+            <cite>Qi et al., 2026</cite>
           </div>
-          <div class="det-row">
-            <div class="k">Web</div>
-            <div class="v">www.rachelneylan.com</div>
+          <div class="point">Structured strength training reduces injury risk in surgeons.
+            <cite>Dairywala et al., 2021</cite>
           </div>
-          <div class="det-row">
-            <div class="k">Email</div>
-            <div class="v">rachel@rachelneylan.com</div>
+        </div>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">Two strength sessions weekly — posterior chain priority</div>
+          <div class="action">Aerobic base 150 minutes weekly, broken to fit the roster</div>
+          <div class="action">Mobility for thoracic spine, hips, shoulders</div>
+        </div>
+      </div>
+      <div class="warmth">The infrastructure to optimise this pillar intentionally is the opportunity — for health, injury prevention, and career longevity.</div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>12 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 13 · STACK — RECOVERY
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">07 of 08 · Recovery</div>
+    Recovery is where capacity is rebuilt. It is part of the work, not a pause from it.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">Recovery infrastructure is consistently identified as the dominant gap in surgeon well-being literature, with short-term programs producing short-term results.
+            <cite>Vitous et al., 2023</cite>
           </div>
+          <div class="point">Evidence-based recovery protocols spanning physical and cognitive domains are ready to implement.
+            <cite>Hasan et al., 2026</cite>
+          </div>
+        </div>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">Post-list decompression: 10 minutes, breath, light movement, fluid, fuel</div>
+          <div class="action">One full recovery day protected weekly</div>
+          <div class="action">Annual leave used, not banked</div>
+        </div>
+      </div>
+      <div class="warmth">Recovery science is now operationalised in every high-performance domain. The translation to surgery is the next step.</div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>13 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 14 · STACK — LEADERSHIP
+═══════════════════════════════════════════════════════ -->
+<section class="s-stack light">
+  <div class="lever-band">
+    <div class="lever-num">08 of 08 · Leadership and Team Dynamics</div>
+    Non-technical performance shapes outcomes as much as technical skill, and it is trainable.
+  </div>
+  <div class="frame" style="padding-top:0; padding-bottom:72px;">
+    <div style="flex:1; display:flex; flex-direction:column; padding-top:0;">
+      <div class="stack-body">
+        <div class="evidence">
+          <h4>The evidence</h4>
+          <div class="point">Surgeon stress significantly degrades non-technical skills in the OR including situational awareness, communication, and leadership.
+            <cite>Anton et al., 2021</cite>
+          </div>
+          <div class="point">Structured coaching and mental skills programs improve resilience, teamwork, and intraoperative decision-making.
+            <cite>Stefanidis et al., 2017; Wetzel et al., 2011</cite>
+          </div>
+        </div>
+        <div class="inweek">
+          <h4>In your week</h4>
+          <div class="action">60-second pre-list team brief</div>
+          <div class="action">Post-list debrief: technical and non-technical</div>
+          <div class="action">One named environmental variable owned by the team</div>
+        </div>
+      </div>
+      <div class="warmth">The evidence base for team performance under pressure is mature. The translation into surgical practice is the work of this generation.</div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete · The Stack</span>
+    <span>14 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 15 · THE OPPORTUNITY
+═══════════════════════════════════════════════════════ -->
+<section class="s-opportunity light">
+  <div class="frame">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">15</span>
+        <span>The Opportunity</span>
+      </div>
+      <span class="track-rule"></span>
+      <span>15 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="eyebrow" style="margin-top:28px;">Where the field is heading</div>
+    <h2 class="title" style="font-size:54px; margin-bottom:0;">Six determinants. One paradigm. <em>A profession in transition.</em></h2>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h5>Stress and Arousal Regulation</h5>
+        <p>Now treated as a measurable, modifiable performance variable. The translation into surgical practice is underway.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h5>Sleep and Fatigue</h5>
+        <p>Established as the highest-leverage recovery determinant. The science is mature. The infrastructure is the next step.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h5>Musculoskeletal Health</h5>
+        <p>Prevalence data and intervention evidence are now substantial. Career longevity is increasingly seen as a system outcome.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h5>Recovery</h5>
+        <p>Operationalised in every elite domain. The translation into surgical workflow is the current frontier.</p>
+      </div>
+      <div class="card">
+        <div class="num">05</div>
+        <h5>OR Environment and Cognitive Load</h5>
+        <p>Measurable in real time, with validated tools. The data is producing a new generation of design questions.</p>
+      </div>
+      <div class="card">
+        <div class="num">06</div>
+        <h5>Career Longevity</h5>
+        <p>Now framed as a workforce sustainability issue, not a personal endurance issue.</p>
+      </div>
+    </div>
+    <div class="banner">The science is concrete. The translation into surgical practice is now the work.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 16 · SURGEON VOICES
+═══════════════════════════════════════════════════════ -->
+<section class="s-voices dark">
+  <div class="frame">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">16</span>
+        <span>Surgeon Voices</span>
+      </div>
+      <span class="track-rule"></span>
+      <span>16 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="eyebrow" style="margin-top:28px;">The surgeons leading this conversation</div>
+    <div class="quotes-grid">
+      <div class="anchor">
+        <p class="q-text">"For decades we've invested in everything around the surgeon. The instruments, the implants, the imaging. The next frontier is the surgeon. The framework Rach brings is the one our profession has been missing."</p>
+        <div class="who">Prof Bill Walter · Orthopaedic Surgeon</div>
+      </div>
+      <div class="supporting">
+        <div class="sq">
+          <p class="q-text">"Performance science has changed how I prepare, how I recover, and how I think about a thirty-year career. It's not optional anymore."</p>
+          <div class="who">Dr Jit Balakumar · Orthopaedic Surgeon</div>
+        </div>
+        <div class="sq">
+          <p class="q-text">"This approach reframes the surgeon as a high performer, and it's exactly the mindset shift our profession needs."</p>
+          <div class="who">Dr Dirk Tenner</div>
+        </div>
+        <div class="sq">
+          <p class="q-text">"Having come from elite sport into surgery, I know what's possible when performance science is built into the system."</p>
+          <div class="who">Dr Lachlan Milne</div>
         </div>
       </div>
     </div>
-  </section>
+    <div class="status-note">All quotes awaiting final confirmation</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 17 · WHERE YOUR INFLUENCE SITS
+═══════════════════════════════════════════════════════ -->
+<section class="s-influence light">
+  <div class="frame">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">17</span>
+        <span>Where Your Influence Sits</span>
+      </div>
+      <span class="track-rule"></span>
+      <span>17 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="num">01</div>
+        <div class="content">
+          <h5>In your own practice</h5>
+          <p>The proof of concept. Run it on yourself first.</p>
+        </div>
+      </div>
+      <div class="tier">
+        <div class="num">02</div>
+        <div class="content">
+          <h5>In your theatre</h5>
+          <p>The standard. Your team performs to the level you set.</p>
+        </div>
+      </div>
+      <div class="tier">
+        <div class="num">03</div>
+        <div class="content">
+          <h5>In your institution</h5>
+          <p>The legacy. What you normalise becomes what the profession inherits.</p>
+        </div>
+      </div>
+    </div>
+    <div class="closing">You operate at all three levels at once. That is what makes this room the one that moves it.</div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>17 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 18 · NO LONGER A PARADOX
+═══════════════════════════════════════════════════════ -->
+<section class="s-synthesis dark">
+  <div class="left">
+    <div class="eyebrow">No Longer a Paradox</div>
+    <p class="body-text">The surgeon-athlete was only ever a paradox because the system stopped at the tools. Across every pillar of human performance, the demands have <em>always been there.</em> What is arriving now is the infrastructure to meet them. Build that, and the gains compound — for the surgeon, the team, and the patient.</p>
+  </div>
+  <div class="right"></div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>18 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 19 · CLOSE
+═══════════════════════════════════════════════════════ -->
+<section class="s-close dark">
+  <div class="bg-img"></div>
+  <div class="frame">
+    <p class="q">"The most advanced tool in the OR will always be the surgeon."</p>
+    <div class="attr">
+      <span class="dash"></span>
+      <span class="name">Rachel Neylan</span>
+    </div>
+  </div>
+  <div class="slide-foot" style="z-index:3; position:absolute; color:rgba(255,248,242,0.4);">
+    <span>The Uncoached Athlete</span>
+    <span>19 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 20 · DISCUSSION
+═══════════════════════════════════════════════════════ -->
+<section class="s-discussion light">
+  <div class="frame">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">20</span>
+        <span>Discussion</span>
+      </div>
+      <span class="track-rule"></span>
+      <span>20 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="eyebrow" style="margin-top:36px; font-size:40px; letter-spacing:-0.01em; text-transform:none; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400;">Over to you.</div>
+    <div class="qs">
+      <div class="dq">
+        <span class="num">Q1</span>
+        <p class="text">Where in your own practice or institution is the science already being applied, and where is the biggest implementation opportunity?</p>
+      </div>
+      <div class="dq">
+        <span class="num">Q2</span>
+        <p class="text">What would institutional adoption actually look like at your level?</p>
+      </div>
+      <div class="dq">
+        <span class="num">Q3</span>
+        <p class="text">What would you want to see measured to call this credible?</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <span>The Uncoached Athlete</span>
+    <span>20 / 21 · © Rachel Neylan 2026</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 21 · CONTACT
+═══════════════════════════════════════════════════════ -->
+<section class="s-contact light">
+  <div class="left">
+    <div class="track">
+      <div class="track-left">
+        <span class="track-num">21</span>
+        <span>Contact</span>
+      </div>
+      <span class="track-rule"></span>
+      <span>21 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div style="margin-top:48px;">
+      <div class="name-line">
+        <span class="name">Rachel Neylan</span>
+        OLY · MSc · BAppSc · Human Performance Consultant
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="k">Web</span>
+        <span class="v">www.rachelneylan.com</span>
+      </div>
+      <div class="row">
+        <span class="k">Email</span>
+        <span class="v">rachel@rachelneylan.com</span>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="qr-block"><span>QR Code</span></div>
+      <div class="copy">© Rachel Neylan 2026</div>
+    </div>
+  </div>
+  <div class="right"></div>
+</section>
 
 </deck-stage>
-
-<!-- Tweaks panel -->
-<div id="tweaks-panel" style="display:none; position:fixed; bottom:20px; right:20px; width:320px; background:#1A1D22; color:#F3EEE6; font-family:'Inter Tight',system-ui,sans-serif; border:1px solid rgba(243,238,230,0.18); z-index:99999; padding:20px; box-shadow:0 20px 60px rgba(0,0,0,0.5);">
-  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
-    <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#3E9898;">Tweaks</div>
-    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(243,238,230,0.5); text-transform:uppercase;">The Uncoached Athlete</div>
-  </div>
-
-  <div style="display:flex; flex-direction:column; gap:16px;">
-    <div class="tk-row">
-      <label style="display:block; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(243,238,230,0.7); margin-bottom:8px; font-family:'JetBrains Mono',monospace;">Dark surface</label>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px;" data-tk="surfaceDark">
-        <button class="tk-swatch" data-val="#0E0F10" title="Ink"></button>
-        <button class="tk-swatch" data-val="#2E3540" title="Slate"></button>
-        <button class="tk-swatch" data-val="#1F2A24" title="Forest"></button>
-        <button class="tk-swatch" data-val="#3A3532" title="Coffee"></button>
-      </div>
-    </div>
-
-    <div class="tk-row">
-      <label style="display:block; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(243,238,230,0.7); margin-bottom:8px; font-family:'JetBrains Mono',monospace;">Paper tone</label>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px;" data-tk="paper">
-        <button class="tk-swatch" data-val="#F3EEE6" title="Bone"></button>
-        <button class="tk-swatch" data-val="#EDE6D8" title="Warm"></button>
-        <button class="tk-swatch" data-val="#F5F2EC" title="Ivory"></button>
-        <button class="tk-swatch" data-val="#E6E4DF" title="Fog"></button>
-      </div>
-    </div>
-
-    <div class="tk-row">
-      <label style="display:block; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(243,238,230,0.7); margin-bottom:8px; font-family:'JetBrains Mono',monospace;">Accent</label>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px;" data-tk="accent">
-        <button class="tk-swatch" data-val="#1E7A7A" title="Teal"></button>
-        <button class="tk-swatch" data-val="#B8542B" title="Rust"></button>
-        <button class="tk-swatch" data-val="#6E4E8F" title="Plum"></button>
-        <button class="tk-swatch" data-val="#4A6E3A" title="Moss"></button>
-      </div>
-    </div>
-
-    <div class="tk-row">
-      <label style="display:flex; align-items:center; gap:10px; font-size:13px; color:rgba(243,238,230,0.85); font-family:'Inter Tight',sans-serif; cursor:pointer;">
-        <input type="checkbox" data-tk="showCitations" style="accent-color:#3E9898; width:16px; height:16px;">
-        Show citations in footer
-      </label>
-    </div>
-  </div>
-</div>
-
-<style>
-  .tk-swatch { height:32px; border:1px solid rgba(243,238,230,0.25); cursor:pointer; padding:0; transition:outline 0.15s; outline:0 solid transparent; }
-  .tk-swatch:hover { border-color:rgba(243,238,230,0.5); }
-  .tk-swatch.active { outline:2px solid #3E9898; outline-offset:2px; }
-  body.hide-citations .citation { display:none !important; }
-</style>
-<script>
-  const TWEAK_DEFAULTS = {
-    "surfaceDark": "#2E3540",
-    "paper": "#F3EEE6",
-    "accent": "#1E7A7A",
-    "showCitations": true
-  };
-
-  const tweakState = Object.assign({}, TWEAK_DEFAULTS);
-
-  function accent2From(hex) {
-    const h = hex.replace('#','');
-    const r = parseInt(h.slice(0,2),16), g = parseInt(h.slice(2,4),16), b = parseInt(h.slice(4,6),16);
-    const lighten = c => Math.min(255, Math.round(c + (255 - c) * 0.25));
-    const toHex = c => c.toString(16).padStart(2,'0');
-    return '#' + toHex(lighten(r)) + toHex(lighten(g)) + toHex(lighten(b));
-  }
-
-  function applyTweaks() {
-    const root = document.documentElement.style;
-    root.setProperty('--surface-dark', tweakState.surfaceDark);
-    root.setProperty('--paper', tweakState.paper);
-    root.setProperty('--accent', tweakState.accent);
-    root.setProperty('--accent-2', accent2From(tweakState.accent));
-    document.body.classList.toggle('hide-citations', !tweakState.showCitations);
-    document.querySelectorAll('[data-tk] .tk-swatch').forEach(btn => {
-      const key = btn.parentElement.getAttribute('data-tk');
-      btn.classList.toggle('active', btn.getAttribute('data-val') === tweakState[key]);
-      btn.style.background = btn.getAttribute('data-val');
-    });
-    const cb = document.querySelector('[data-tk="showCitations"]');
-    if (cb) cb.checked = !!tweakState.showCitations;
-  }
-
-  function setTweak(key, value) {
-    tweakState[key] = value;
-    applyTweaks();
-    try { window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[key]:value}}, '*'); } catch(e){}
-  }
-
-  window.addEventListener('message', (e) => {
-    const d = e.data || {};
-    if (d.type === '__activate_edit_mode') document.getElementById('tweaks-panel').style.display = 'block';
-    if (d.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').style.display = 'none';
-  });
-
-  document.querySelectorAll('[data-tk] .tk-swatch').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const key = btn.parentElement.getAttribute('data-tk');
-      setTweak(key, btn.getAttribute('data-val'));
-    });
-  });
-  document.querySelector('[data-tk="showCitations"]').addEventListener('change', (e) => {
-    setTweak('showCitations', e.target.checked);
-  });
-
-  applyTweaks();
-  window.parent.postMessage({type:'__edit_mode_available'}, '*');
-</script>
-
 </body>
 </html>
