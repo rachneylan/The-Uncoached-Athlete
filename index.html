@@ -337,6 +337,26 @@
      STACK SLIDES 07–14
      No .frame — uses section as flex container
   ═══════════════════════════════════════════ */
+  /* Slide 12 — Physical Conditioning image bg */
+  .s-stack.s-conditioning {
+    position: relative;
+  }
+  .s-stack.s-conditioning::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url('project/assets/athlete-barbell.jpg');
+    background-size: 150%;
+    background-position: right 55%;
+    opacity: 0.05;
+    filter: grayscale(1) blur(5px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .s-stack.s-conditioning .lever-band,
+  .s-stack.s-conditioning .stack-content,
+  .s-stack.s-conditioning .warmth {
+    position: relative; z-index: 1;
+  }
   .s-stack {
     display: flex !important;
     flex-direction: column;
@@ -1086,7 +1106,7 @@
 <!-- ═══════════════════════════════════════════
      12 · STACK — PHYSICAL CONDITIONING
 ═══════════════════════════════════════════ -->
-<section class="s-stack light">
+<section class="s-stack s-conditioning light">
   <div class="lever-band">
     <div class="lever-num">06 of 08 · Physical Training and Conditioning</div>
     <div class="lever-text">Conditioning is a determinant of resilience, recovery, and longevity.</div>
