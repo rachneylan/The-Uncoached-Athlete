@@ -733,15 +733,10 @@
     font-family: var(--f-serif); font-weight: 500;
     font-size: 44px; color: var(--ink); line-height: 1.0; margin-bottom: 6px;
   }
-  .s-contact .name-block .oly {
-    font-family: var(--f-serif); font-weight: 600;
-    font-size: 32px; color: var(--accent);
-    display: block; margin-bottom: 6px; letter-spacing: 0.05em;
-  }
   .s-contact .name-block .creds {
-    font-family: var(--f-mono); font-size: 11px;
+    font-family: var(--f-mono); font-size: 13px;
     letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--mute);
+    color: var(--accent);
   }
   .s-contact .rows {
     flex: 1; display: flex; flex-direction: column;
@@ -765,13 +760,17 @@
     display: flex; align-items: flex-end;
     justify-content: space-between; flex-shrink: 0; padding-top: 16px;
   }
+  .s-contact .contact-details {
+    display: flex; flex-direction: column; gap: 0; flex: 1;
+  }
   .s-contact .qr-img {
-    width: 180px; height: 180px;
-    object-fit: cover; display: block;
+    width: 160px; height: 160px;
+    object-fit: cover; display: block; flex-shrink: 0;
   }
   .s-contact .copy {
     font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute-light);
+    margin-top: 8px;
   }
 </style>
 </head>
@@ -1485,11 +1484,10 @@
     </div>
     <div class="thank-you">Thank<br>You.</div>
     <div class="name-block">
-      <span class="oly">OLY</span>
       <div class="name">Rachel Neylan</div>
-      <div class="creds">MSc · BAppSc · Human Performance Consultant</div>
+      <div class="creds">OLY · MSc · BAppSc · Human Performance Consultant</div>
     </div>
-    <div class="rows">
+    <div class="rows" style="flex:1;">
       <div class="row">
         <span class="k">Web</span>
         <span class="v">www.rachelneylan.com</span>
@@ -1500,8 +1498,10 @@
       </div>
     </div>
     <div class="bottom-row">
-      <img class="qr-img" src="project/assets/rachel-whatsapp-qr.jpg" alt="WhatsApp QR" />
-      <div class="copy">© Rachel Neylan 2026</div>
+      <div class="contact-details">
+        <div class="copy">© Rachel Neylan 2026</div>
+      </div>
+      <img class="qr-img" src="project/assets/rachel-qr-only.jpg" alt="WhatsApp QR" />
     </div>
   </div>
   <div class="right"></div>
