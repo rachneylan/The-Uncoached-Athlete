@@ -102,6 +102,14 @@
   }
   h2.title em { font-style: normal; color: var(--accent); }
 
+  .subtitle {
+    font-family: var(--f-sans); font-weight: 300;
+    font-size: 28px; line-height: 1.4;
+    color: inherit; opacity: 0.75;
+    max-width: 900px; text-wrap: pretty; margin: 0;
+  }
+  .subtitle em { font-style: normal; color: var(--accent); }
+
   .hair { display: block; height: 1px; width: 100%; background: currentColor; opacity: 0.15; }
 
   /* ═══════════════════════════════════════════
@@ -583,7 +591,7 @@
   .s-influence > .frame { position: absolute; inset: 0; z-index: 1; }
   .s-influence .tiers {
     flex: 1; display: flex; flex-direction: column;
-    justify-content: center; gap: 0; margin-top: 28px;
+    justify-content: center; gap: 0; margin-top: 16px;
   }
   .s-influence .tier {
     display: flex; align-items: flex-start; gap: 36px;
@@ -1381,10 +1389,12 @@
     <div class="track">
       <div class="track-left">
         <span class="track-num">17</span>
-        <span>Where Your Influence Sits</span>
+        <span>Toward Action</span>
       </div>
       <span class="track-rule"></span>
     </div>
+    <h2 class="title" style="font-size:72px; margin-top:20px; margin-bottom:8px; max-width:900px;">Toward <em>Action.</em></h2>
+    <div class="subtitle">Where your <em>influence</em> lies.</div>
     <div class="tiers">
       <div class="tier">
         <div class="num">01</div>
@@ -1421,7 +1431,9 @@
 ═══════════════════════════════════════════ -->
 <section class="s-synthesis">
   <div class="left">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:17px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,248,242,0.4);display:flex;justify-content:space-between;margin-bottom:32px;flex-shrink:0;"><span><span style="color:var(--accent-2);font-weight:600;">18</span> &nbsp; No Longer a Paradox</span></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:17px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,248,242,0.4);display:flex;justify-content:space-between;margin-bottom:32px;flex-shrink:0;"><span><span style="color:var(--accent-2);font-weight:600;">18</span> &nbsp; Closing</span></div>
+    <h2 class="title" style="color:var(--paper); margin-bottom:8px;">Closing.</h2>
+    <div class="subtitle" style="margin-bottom:28px;">No longer a <em style="color:var(--accent-2);">Paradox.</em></div>
     <p class="body-text">The surgeon-athlete was only ever a paradox because the system stopped at the tools. Across every pillar of human performance, the demands have <em>always been there.</em> What is arriving now is the infrastructure to meet them. Build that, and the gains compound, for the surgeon, the team, and the patient.</p>
   </div>
   <div class="right"></div>
