@@ -219,46 +219,62 @@
   }
 
   /* ═══════════════════════════════════════════
-     SLIDE 04 — THE LENS
+     SLIDE 04 — THE LENS (split)
   ═══════════════════════════════════════════ */
+  .s-lens { display: grid; grid-template-columns: 55% 45%; }
+  .s-lens .lens-left {
+    padding: 72px 72px 68px 100px;
+    background: var(--paper);
+    display: flex; flex-direction: column;
+  }
+  .s-lens .lens-right {
+    background-image: url('project/assets/rachel-podium.jpg');
+    background-size: cover; background-position: center top;
+    position: relative;
+  }
+  .s-lens .lens-right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.6) 0%, rgba(255,248,242,0) 40%);
+  }
   .s-lens .venn-wrap {
     flex: 1; display: flex; align-items: center;
-    justify-content: center; position: relative; padding: 16px 0;
+    justify-content: center; position: relative; padding: 8px 0;
   }
-  .s-lens .venn { position: relative; width: 760px; height: 640px; }
+  .s-lens .venn { position: relative; width: 520px; height: 460px; }
   .s-lens .circle {
-    position: absolute; width: 420px; height: 420px; border-radius: 50%;
+    position: absolute; width: 300px; height: 300px; border-radius: 50%;
     mix-blend-mode: multiply;
   }
   .s-lens .c1 { left: 0;    top: 0;    background: rgba(196,80,58,0.15);  border: 1.5px solid rgba(196,80,58,0.5); }
   .s-lens .c2 { right: 0;   top: 0;    background: rgba(232,122,90,0.15); border: 1.5px solid rgba(232,122,90,0.5); }
-  .s-lens .c3 { left: 160px; top: 215px; background: rgba(180,100,60,0.15); border: 1.5px solid rgba(180,100,60,0.5); }
+  .s-lens .c3 { left: 110px; top: 155px; background: rgba(180,100,60,0.15); border: 1.5px solid rgba(180,100,60,0.5); }
   .s-lens .label {
     position: absolute; font-family: var(--f-mono);
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-2); text-align: center; line-height: 1.5; max-width: 150px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-2); text-align: center; line-height: 1.5; max-width: 120px;
   }
-  .s-lens .l1 { left: 14px; top: 44px; }
-  .s-lens .l2 { right: 8px; top: 44px; }
-  .s-lens .l3 { left: 50%; transform: translateX(-50%); bottom: 4px; }
-  .s-lens .label .sub { opacity: 0.55; font-size: 10px; display: block; margin-top: 3px; }
+  .s-lens .l1 { left: 8px; top: 28px; }
+  .s-lens .l2 { right: 4px; top: 28px; }
+  .s-lens .l3 { left: 50%; transform: translateX(-50%); bottom: 0; }
+  .s-lens .label .sub { opacity: 0.55; font-size: 9px; display: block; margin-top: 2px; }
   .s-lens .center-label {
     position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -68%); text-align: center;
+    transform: translate(-50%, -65%); text-align: center;
   }
   .s-lens .center-label strong {
     display: block; font-family: var(--f-serif); font-weight: 600;
-    font-size: 24px; color: var(--accent); line-height: 1.2;
+    font-size: 18px; color: var(--accent); line-height: 1.2;
   }
   .s-lens .center-label span {
-    font-family: var(--f-mono); font-size: 10px;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
-    display: block; margin-top: 4px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+    display: block; margin-top: 3px;
   }
   .s-lens .subline {
     font-family: var(--f-serif); font-style: italic;
-    font-size: 28px; color: var(--accent); text-align: center;
-    flex-shrink: 0; padding-bottom: 8px;
+    font-size: 24px; color: var(--accent);
+    flex-shrink: 0; padding: 10px 0 0;
+    border-top: 1px solid var(--rule-light);
   }
 
   /* ═══════════════════════════════════════════
@@ -351,25 +367,27 @@
   .s-stack .stack-left .lever-num {
     font-family: var(--f-mono); font-size: 12px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent-2);
+    color: var(--accent-2); position: relative; z-index: 1;
   }
   .s-stack .stack-left .lever-big {
     font-family: var(--f-mono); font-size: 160px;
     font-weight: 600; line-height: 1;
     color: rgba(255,255,255,0.04);
     position: absolute; bottom: 80px; right: 32px;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.05em; z-index: 1;
   }
   .s-stack .stack-left .lever-text {
     font-family: var(--f-serif); font-style: italic;
     font-size: 48px; line-height: 1.2;
     color: var(--paper); text-wrap: pretty;
     flex: 1; display: flex; align-items: center;
+    position: relative; z-index: 1;
   }
   .s-stack .stack-left .lever-foot {
     font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: rgba(255,248,242,0.3);
+    position: relative; z-index: 1;
   }
   /* RIGHT PANEL — light, evidence + in your week */
   .s-stack .stack-right {
@@ -667,15 +685,14 @@
     display: flex; flex-direction: column;
   }
   .s-contact .right {
-    background: var(--paper-2);
-    display: flex; align-items: center; justify-content: center;
-    padding: 60px;
+    background-image: url('project/assets/rachel-headshot.jpg');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
   }
-  .s-contact .contact-card {
-    width: 100%; max-width: 380px;
-    border-radius: 4px;
-    box-shadow: 0 8px 40px rgba(28,15,10,0.15);
-    display: block;
+  .s-contact .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.88) 0%, rgba(255,248,242,0) 45%);
   }
   .s-contact .name-block { flex-shrink: 0; margin-top: 32px; }
   .s-contact .name-block .name {
@@ -813,8 +830,8 @@
 <!-- ═══════════════════════════════════════════
      04 · THE LENS
 ═══════════════════════════════════════════ -->
-<section class="s-lens light">
-  <div class="frame">
+<section class="s-lens">
+  <div class="lens-left">
     <div class="track">
       <div class="track-left">
         <span class="track-num">04</span>
@@ -823,24 +840,15 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:20px;">The intersection that matters</div>
-    <h2 class="title" style="font-size:56px;">Three disciplines. <em>One focus.</em></h2>
+    <h2 class="title" style="font-size:52px;">Three disciplines. <em>One focus.</em></h2>
     <div class="venn-wrap">
       <div class="venn">
         <div class="circle c1"></div>
         <div class="circle c2"></div>
         <div class="circle c3"></div>
-        <div class="label l1">
-          Olympian
-          <span class="sub">14 years professional sport</span>
-        </div>
-        <div class="label l2">
-          Physiotherapy<br>& MSK Health
-          <span class="sub">BAppSc</span>
-        </div>
-        <div class="label l3">
-          Coaching<br>Psychology
-          <span class="sub">MSc</span>
-        </div>
+        <div class="label l1">Olympian<span class="sub">14 years professional sport</span></div>
+        <div class="label l2">Physiotherapy<br>&amp; MSK Health<span class="sub">BAppSc</span></div>
+        <div class="label l3">Coaching<br>Psychology<span class="sub">MSc</span></div>
         <div class="center-label">
           <strong>Human Performance<br>Strategy</strong>
           <span>The surgeon as performer</span>
@@ -849,6 +857,7 @@
     </div>
     <div class="subline">The surgeon as a human performer.</div>
   </div>
+  <div class="lens-right"></div>
   <div class="slide-foot">
     <span>The Uncoached Athlete</span>
     <span>04 / 21 · © Rachel Neylan 2026</span>
@@ -1451,9 +1460,7 @@
       <div class="copy">© Rachel Neylan 2026</div>
     </div>
   </div>
-  <div class="right">
-    <img class="contact-card" src="project/assets/rachel-headshot-contact.jpg" alt="Rachel Neylan contact" />
-  </div>
+  <div class="right"></div>
   <div class="slide-foot">
     <span>The Uncoached Athlete</span>
     <span>21 / 21 · © Rachel Neylan 2026</span>
