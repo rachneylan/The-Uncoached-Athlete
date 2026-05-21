@@ -334,121 +334,117 @@
   }
 
   /* ═══════════════════════════════════════════
-     STACK SLIDES 07–14
-     No .frame — uses section as flex container
+     STACK SLIDES 07–14 — split dark/light panel
   ═══════════════════════════════════════════ */
-  /* Slide 12 — Physical Conditioning image bg */
-  .s-stack.s-conditioning {
-    position: relative;
-  }
-  .s-stack.s-conditioning::before {
-    content: "";
-    position: absolute; inset: 0;
-    background-image: url('project/assets/athlete-barbell.jpg');
-    background-size: 150%;
-    background-position: right 55%;
-    opacity: 0.05;
-    filter: grayscale(1) blur(5px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .s-stack.s-conditioning .lever-band,
-  .s-stack.s-conditioning .stack-content,
-  .s-stack.s-conditioning .warmth {
-    position: relative; z-index: 1;
-  }
   .s-stack {
-    display: flex !important;
-    flex-direction: column;
-    padding-bottom: 64px; /* clear the deck-stage nav pill */
+    display: grid !important;
+    grid-template-columns: 40% 60%;
   }
-  .s-stack .lever-band {
-    flex-shrink: 0;
-    background: var(--accent);
-    color: #fff;
-    padding: 20px 100px 22px;
-    display: flex; flex-direction: column; gap: 4px;
+  /* LEFT PANEL — dark, big lever statement */
+  .s-stack .stack-left {
+    background: var(--surface-dark);
+    padding: 72px 56px 72px 100px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    position: relative; overflow: hidden;
   }
-  .s-stack .lever-num {
-    font-family: var(--f-mono); font-size: 11px;
+  .s-stack .stack-left .lever-num {
+    font-family: var(--f-mono); font-size: 12px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    opacity: 0.75;
+    color: var(--accent-2);
   }
-  .s-stack .lever-text {
+  .s-stack .stack-left .lever-big {
+    font-family: var(--f-mono); font-size: 160px;
+    font-weight: 600; line-height: 1;
+    color: rgba(255,255,255,0.04);
+    position: absolute; bottom: 80px; right: 32px;
+    letter-spacing: -0.05em;
+  }
+  .s-stack .stack-left .lever-text {
     font-family: var(--f-serif); font-style: italic;
-    font-size: 34px; line-height: 1.2; letter-spacing: -0.005em;
+    font-size: 48px; line-height: 1.2;
+    color: var(--paper); text-wrap: pretty;
+    flex: 1; display: flex; align-items: center;
   }
-  .s-stack .stack-content {
-    flex: 1; display: flex; flex-direction: column;
-    padding: 28px 100px 0; min-height: 0;
+  .s-stack .stack-left .lever-foot {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,248,242,0.3);
+  }
+  /* RIGHT PANEL — light, evidence + in your week */
+  .s-stack .stack-right {
+    background: var(--paper);
+    display: flex; flex-direction: column;
+    padding: 48px 100px 80px 60px;
+    min-height: 0;
   }
   .s-stack .stack-meta {
     display: flex; justify-content: space-between; align-items: center;
     flex-shrink: 0; margin-bottom: 24px;
   }
   .s-stack .stack-section {
-    font-family: var(--f-mono); font-size: 12px;
+    font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--mute);
   }
   .s-stack .stack-page {
-    font-family: var(--f-mono); font-size: 12px;
+    font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.16em; color: var(--mute-light);
   }
   .s-stack .stack-body {
     flex: 1; display: grid; grid-template-columns: 1fr 1fr;
     gap: 0; border-top: 1px solid var(--rule-light); min-height: 0;
-    align-items: stretch;
   }
   .s-stack .evidence {
-    padding: 28px 48px 28px 0;
+    padding: 24px 40px 24px 0;
     border-right: 1px solid var(--rule-light);
     display: flex; flex-direction: column;
     justify-content: space-evenly;
   }
   .s-stack .evidence h4 {
-    font-family: var(--f-mono); font-size: 11px;
+    font-family: var(--f-mono); font-size: 13px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 18px; flex-shrink: 0;
+    color: var(--accent); margin: 0 0 14px; flex-shrink: 0;
+    padding-bottom: 12px; border-bottom: 2px solid var(--accent);
   }
   .s-stack .evidence .point {
-    font-family: var(--f-sans); font-size: 21px; line-height: 1.65;
-    color: var(--ink-2); padding: 20px 0;
+    font-family: var(--f-sans); font-size: 19px; line-height: 1.6;
+    color: var(--ink-2); padding: 16px 0;
     border-bottom: 1px solid var(--rule-light);
   }
   .s-stack .evidence .point cite {
     display: block; font-style: italic;
-    font-size: 13px; color: var(--mute); margin-top: 5px;
+    font-size: 12px; color: var(--mute); margin-top: 4px;
     font-family: var(--f-mono); letter-spacing: 0.04em;
   }
   .s-stack .inweek {
-    padding: 28px 0 28px 48px;
+    padding: 24px 0 24px 40px;
     display: flex; flex-direction: column;
     justify-content: space-evenly;
   }
   .s-stack .inweek h4 {
-    font-family: var(--f-mono); font-size: 11px;
+    font-family: var(--f-mono); font-size: 13px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 18px; flex-shrink: 0;
+    color: var(--accent); margin: 0 0 14px; flex-shrink: 0;
+    padding-bottom: 12px; border-bottom: 2px solid var(--accent);
   }
   .s-stack .inweek .action {
-    font-family: var(--f-sans); font-size: 21px; line-height: 1.5;
-    color: var(--ink); padding: 20px 0;
+    font-family: var(--f-sans); font-size: 19px; line-height: 1.5;
+    color: var(--ink); padding: 16px 0;
     border-bottom: 1px solid var(--rule-light);
-    display: flex; align-items: flex-start; gap: 14px;
+    display: flex; align-items: flex-start; gap: 12px;
   }
   .s-stack .inweek .action::before {
-    content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
-    background: var(--accent-2); margin-top: 9px;
+    content: ""; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-2); margin-top: 8px;
   }
   .s-stack .warmth {
     flex-shrink: 0;
-    background: var(--accent);
-    color: rgba(255,255,255,0.95);
-    padding: 18px 100px;
+    padding: 16px 0 8px;
     font-family: var(--f-serif); font-style: italic;
-    font-size: 24px;
-    text-align: center;
+    font-size: 20px; color: var(--accent);
+    border-top: 2px solid var(--accent);
+    line-height: 1.4;
   }
 
   /* ═══════════════════════════════════════════
@@ -930,17 +926,19 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      07 · STACK — SLEEP
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
     <div class="lever-num">01 of 08 · Sleep</div>
     <div class="lever-text">Sleep is the highest-leverage recovery determinant in the system.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">01</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">07 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -960,21 +958,23 @@
         <div class="action">Caffeine cut-off 8 hours before sleep</div>
       </div>
     </div>
+    <div class="warmth">Sleep is now treated as performance infrastructure in every elite domain. The science supports the same standing in surgery.</div>
   </div>
-  <div class="warmth">Sleep is now treated as performance infrastructure in every elite domain. The science supports the same standing in surgery.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      08 · STACK — AROUSAL REGULATION
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
-    <div class="lever-num">02 of 08 · Neurobiology and Arousal Regulation</div>
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
+    <div class="lever-num">02 of 08 · Arousal Regulation</div>
     <div class="lever-text">Arousal is regulated, not endured. The optimum is measurable.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">02</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">08 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -986,30 +986,33 @@
         <div class="point">Higher sympathovagal balance in the first five minutes of surgery was associated with fewer major complications.
           <cite>Awtry et al., 2025</cite>
         </div>
-        <div class="point">Optimal performance is not the absence of stress. It is its regulation.</div>
+        <div class="point">Optimal performance is not the absence of stress. It is its regulation.
+        </div>
       </div>
       <div class="inweek">
         <h4>In your week</h4>
-        <div class="action">4-7-8 breath pre or between cases (4-second inhale, 7-second hold, 8-second exhale)</div>
+        <div class="action">4-7-8 breath pre or between cases (4 inhale · 7 hold · 8 exhale)</div>
         <div class="action">Pre-scrub visualisation, 60 seconds</div>
         <div class="action">HRV-guided readiness check on demanding list days</div>
       </div>
     </div>
+    <div class="warmth">The relationship between physiological state, focus, and stress regulation is no longer theoretical.</div>
   </div>
-  <div class="warmth">The relationship between physiological state, focus, and stress regulation is no longer theoretical.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      09 · STACK — NUTRITION
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
     <div class="lever-num">03 of 08 · Nutrition</div>
     <div class="lever-text">Stable substrate, stable performance.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">03</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">09 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -1018,7 +1021,7 @@
         <div class="point">Nutritional habits directly affect surgical performance, longevity, and decision-making under fatigue.
           <cite>Faran et al., 2025</cite>
         </div>
-        <div class="point">Irregular meal patterns, skipped meals, and stress eating are common — institutional support is essential to address them.
+        <div class="point">Irregular meal patterns, skipped meals, and stress eating are common — institutional support is essential.
           <cite>Como et al., 2025</cite>
         </div>
       </div>
@@ -1026,25 +1029,27 @@
         <h4>In your week</h4>
         <div class="action">Pre-list protein and fibre anchored meal</div>
         <div class="action">Prepare or pre-order lunch — remove the decision</div>
-        <div class="action">One-handed snacks between cases: glucose and fructose (e.g. dried fruit)</div>
+        <div class="action">One-handed snacks between cases: glucose and fructose (dried fruit)</div>
         <div class="action">Avoid alcohol before long list days</div>
       </div>
     </div>
+    <div class="warmth">The same nutritional principles that sustain elite output translate directly.</div>
   </div>
-  <div class="warmth">The same nutritional principles that sustain elite output translate directly.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      10 · STACK — HYDRATION
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
     <div class="lever-num">04 of 08 · Hydration</div>
     <div class="lever-text">Hydration sits underneath concentration, reaction time, and decision-making.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">04</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">10 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -1064,21 +1069,23 @@
         <div class="action">Build into workflow — reduce reliance on memory</div>
       </div>
     </div>
+    <div class="warmth">The barriers here have been operational. The infrastructure to address them is increasingly available.</div>
   </div>
-  <div class="warmth">The barriers here have been operational. The infrastructure to address them is increasingly available.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      11 · STACK — MSK + ERGONOMICS
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
-    <div class="lever-num">05 of 08 · MSK Load and Ergonomics</div>
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
+    <div class="lever-num">05 of 08 · MSK + Ergonomics</div>
     <div class="lever-text">The body that delivers the surgery is an asset. It needs to be protected.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">05</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">11 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -1099,21 +1106,24 @@
         <div class="action">Impact mat on every list</div>
       </div>
     </div>
+    <div class="warmth">Career longevity is now a measurable and modifiable outcome. The evidence base is mature and transferable.</div>
   </div>
-  <div class="warmth">Career longevity is now a measurable and modifiable outcome. The evidence base is mature and transferable.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      12 · STACK — PHYSICAL CONDITIONING
-═══════════════════════════════════════════ -->
-<section class="s-stack s-conditioning light">
-  <div class="lever-band">
-    <div class="lever-num">06 of 08 · Physical Training and Conditioning</div>
-    <div class="lever-text">Conditioning is a determinant of resilience, recovery, and longevity.</div>
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left" style="background-image:url('project/assets/athlete-barbell.jpg'); background-size:cover; background-position:center right; position:relative; overflow:hidden;">
+    <div style="position:absolute;inset:0;background:rgba(28,15,10,0.82);z-index:0;"></div>
+    <div class="lever-num" style="position:relative;z-index:1;">06 of 08 · Physical Conditioning</div>
+    <div class="lever-text" style="position:relative;z-index:1;">Conditioning is a determinant of resilience, recovery, and longevity.</div>
+    <div class="lever-foot" style="position:relative;z-index:1;">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">06</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">12 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -1133,21 +1143,23 @@
         <div class="action">Mobility for thoracic spine, hips, and shoulders</div>
       </div>
     </div>
+    <div class="warmth">The infrastructure to optimise this pillar intentionally is the opportunity — for health, injury prevention, and career longevity.</div>
   </div>
-  <div class="warmth">The infrastructure to optimise this pillar intentionally is the opportunity — for health, injury prevention, and career longevity.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      13 · STACK — RECOVERY
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
     <div class="lever-num">07 of 08 · Recovery</div>
     <div class="lever-text">Recovery is where capacity is rebuilt. It is part of the work, not a pause from it.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">07</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">13 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -1167,21 +1179,23 @@
         <div class="action">Annual leave used, not banked</div>
       </div>
     </div>
+    <div class="warmth">Recovery science is now operationalised in every high-performance domain. The translation to surgery is the next step.</div>
   </div>
-  <div class="warmth">Recovery science is now operationalised in every high-performance domain. The translation to surgery is the next step.</div>
 </section>
 
-<!-- ═══════════════════════════════════════════
+<!-- ════════════════════════════════════════════
      14 · STACK — LEADERSHIP
-═══════════════════════════════════════════ -->
-<section class="s-stack light">
-  <div class="lever-band">
-    <div class="lever-num">08 of 08 · Leadership and Team Dynamics</div>
-    <div class="lever-text">Non-technical performance shapes outcomes as much as technical skill, and it is trainable.</div>
+════════════════════════════════════════════ -->
+<section class="s-stack">
+  <div class="stack-left">
+    <div class="lever-num">08 of 08 · Leadership + Team</div>
+    <div class="lever-text">Non-technical performance shapes outcomes as much as technical skill — and it is trainable.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">08</div>
   </div>
-  <div class="stack-content">
+  <div class="stack-right">
     <div class="stack-meta">
-      <span class="stack-section">The Stack · Eight Determinants of Human Performance</span>
+      <span class="stack-section">The Uncoached Athlete</span>
       <span class="stack-page">14 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
@@ -1201,8 +1215,8 @@
         <div class="action">One named environmental variable owned by the team</div>
       </div>
     </div>
+    <div class="warmth">The evidence base for team performance under pressure is mature. The translation into surgical practice is the work of this generation.</div>
   </div>
-  <div class="warmth">The evidence base for team performance under pressure is mature. The translation into surgical practice is the work of this generation.</div>
 </section>
 
 <!-- ═══════════════════════════════════════════
