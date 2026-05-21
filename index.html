@@ -472,6 +472,7 @@
   /* ═══════════════════════════════════════════
      SLIDE 15, THE OPPORTUNITY
   ═══════════════════════════════════════════ */
+  .s-opportunity > .frame { position: absolute; inset: 0; z-index: 1; }
   .s-opportunity .cards {
     flex: 0 0 auto; display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1277,7 +1278,8 @@
 <!-- ═══════════════════════════════════════════
      15 · THE OPPORTUNITY
 ═══════════════════════════════════════════ -->
-<section class="s-opportunity light">
+<section class="s-opportunity light" style="background-image:url('project/assets/opportunity-bg.jpg'); background-size:cover; background-position:center; position:relative;">
+<div style="position:absolute;inset:0;background:rgba(255,248,242,0.88);z-index:0;"></div>
   <div class="frame">
     <div class="track">
       <div class="track-left">
