@@ -515,6 +515,21 @@
   /* ═══════════════════════════════════════════
      SLIDE 16 — SURGEON VOICES
   ═══════════════════════════════════════════ */
+  .s-voices { display: grid !important; grid-template-columns: 60% 40%; }
+  .s-voices .quotes-side {
+    background: var(--surface-dark);
+    padding: 60px 72px 56px 100px;
+    display: flex; flex-direction: column;
+  }
+  .s-voices .image-side {
+    background-image: url('project/assets/surgical-team-smiling.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-voices .image-side::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(28,15,10,0.55) 0%, rgba(28,15,10,0) 50%);
+  }
   .s-voices .quotes-grid {
     flex: 1; display: grid;
     grid-template-columns: 1.15fr 1fr;
@@ -1299,16 +1314,16 @@
 <!-- ═══════════════════════════════════════════
      16 · SURGEON VOICES
 ═══════════════════════════════════════════ -->
-<section class="s-voices dark">
-  <div class="frame">
-    <div class="track">
+<section class="s-voices">
+  <div class="quotes-side">
+    <div class="track" style="color:rgba(255,248,242,0.4);">
       <div class="track-left">
-        <span class="track-num">16</span>
+        <span class="track-num" style="color:var(--accent-2);">16</span>
         <span>Surgeon Voices</span>
       </div>
       <span class="track-rule"></span>
     </div>
-    <div class="eyebrow" style="margin-top:18px;">The surgeons leading this conversation</div>
+    <div class="eyebrow dark" style="margin-top:18px; color:var(--accent-2);">The surgeons leading this conversation</div>
     <div class="quotes-grid">
       <div class="anchor">
         <p class="q-text">"For decades we've invested in everything around the surgeon — the instruments, the implants, the imaging. The next frontier is the surgeon. The framework Rach brings is the one our profession has been missing."</p>
@@ -1330,7 +1345,8 @@
       </div>
     </div>
   </div>
-  <div class="slide-foot">
+  <div class="image-side"></div>
+  <div class="slide-foot" style="color:rgba(255,248,242,0.28);">
     <span>The Uncoached Athlete</span>
     <span>16 / 21 · © Rachel Neylan 2026</span>
   </div>
