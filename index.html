@@ -281,7 +281,7 @@
      SLIDE 05, SURGEONS ARE ALREADY ATHLETES
   ═══════════════════════════════════════════ */
   .s-athletes { display: grid; grid-template-columns: 56% 44%; }
-  .s-athletes .left { padding: 80px 80px 68px 100px; display: flex; flex-direction: column; }
+  .s-athletes .left { padding: 80px 80px 68px 100px; display: flex; flex-direction: column; overflow: hidden; }
   .s-athletes .right {
     background-image: url('project/assets/rachel-cycling-2.jpg');
     background-size: cover; background-position: center;
@@ -308,6 +308,7 @@
     font-family: var(--f-sans); font-size: 17px; line-height: 1.6;
     color: var(--mute); font-style: italic; flex-shrink: 0;
     padding: 16px 0; border-top: 1px solid var(--rule-light);
+    overflow-wrap: break-word; max-width: 100%;
   }
   .s-athletes .pivot {
     background: var(--accent); color: #fff;
@@ -924,15 +925,15 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:24px;">You are already operating at the limit</div>
-    <h2 class="title" style="font-size:60px;">The demands on a surgeon are indistinguishable from those on an elite athlete.</h2>
+    <h2 class="title" style="font-size:72px;">The demands are the same.</h2>
     <div class="points">
       <div class="pt">Deliberate practice at a volume elite athletes never reach</div>
       <div class="pt">Sustained performance under genuine fatigue, across decades not seasons</div>
       <div class="pt">Cognitive load and decision-making most professions never approach</div>
       <div class="pt">Stakes that carry real consequence</div>
     </div>
-    <p class="authority">From the podium of the American College of Surgeons, a master surgeon argued that mindset, grit, deliberate practice, and coaching are essential to performance. <em>(Verrier, 2017)</em></p>
-    <div class="pivot">It determines outcomes everywhere else. It is time for surgery to arrive.</div>
+    <p class="authority">A master surgeon made this case from the podium of the American College of Surgeons: mindset, grit, deliberate practice, and coaching all determine performance. (Verrier, 2017)</p>
+    <div class="pivot">Human performance determines outcomes in every other high-stakes field. Surgery is where it goes next.</div>
   </div>
   <div class="right"></div>
   <div class="slide-foot">
