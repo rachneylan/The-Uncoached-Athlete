@@ -56,7 +56,7 @@
   /* .frame — absolute inset, for non-stack slides */
   .frame {
     position: absolute; inset: 0;
-    padding: 80px 100px 68px;
+    padding: 60px 100px 56px;
     display: flex; flex-direction: column;
     box-sizing: border-box;
   }
@@ -91,15 +91,15 @@
   }
 
   .eyebrow {
-    font-family: var(--f-mono); font-size: 13px;
+    font-family: var(--f-mono); font-size: 15px;
     letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 24px; flex-shrink: 0;
+    color: var(--accent); margin-bottom: 20px; flex-shrink: 0; font-weight: 600;
   }
   .dark .eyebrow { color: var(--accent-2); }
 
   h2.title {
     font-family: var(--f-serif); font-weight: 500;
-    font-size: 68px; line-height: 1.06;
+    font-size: 86px; line-height: 1.02;
     letter-spacing: var(--tk-snug); margin: 0 0 20px;
     text-wrap: balance;
   }
@@ -320,10 +320,10 @@
   ═══════════════════════════════════════════ */
   .s-paradigm .grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    flex: 1; margin-top: 28px; border: 1px solid var(--rule-light);
+    flex: 1; margin-top: 8px; border: 1px solid var(--rule-light);
     overflow: hidden;
   }
-  .s-paradigm .col { padding: 36px 44px; display: flex; flex-direction: column; }
+  .s-paradigm .col { padding: 40px 44px; display: flex; flex-direction: column; }
   .s-paradigm .col + .col { border-left: 1px solid var(--rule-light); }
   .s-paradigm .col h4 {
     font-family: var(--f-mono); font-size: 12px;
@@ -332,10 +332,13 @@
     border-bottom: 1px solid var(--rule-light);
   }
   .s-paradigm .col.to h4 { color: var(--accent); border-bottom-color: var(--accent); border-bottom-width: 2px; }
-  .s-paradigm .col ul { margin: 0; padding: 0; list-style: none; flex: 1; }
+  .s-paradigm .col ul {
+    margin: 0; padding: 0; list-style: none;
+    flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;
+  }
   .s-paradigm .col ul li {
-    font-family: var(--f-sans); font-size: 21px; line-height: 1.5;
-    color: var(--ink); padding: 13px 0; border-bottom: 1px solid var(--rule-light);
+    font-family: var(--f-sans); font-size: 22px; line-height: 1.5;
+    color: var(--ink); padding: 16px 0; border-bottom: 1px solid var(--rule-light);
   }
   .s-paradigm .col.to li { display: flex; gap: 12px; align-items: flex-start; }
   .s-paradigm .col.to li::before {
@@ -377,8 +380,8 @@
     letter-spacing: -0.05em; z-index: 1;
   }
   .s-stack .stack-left .lever-text {
-    font-family: var(--f-serif); font-style: italic;
-    font-size: 48px; line-height: 1.2;
+    font-family: var(--f-serif); font-style: italic; font-weight: 500;
+    font-size: 72px; line-height: 1.15;
     color: var(--paper); text-wrap: pretty;
     flex: 1; display: flex; align-items: center;
     position: relative; z-index: 1;
@@ -393,7 +396,7 @@
   .s-stack .stack-right {
     background: var(--paper);
     display: flex; flex-direction: column;
-    padding: 48px 100px 80px 60px;
+    padding: 36px 100px 72px 60px;
     min-height: 0;
   }
   .s-stack .stack-meta {
@@ -469,32 +472,37 @@
      SLIDE 15 — THE OPPORTUNITY
   ═══════════════════════════════════════════ */
   .s-opportunity .cards {
-    flex: 1; display: grid;
+    flex: 0 0 auto; display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr;
-    gap: 0; margin-top: 24px;
+    grid-template-rows: auto auto;
+    gap: 0; margin-top: 16px;
     border-top: 1px solid var(--rule-light);
     border-left: 1px solid var(--rule-light);
   }
   .s-opportunity .card {
-    padding: 24px 28px;
+    padding: 28px 28px;
     border-right: 1px solid var(--rule-light);
     border-bottom: 1px solid var(--rule-light);
     display: flex; flex-direction: column;
   }
   .s-opportunity .card .num {
-    font-family: var(--f-mono); font-size: 11px;
+    font-family: var(--f-mono); font-size: 12px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 8px; font-weight: 600;
+    color: var(--accent); margin-bottom: 10px; font-weight: 600;
   }
   .s-opportunity .card h5 {
     font-family: var(--f-serif); font-weight: 500;
-    font-size: 26px; color: var(--ink); margin: 0 0 10px; line-height: 1.1;
-    flex-shrink: 0;
+    font-size: 30px; color: var(--ink); margin: 0 0 10px; line-height: 1.1;
   }
   .s-opportunity .card p {
-    font-family: var(--f-sans); font-size: 17px; line-height: 1.55;
-    color: var(--ink-3); margin: 0; flex: 1;
+    font-family: var(--f-sans); font-size: 18px; line-height: 1.6;
+    color: var(--ink-3); margin: 0 0 10px;
+  }
+  .s-opportunity .card-evidence {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.04em; color: var(--mute); font-style: italic;
+    line-height: 1.4; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid var(--rule-light);
   }
   .s-opportunity .banner {
     flex-shrink: 0; margin-top: 20px;
@@ -841,7 +849,7 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:20px;">The intersection that matters</div>
-    <h2 class="title" style="font-size:52px;">Three disciplines. <em>One focus.</em></h2>
+    <h2 class="title" style="font-size:68px;">Three disciplines. <em>One focus.</em></h2>
     <div class="venn-wrap">
       <div class="venn">
         <div class="circle c1"></div>
@@ -878,7 +886,7 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:24px;">You are already operating at the limit</div>
-    <h2 class="title" style="font-size:56px;">The demands have <em>always been there.</em></h2>
+    <h2 class="title" style="font-size:72px;">The demands have <em>always been there.</em></h2>
     <div class="points">
       <div class="pt">Deliberate practice at a volume elite athletes never reach</div>
       <div class="pt">Sustained performance under genuine fatigue, across decades not seasons</div>
@@ -907,7 +915,8 @@
       </div>
       <span class="track-rule"></span>
     </div>
-    <div class="eyebrow" style="margin-top:20px;">From endurance to readiness</div>
+    <div class="eyebrow" style="margin-top:16px;">The Paradigm Shift</div>
+    <h2 class="title">From <em>endurance</em> to readiness.</h2>
     <div class="grid">
       <div class="col from">
         <h4>From</h4>
@@ -970,7 +979,7 @@
         <div class="action">Caffeine cut-off 8 hours before sleep</div>
       </div>
     </div>
-    <div class="warmth">Sleep is now treated as performance infrastructure in every elite domain. The science supports the same standing in surgery.</div>
+    <div class="warmth">Sleep is performance infrastructure. The science supports the same standing in surgery.</div>
   </div>
 </section>
 
@@ -1081,7 +1090,7 @@
         <div class="action">Build into workflow — reduce reliance on memory</div>
       </div>
     </div>
-    <div class="warmth">The barriers here have been operational. The infrastructure to address them is increasingly available.</div>
+    <div class="warmth">The barriers have been operational. The infrastructure to address them is here.</div>
   </div>
 </section>
 
@@ -1155,7 +1164,7 @@
         <div class="action">Mobility for thoracic spine, hips, and shoulders</div>
       </div>
     </div>
-    <div class="warmth">The infrastructure to optimise this pillar intentionally is the opportunity — for health, injury prevention, and career longevity.</div>
+    <div class="warmth">The opportunity is to optimise this pillar — for health, injury prevention, and career longevity.</div>
   </div>
 </section>
 
@@ -1227,7 +1236,7 @@
         <div class="action">One named environmental variable owned by the team</div>
       </div>
     </div>
-    <div class="warmth">The evidence base for team performance under pressure is mature. The translation into surgical practice is the work of this generation.</div>
+    <div class="warmth">The evidence base is mature. The translation into surgical practice is the work of this generation.</div>
   </div>
 </section>
 
@@ -1244,37 +1253,43 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:18px;">Where the field is heading</div>
-    <h2 class="title" style="font-size:50px; margin-bottom:0;">The science is here. <em>A profession in transition.</em></h2>
+    <h2 class="title" style="font-size:64px; margin-bottom:0;">The science is here. <em>A profession in transition.</em></h2>
     <div class="cards">
       <div class="card">
         <div class="num">01</div>
         <h5>Stress and Arousal Regulation</h5>
         <p>Now treated as a measurable, modifiable performance variable. The translation into surgical practice is underway.</p>
+        <div class="card-evidence">HRV validated as real-time biomarker of surgical performance · Awtry et al., 2025</div>
       </div>
       <div class="card">
         <div class="num">02</div>
         <h5>Sleep and Fatigue</h5>
         <p>Established as the highest-leverage recovery determinant. The science is mature. The infrastructure is the next step.</p>
+        <div class="card-evidence">Largest improvements in next-day HRV and procedure performance · Jevsevar et al., 2021</div>
       </div>
       <div class="card">
         <div class="num">03</div>
         <h5>Musculoskeletal Health</h5>
         <p>Prevalence data and intervention evidence are now substantial. Career longevity is increasingly seen as a system outcome.</p>
+        <div class="card-evidence">51–97% prevalence across surgical specialties · Richard et al., 2025</div>
       </div>
       <div class="card">
         <div class="num">04</div>
         <h5>Recovery</h5>
         <p>Operationalised in every elite domain. The translation into surgical workflow is the current frontier.</p>
+        <div class="card-evidence">Dominant gap in surgeon well-being literature · Vitous et al., 2023</div>
       </div>
       <div class="card">
         <div class="num">05</div>
         <h5>OR Environment and Cognitive Load</h5>
         <p>Measurable in real time, with validated tools. The data is producing a new generation of design questions.</p>
+        <div class="card-evidence">Stress degrades NTS including situational awareness · Anton et al., 2021</div>
       </div>
       <div class="card">
         <div class="num">06</div>
         <h5>Career Longevity</h5>
         <p>Now framed as a workforce sustainability issue, not a personal endurance issue.</p>
+        <div class="card-evidence">Physical activity the only modifiable risk factor for MSK disorders · Giagio et al., 2019</div>
       </div>
     </div>
     <div class="banner">The science is concrete. The translation into surgical practice is now the work.</div>
