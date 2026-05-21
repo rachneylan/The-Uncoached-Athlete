@@ -676,6 +676,21 @@
   /* ═══════════════════════════════════════════
      SLIDE 20, DISCUSSION
   ═══════════════════════════════════════════ */
+  .s-discussion { display: grid !important; grid-template-columns: 58% 42%; }
+  .s-discussion .disc-left {
+    padding: 60px 72px 56px 100px;
+    display: flex; flex-direction: column;
+    background: var(--paper);
+  }
+  .s-discussion .disc-right {
+    background-image: url('project/assets/discussion-team.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-discussion .disc-right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.5) 0%, rgba(255,248,242,0) 40%);
+  }
   .s-discussion .intro {
     font-family: var(--f-serif); font-style: italic; font-weight: 400;
     font-size: 48px; color: var(--accent); line-height: 1.1;
@@ -1435,8 +1450,8 @@
 <!-- ═══════════════════════════════════════════
      20 · DISCUSSION
 ═══════════════════════════════════════════ -->
-<section class="s-discussion light">
-  <div class="frame">
+<section class="s-discussion">
+  <div class="disc-left">
     <div class="track">
       <div class="track-left">
         <span class="track-num">20</span>
@@ -1460,6 +1475,7 @@
       </div>
     </div>
   </div>
+  <div class="disc-right"></div>
   <div class="slide-foot">
     <span>The Uncoached Athlete</span>
     <span>20 / 21 · © Rachel Neylan 2026</span>
