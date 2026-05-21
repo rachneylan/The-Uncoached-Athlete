@@ -66,7 +66,7 @@
   ═══════════════════════════════════════════ */
   .track {
     display: flex; align-items: center; justify-content: space-between;
-    font-family: var(--f-mono); font-size: 13px;
+    font-family: var(--f-mono); font-size: 17px;
     letter-spacing: var(--tk-wide); text-transform: uppercase;
     color: var(--mute); flex-shrink: 0; margin-bottom: 0;
   }
@@ -252,10 +252,11 @@
     position: absolute; font-family: var(--f-mono);
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink-2); text-align: center; line-height: 1.5; max-width: 120px;
+    transform: translate(-50%, -50%);
   }
-  .s-lens .l1 { left: 8px; top: 28px; }
-  .s-lens .l2 { right: 4px; top: 28px; }
-  .s-lens .l3 { left: 50%; transform: translateX(-50%); bottom: 0; }
+  .s-lens .l1 { left: 29%; top: 33%; }
+  .s-lens .l2 { left: 71%; top: 33%; }
+  .s-lens .l3 { left: 50%; top: 66%; }
   .s-lens .label .sub { opacity: 0.55; font-size: 9px; display: block; margin-top: 2px; }
   .s-lens .center-label {
     position: absolute; left: 50%; top: 50%;
@@ -272,9 +273,9 @@
     display: block; margin-top: 3px;
   }
   .s-lens .subline {
-    font-family: var(--f-sans); font-style: normal; font-weight: 500;
-    font-size: 18px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
-    flex-shrink: 0; padding: 10px 0 0;
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 28px; color: var(--accent);
+    flex-shrink: 0; padding: 12px 0 0;
     border-top: 1px solid var(--rule-light);
   }
 
@@ -872,7 +873,7 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:20px;">Where three disciplines meet</div>
-    <h2 class="title" style="font-size:68px;">Three disciplines. <em>One focus.</em></h2>
+    <h2 class="title" style="font-size:68px;">Three disciplines.</h2>
     <div class="venn-wrap">
       <div class="venn">
         <div class="circle c1"></div>
