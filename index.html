@@ -257,14 +257,14 @@
   .s-lens .c3 { left: 110px; top: 155px; background: rgba(180,100,60,0.15); border: 1.5px solid rgba(180,100,60,0.5); }
   .s-lens .label {
     position: absolute; font-family: var(--f-mono);
-    font-size: 13px; letter-spacing: 0.10em; text-transform: uppercase;
-    color: var(--ink-2); text-align: center; line-height: 1.5; max-width: 140px;
+    font-size: 16px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--ink-2); text-align: center; line-height: 1.5; max-width: 160px;
     transform: translate(-50%, -50%);
   }
   .s-lens .l1 { left: 29%; top: 33%; }
   .s-lens .l2 { left: 71%; top: 33%; }
   .s-lens .l3 { left: 50%; top: 66%; }
-  .s-lens .label .sub { opacity: 0.6; font-size: 11px; display: block; margin-top: 3px; }
+  .s-lens .label .sub { opacity: 0.6; font-size: 13px; display: block; margin-top: 3px; }
   .s-lens .center-label {
     position: absolute; left: 50%; top: 50%;
     transform: translate(-50%, -50%); text-align: center;
@@ -272,10 +272,10 @@
   }
   .s-lens .center-label strong {
     display: block; font-family: var(--f-serif); font-weight: 600;
-    font-size: 19px; color: var(--accent); line-height: 1.2;
+    font-size: 23px; color: var(--accent); line-height: 1.2;
   }
   .s-lens .center-label span {
-    font-family: var(--f-mono); font-size: 9px;
+    font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
     display: block; margin-top: 3px;
   }
@@ -519,8 +519,8 @@
     color: var(--ink-2); margin: 0 0 10px;
   }
   .s-opportunity .card-evidence {
-    font-family: var(--f-mono); font-size: 13px;
-    letter-spacing: 0.04em; color: var(--mute); font-style: italic;
+    font-family: var(--f-mono); font-size: 15px;
+    letter-spacing: 0.04em; color: var(--ink-3); font-style: italic;
     line-height: 1.4; margin-top: 12px; padding-top: 10px;
     border-top: 1px solid var(--rule-light);
   }
@@ -583,11 +583,11 @@
   }
   .s-voices .sq:first-child { padding-top: 32px; }
   .s-voices .sq .q-text {
-    font-family: var(--f-sans); font-size: 21px; line-height: 1.55;
-    color: rgba(255,248,242,0.88); font-style: italic;
+    font-family: var(--f-sans); font-size: 26px; line-height: 1.5;
+    color: rgba(255,248,242,0.92); font-style: italic;
   }
   .s-voices .sq .who {
-    font-family: var(--f-mono); font-size: 12px;
+    font-family: var(--f-mono); font-size: 14px;
     letter-spacing: var(--tk-wide); text-transform: uppercase;
     color: var(--accent-2); margin-top: 10px;
   }
@@ -688,9 +688,10 @@
   .s-close .attr { margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 16px; }
   .s-close .attr .dash { width: 36px; height: 1px; background: var(--accent-2); }
   .s-close .attr .name {
-    font-family: var(--f-mono); font-size: 16px;
+    font-family: var(--f-mono); font-size: 20px;
     letter-spacing: var(--tk-wide); text-transform: uppercase;
     color: var(--accent-2);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
   }
 
   /* ═══════════════════════════════════════════
@@ -1118,7 +1119,7 @@
       <span class="stack-page">09 / 20 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence">
+      <div class="evidence" style="justify-content: space-evenly;">
         <h4>The evidence</h4>
         <div class="point">Nutritional habits directly affect surgical performance, longevity, and decision-making under fatigue.
           <cite>Faran et al., 2025</cite>
@@ -1155,7 +1156,7 @@
       <span class="stack-page">10 / 20 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence">
+      <div class="evidence" style="justify-content: space-evenly;">
         <h4>The evidence</h4>
         <div class="point">Dehydration impairs concentration, reaction time, and decision-making.
           <cite>Faran et al., 2025</cite>
@@ -1191,7 +1192,7 @@
       <span class="stack-page">11 / 20 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence">
+      <div class="evidence" style="justify-content: space-evenly;">
         <h4>The evidence</h4>
         <div class="point">A multicentre RCT found that combining OR ergonomics with supervised exercise significantly reduced low back pain and halved analgesic use at six months.
           <cite>Giagio et al., 2019</cite>
@@ -1229,7 +1230,7 @@
       <span class="stack-page">12 / 20 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence">
+      <div class="evidence" style="justify-content: space-evenly;">
         <h4>The evidence</h4>
         <div class="point">Daily physical activity improves HRV, reduces stress, and is linked to better cardiovascular and MSK outcomes across surgical careers.
           <cite>Qi et al., 2026</cite>
@@ -1304,7 +1305,7 @@
       <span class="stack-page">14 / 20 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence">
+      <div class="evidence" style="justify-content: space-evenly;">
         <h4>The evidence</h4>
         <div class="point">Surgeon stress significantly degrades non-technical skills in the OR, situational awareness, communication, and leadership.
           <cite>Anton et al., 2021</cite>
