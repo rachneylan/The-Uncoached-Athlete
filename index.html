@@ -652,51 +652,51 @@
      SLIDE 18, WHERE YOUR INFLUENCE SITS
   ═══════════════════════════════════════════ */
   .s-influence {
-    display: flex !important; flex-direction: column;
-    background: var(--paper); position: relative;
-  }
-  .s-influence .inf-banner {
-    flex: 0 0 36%;
-    background-image: url('project/assets/discussion-team.jpg');
-    background-size: cover; background-position: center 35%;
+    display: grid !important; grid-template-columns: 55% 45%;
     position: relative;
   }
-  .s-influence .inf-banner::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 80px;
-    background: linear-gradient(180deg, rgba(255,248,242,0) 0%, rgba(255,248,242,1) 100%);
-  }
   .s-influence .inf-content {
-    flex: 1; padding: 20px 100px 16px;
-    display: flex; flex-direction: column;
+    padding: 72px 80px 68px 100px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: var(--paper);
+  }
+  .s-influence .inf-right {
+    background-image: url('project/assets/discussion-team.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-influence .inf-right::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.7) 0%, rgba(255,248,242,0) 50%);
   }
   .s-influence .tiers {
     flex: 1; display: flex; flex-direction: column;
-    justify-content: space-between; gap: 0; margin-top: 16px;
+    justify-content: space-evenly; gap: 0; margin-top: 24px;
   }
   .s-influence .tier {
     display: flex; align-items: flex-start; gap: 36px;
-    padding: 14px 0; border-bottom: 1px solid var(--rule-light);
+    padding: 20px 0; border-bottom: 1px solid var(--rule-light);
   }
   .s-influence .tier:first-child { border-top: 1px solid var(--rule-light); }
   .s-influence .tier .num {
     font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent); font-weight: 600;
-    flex-shrink: 0; width: 44px; padding-top: 4px;
+    flex-shrink: 0; width: 44px; padding-top: 6px;
   }
   .s-influence .tier .content h5 {
     font-family: var(--f-serif); font-weight: 500;
-    font-size: 32px; color: var(--ink); margin: 0 0 4px; line-height: 1.0;
+    font-size: 36px; color: var(--ink); margin: 0 0 4px; line-height: 1.0;
   }
   .s-influence .tier .content p {
     font-family: var(--f-sans); font-size: 19px;
     line-height: 1.45; color: var(--ink-3); margin: 0;
   }
   .s-influence .closing {
-    flex-shrink: 0; margin-top: 12px;
+    flex-shrink: 0;
     font-family: var(--f-serif); font-style: italic; font-weight: 400;
-    font-size: 24px; color: var(--accent); text-align: center;
-    padding: 12px 0; border-top: 1px solid var(--rule-light);
+    font-size: 24px; color: var(--accent);
+    padding: 14px 0; border-top: 1px solid var(--rule-light);
   }
 
   /* ═══════════════════════════════════════════
@@ -1536,7 +1536,6 @@
      17 · WHERE YOUR INFLUENCE SITS
 ═══════════════════════════════════════════ -->
 <section class="s-influence light">
-  <div class="inf-banner"></div>
   <div class="inf-content">
     <div class="track">
       <div class="track-left">
@@ -1545,7 +1544,7 @@
       </div>
       <span class="track-rule"></span>
     </div>
-    <h2 class="title" style="font-size:72px; margin-bottom:0; max-width:900px;">Where your <em>influence</em> lies.</h2>
+    <h2 class="title" style="font-size:80px; margin-bottom:0;">Where your <em>influence</em> lies.</h2>
     <div class="tiers">
       <div class="tier">
         <div class="num">01</div>
@@ -1571,6 +1570,7 @@
     </div>
     <div class="closing">You operate at all three levels — this room is the one that moves it.</div>
   </div>
+  <div class="inf-right"></div>
   <div class="slide-foot">
     <span>The Surgeon Athlete</span>
     <span>18 / 21 · © Rachel Neylan 2026</span>
