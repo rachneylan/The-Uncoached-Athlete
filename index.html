@@ -433,13 +433,13 @@
     background: var(--surface-dark);
     padding: 72px 56px 72px 100px;
     display: flex; flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative; overflow: hidden;
   }
   .s-stack .stack-left .lever-num {
     font-family: var(--f-mono); font-size: 20px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent-2); position: absolute; top: 72px; left: 100px; z-index: 1;
+    color: var(--accent-2); position: relative; z-index: 1; flex-shrink: 0;
   }
   .s-stack .stack-left .lever-big {
     font-family: var(--f-mono); font-size: 160px;
@@ -452,14 +452,15 @@
     font-family: var(--f-serif); font-style: normal; font-weight: 600;
     font-size: 64px; line-height: 1.15;
     color: var(--paper); text-wrap: pretty;
-    position: relative; z-index: 1;
+    position: relative; z-index: 1; flex-shrink: 0;
+    margin-top: auto; margin-bottom: auto;
     text-shadow: 0 2px 16px rgba(28,15,10,0.6);
   }
   .s-stack .stack-left .lever-foot {
     font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: rgba(255,248,242,0.3);
-    position: absolute; bottom: 72px; left: 100px; z-index: 1;
+    position: relative; z-index: 1; flex-shrink: 0;
   }
   /* RIGHT PANEL, light, evidence + in your week */
   .s-stack .stack-right {
