@@ -247,14 +247,14 @@
     flex: 1; display: flex; align-items: center;
     justify-content: center; position: relative; padding: 8px 0;
   }
-  .s-lens .venn { position: relative; width: 520px; height: 460px; }
+  .s-lens .venn { position: relative; width: 560px; height: 510px; }
   .s-lens .circle {
-    position: absolute; width: 300px; height: 300px; border-radius: 50%;
+    position: absolute; width: 340px; height: 340px; border-radius: 50%;
     mix-blend-mode: multiply;
   }
   .s-lens .c1 { left: 0;    top: 0;    background: rgba(196,80,58,0.15);  border: 1.5px solid rgba(196,80,58,0.5); }
   .s-lens .c2 { right: 0;   top: 0;    background: rgba(232,122,90,0.15); border: 1.5px solid rgba(232,122,90,0.5); }
-  .s-lens .c3 { left: 110px; top: 155px; background: rgba(180,100,60,0.15); border: 1.5px solid rgba(180,100,60,0.5); }
+  .s-lens .c3 { left: 110px; top: 172px; background: rgba(180,100,60,0.15); border: 1.5px solid rgba(180,100,60,0.5); }
   .s-lens .label {
     position: absolute; font-family: var(--f-mono);
     font-size: 16px; letter-spacing: 0.10em; text-transform: uppercase;
@@ -263,7 +263,7 @@
   }
   .s-lens .l1 { left: 29%; top: 33%; }
   .s-lens .l2 { left: 71%; top: 33%; }
-  .s-lens .l3 { left: 50%; top: 66%; }
+  .s-lens .l3 { left: 50%; top: 74%; }
   .s-lens .label .sub { opacity: 0.6; font-size: 13px; display: block; margin-top: 3px; }
   .s-lens .center-label {
     position: absolute; left: 50%; top: 50%;
@@ -679,7 +679,7 @@
   }
   .s-influence .closing {
     flex-shrink: 0; margin-top: 28px;
-    font-family: var(--f-serif); font-style: normal; font-weight: 600;
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
     font-size: 29px; color: var(--accent); text-align: center;
     padding: 14px 0; border-top: 1px solid var(--rule-light);
   }
@@ -838,7 +838,7 @@
     color: var(--accent); letter-spacing: var(--tk-tight);
     flex-shrink: 0;
   }
-  .s-contact .name-block { flex-shrink: 0; margin-top: 36px; }
+  .s-contact .name-block { flex-shrink: 0; margin-top: 72px; }
   .s-contact .name-block .name {
     font-family: var(--f-serif); font-weight: 500;
     font-size: 44px; color: var(--ink); line-height: 1.0; margin-bottom: 6px;
@@ -850,7 +850,7 @@
   }
   .s-contact .rows {
     flex: 0; display: flex; flex-direction: column;
-    justify-content: flex-start; gap: 0; margin-top: 20px;
+    justify-content: flex-start; gap: 0; margin-top: 40px;
   }
   .s-contact .row {
     display: flex; gap: 24px; align-items: baseline;
@@ -940,8 +940,8 @@
       <span class="track-rule"></span>
     </div>
     <div class="eyebrow" style="margin-top:28px;">The body of work, and where it is operating</div>
-    <h2 class="title" style="font-size:80px;">From theory to <em>practice.</em></h2>
-    <div class="cols">
+    <h2 class="title" style="font-size:80px; margin-bottom:40px;">From theory to <em>practice.</em></h2>
+    <div class="cols" style="margin-top:0;">
       <div class="col">
         <h4>Built on</h4>
         <ul>
@@ -1019,15 +1019,13 @@
       <span class="track-rule"></span>
     </div>
     <h2 class="title" style="font-size:80px;">Surgeons are <em>elite performers.</em></h2>
-    <div class="subtitle" style="margin-bottom:16px;">The Surgeon <em>Athlete.</em></div>
-    <div class="points">
+    <div class="points" style="margin-top:32px;">
       <div class="pt">Deliberate practice at a volume elite athletes never reach</div>
       <div class="pt">Sustained performance under genuine fatigue, across decades not seasons</div>
       <div class="pt">Cognitive load and decision-making most professions never approach</div>
       <div class="pt">Stakes that carry real consequence</div>
     </div>
-    <p class="authority">A master surgeon made this case from the podium of the American College of Surgeons: mindset, grit, deliberate practice, and coaching all determine performance. (Verrier, 2017)</p>
-    <div class="warmth" style="font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:26px;color:var(--accent);border-top:2px solid var(--accent);padding:14px 0 0;margin-top:0;line-height:1.4;flex-shrink:0;">Human performance determines outcomes in every other high-stakes field. Surgery is where it goes next.</div>
+    <div class="warmth" style="font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:26px;color:var(--accent);border-top:2px solid var(--accent);padding:14px 0 0;margin-top:0;line-height:1.4;flex-shrink:0;">You are already elite. The stack makes it sustainable.</div>
   </div>
   <div class="right"></div>
   <div class="slide-foot">
@@ -1093,9 +1091,8 @@
       <span class="track-rule"></span>
     </div>
     <div class="stack-intro-body">
-      <div class="stack-intro-label">The Surgeon's Performance Stack</div>
-      <h2 style="font-family:var(--f-serif);font-weight:500;font-size:90px;line-height:1.0;letter-spacing:-0.02em;color:var(--paper);margin:20px 0 0;">Eight <em style="font-style:italic;color:var(--accent-2);">determinants</em><br>of human<br>performance.</h2>
-      <p style="font-family:var(--f-sans);font-size:21px;line-height:1.6;color:rgba(255,248,242,0.6);margin:32px 0 0;max-width:480px;">Not eight separate pillars. One integrated system. Each input shapes the others. The stack rises or falls together.</p>
+      <h2 style="font-family:var(--f-serif);font-weight:500;font-size:90px;line-height:1.0;letter-spacing:-0.02em;color:var(--paper);margin:0;">The Surgeon's<br><em style="font-style:italic;color:var(--accent-2);">Performance</em><br>Stack.</h2>
+      <p style="font-family:var(--f-sans);font-size:19px;line-height:1.6;color:rgba(255,248,242,0.6);margin:32px 0 0;max-width:480px;">Eight surgeon-specific human performance optimisation levers. One integrated system.</p>
     </div>
     <div class="stack-intro-foot">The Surgeon Athlete · © Rachel Neylan 2026</div>
   </div>
@@ -1214,7 +1211,7 @@
       <span class="stack-page">10 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence" style="justify-content: space-evenly;">
+      <div class="evidence">
         <h4>The evidence</h4>
         <div class="point">Nutritional habits directly affect surgical performance, longevity, and decision-making under fatigue.
           <cite>Faran et al., 2025</cite>
@@ -1254,7 +1251,7 @@
       <span class="stack-page">11 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence" style="justify-content: space-evenly;">
+      <div class="evidence">
         <h4>The evidence</h4>
         <div class="point">Dehydration impairs concentration, reaction time, and decision-making.
           <cite>Faran et al., 2025</cite>
@@ -1293,7 +1290,7 @@
       <span class="stack-page">12 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence" style="justify-content: space-evenly;">
+      <div class="evidence">
         <h4>The evidence</h4>
         <div class="point">A multicentre RCT found that combining OR ergonomics with supervised exercise significantly reduced low back pain and halved analgesic use at six months.
           <cite>Giagio et al., 2019</cite>
@@ -1331,7 +1328,7 @@
       <span class="stack-page">13 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence" style="justify-content: space-evenly;">
+      <div class="evidence">
         <h4>The evidence</h4>
         <div class="point">Daily physical activity improves HRV, reduces stress, and is linked to better cardiovascular and MSK outcomes across surgical careers.
           <cite>Qi et al., 2026</cite>
@@ -1406,7 +1403,7 @@
       <span class="stack-page">15 / 21 · © Rachel Neylan 2026</span>
     </div>
     <div class="stack-body">
-      <div class="evidence" style="justify-content: space-evenly;">
+      <div class="evidence">
         <h4>The evidence</h4>
         <div class="point">Surgeon stress significantly degrades non-technical skills in the OR, situational awareness, communication, and leadership.
           <cite>Anton et al., 2021</cite>
@@ -1532,7 +1529,8 @@
       </div>
       <span class="track-rule"></span>
     </div>
-    <h2 class="title" style="font-size:80px; margin-bottom:24px; max-width:900px;">Where your <em>influence</em> lies.</h2>
+    <h2 class="title" style="font-size:80px; margin-bottom:8px; max-width:900px;">Toward <em>Action.</em></h2>
+    <div class="subtitle" style="margin-bottom:24px;">Where your <em>influence</em> lies.</div>
 
     <div class="tiers">
       <div class="tier">
@@ -1570,9 +1568,9 @@
 ═══════════════════════════════════════════ -->
 <section class="s-synthesis">
   <div class="left">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:17px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,248,242,0.4);display:flex;justify-content:space-between;margin-bottom:32px;flex-shrink:0;"><span><span style="color:var(--accent-2);font-weight:600;">18</span> &nbsp; Closing</span></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:17px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,248,242,0.4);display:flex;justify-content:space-between;margin-bottom:32px;flex-shrink:0;"><span><span style="color:var(--accent-2);font-weight:600;">19</span> &nbsp; Closing</span></div>
     <h2 class="title" style="color:var(--paper); font-size:80px; margin-bottom:28px;">No longer a <em style="color:var(--accent-2);">Paradox.</em></h2>
-    <p class="body-text">The surgeon-athlete was only ever a paradox because the system stopped at the tools. Across every pillar of human performance, the demands have <em>always been there.</em> What is arriving now is the infrastructure to meet them. Build that, and the gains compound, for the surgeon, the team, and the patient.</p>
+    <p class="body-text">Across every pillar of human performance, the demands have <em>always been there.</em> What is arriving now is the infrastructure to meet them. Build that, and the gains compound, for the surgeon, the team, and the patient.</p>
   </div>
   <div class="right"></div>
   <div class="slide-foot">
