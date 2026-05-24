@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="/deck-stage.js"></script>
+<style>
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+
+  /* ═══════════════════════════════════════════
+     TOKENS
+  ═══════════════════════════════════════════ */
+  :root {
+    --ink:          #1C0F0A;
+    --ink-2:        #2A1810;
+    --ink-3:        #5A3A28;
+    --paper:        #FFF8F2;
+    --paper-2:      #F5EDE3;
+    --paper-warm:   #FDEEE4;
+    --rule:         #7A5A4A;
+    --rule-light:   #D4C0AE;
+    --mute:         #9A7A6A;
+    --mute-light:   #C4A898;
+    --accent:       #C4503A;
+    --accent-2:     #E87A5A;
+    --accent-dim:   #8B3828;
+    --surface-dark: #1C0F0A;
+    --surface-dark-2:#2A1810;
+
+    --f-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --f-sans:  'Inter Tight', system-ui, sans-serif;
+    --f-mono:  'JetBrains Mono', ui-monospace, monospace;
+    --tk-tight: -0.02em;
+    --tk-snug:  -0.015em;
+    --tk-wide:  0.14em;
+  }
+
+  html, body { background: var(--ink); margin: 0; }
+  body { font-family: var(--f-sans); color: var(--ink); }
+
+  deck-stage section {
+    font-family: var(--f-sans);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .dark  { background: var(--surface-dark);  color: var(--paper); }
+  .light { background: var(--paper);          color: var(--ink); }
+  .warm  { background: var(--paper-2);        color: var(--ink); }
+
+  /* ═══════════════════════════════════════════
+     SHARED LAYOUT
+  ═══════════════════════════════════════════ */
+  /* .frame, absolute inset, for non-stack slides */
+  .frame {
+    position: absolute; inset: 0;
+    padding: 72px 100px 56px;
+    display: flex; flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  /* ═══════════════════════════════════════════
+     SHARED TYPE
+  ═══════════════════════════════════════════ */
+  .track {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--f-mono); font-size: 21px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--mute); flex-shrink: 0; margin-bottom: 0;
+  }
+  .track-left { display: flex; gap: 20px; align-items: center; }
+  .track-num  { color: var(--accent); font-weight: 600; }
+  .track-rule { flex: 1; height: 1px; background: currentColor; opacity: 0.2; margin: 0 24px; }
+  .dark .track { color: rgba(255,248,242,0.4); }
+  .dark .track-rule { background: rgba(255,248,242,0.18); opacity: 1; }
+  .dark .track-num { color: var(--accent-2); }
+
+  .slide-foot {
+    position: absolute; left: 100px; right: 100px; bottom: 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--mute-light);
+  }
+  .dark .slide-foot { color: rgba(255,248,242,0.28); }
+  /* footer on image-right slides: keep right-side text legible */
+  .img-footer-scrim .slide-foot span:last-child {
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  }
+
+  .eyebrow {
+    display: none;
+  }
+
+  h2.title {
+    font-family: var(--f-serif); font-weight: 600;
+    font-size: 96px; line-height: 1.0;
+    letter-spacing: var(--tk-snug); margin: 28px 0 16px;
+    text-wrap: balance;
+  }
+  h2.title em { font-style: normal; color: var(--accent); }
+
+  .subtitle {
+    font-family: var(--f-sans); font-weight: 300;
+    font-size: 28px; line-height: 1.4;
+    color: inherit; opacity: 0.75;
+    max-width: 900px; text-wrap: pretty; margin: 0;
+  }
+  .subtitle em { font-style: normal; color: var(--accent); }
+
+  .hair { display: block; height: 1px; width: 100%; background: currentColor; opacity: 0.15; }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 01, TITLE
+  ═══════════════════════════════════════════ */
+  .s-title { display: grid; grid-template-columns: 1fr 1fr; }
+  .s-title .left {
+    padding: 80px 90px 80px 100px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: var(--ink);
+  }
+  .s-title .right {
+    background-image: url('project/assets/surgeon-female-scrubbed.jpg');
+    background-size: cover; background-position: center center;
+    position: relative;
+  }
+  .s-title .right::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(28,15,10,0.55) 0%, rgba(28,15,10,0) 50%);
+  }
+  .s-title h1 {
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 130px; line-height: 0.95;
+    letter-spacing: var(--tk-tight); margin: 0 0 28px;
+    color: var(--paper);
+  }
+  .s-title h1 em { font-style: italic; font-weight: 400; color: var(--accent-2); }
+  .s-title .sub {
+    font-family: var(--f-sans); font-weight: 300;
+    font-size: 23px; line-height: 1.5;
+    color: rgba(255,248,242,0.72); max-width: 520px; text-wrap: pretty;
+  }
+  .s-title .byline {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+  }
+  .s-title .byline .name { color: var(--accent-2); display: block; margin-bottom: 6px; font-size: 15px; }
+  .s-title .byline .role { color: rgba(255,248,242,0.55); font-size: 12px; }
+  .s-title .topbar {
+    display: flex; justify-content: space-between;
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: rgba(255,248,242,0.4);
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 02, OPENING QUOTE
+  ═══════════════════════════════════════════ */
+  .s-quote-open { display: grid; grid-template-columns: 42% 58%; }
+  .s-quote-open .img {
+    background-image: url('project/assets/rachel-cycling-race.jpg');
+    background-size: cover; background-position: 35% 65%;
+    position: relative;
+  }
+  .s-quote-open .img::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(28,15,10,0) 45%, rgba(28,15,10,0.88) 100%);
+  }
+  .s-quote-open .text {
+    padding: 100px 100px 80px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .s-quote-open .q {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 54px; line-height: 1.25;
+    letter-spacing: var(--tk-snug); color: var(--paper); text-wrap: pretty;
+  }
+  .s-quote-open .q .hi { color: var(--accent-2); }
+  .s-quote-open .attr { margin-top: 44px; display: flex; align-items: center; gap: 16px; }
+  .s-quote-open .attr .dash { width: 32px; height: 1px; background: var(--accent-2); flex-shrink: 0; }
+  .s-quote-open .attr .name {
+    font-family: var(--f-mono); letter-spacing: var(--tk-wide);
+    text-transform: uppercase; font-size: 13px; color: var(--accent-2);
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 03, THE WORK
+  ═══════════════════════════════════════════ */
+  .s-work { display: grid; grid-template-columns: 56% 44%; }
+  .s-work .left { padding: 72px 80px 68px 100px; display: flex; flex-direction: column; }
+  .s-work .right {
+    background-image: url('project/assets/surgeon-smiling-crossed.jpg');
+    background-size: cover; background-position: center top;
+    position: relative;
+  }
+  .s-work .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.95) 0%, rgba(255,248,242,0) 60%);
+    z-index: 1;
+  }
+  .s-work .cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    flex: 1; align-content: start; margin-top: 80px;
+  }
+  .s-work .col h4 {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 16px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .s-work .col ul { margin: 0; padding: 0; list-style: none; }
+  .s-work .col ul li {
+    font-family: var(--f-sans); font-size: 20px; line-height: 1.6;
+    color: var(--ink-2); padding: 16px 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .s-work .banner {
+    background: var(--accent); color: #fff;
+    padding: 18px 24px; margin-top: 28px; flex-shrink: 0;
+    font-family: var(--f-sans); font-style: normal; font-weight: 500;
+    font-size: 21px; line-height: 1.4; letter-spacing: 0.02em;
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 04, THE LENS (split)
+  ═══════════════════════════════════════════ */
+  .s-lens { display: grid; grid-template-columns: 55% 45%; }
+  .s-lens .lens-left {
+    padding: 72px 72px 68px 100px;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex; flex-direction: column;
+  }
+  .s-lens .lens-right {
+    background-image: url('project/assets/rachel-podium.jpg');
+    background-size: cover; background-position: center top;
+    position: relative;
+  }
+  .s-lens .lens-right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.6) 0%, rgba(255,248,242,0) 40%);
+  }
+  .s-lens .venn-wrap {
+    flex: 1; display: flex; align-items: center;
+    justify-content: center; position: relative; padding: 8px 0;
+  }
+  .s-lens .venn { position: relative; width: 560px; height: 510px; }
+  .s-lens .circle {
+    position: absolute; width: 340px; height: 340px; border-radius: 50%;
+    mix-blend-mode: multiply;
+  }
+  .s-lens .c1 { left: 0;    top: 0;    background: rgba(196,80,58,0.15);  border: 1.5px solid rgba(196,80,58,0.5); }
+  .s-lens .c2 { right: 0;   top: 0;    background: rgba(232,122,90,0.15); border: 1.5px solid rgba(232,122,90,0.5); }
+  .s-lens .c3 { left: 110px; top: 172px; background: rgba(180,100,60,0.15); border: 1.5px solid rgba(180,100,60,0.5); }
+  .s-lens .label {
+    position: absolute; font-family: var(--f-mono);
+    font-size: 16px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--ink-2); text-align: center; line-height: 1.5; max-width: 160px;
+    transform: translate(-50%, -50%);
+  }
+  .s-lens .l1 { left: 29%; top: 33%; }
+  .s-lens .l2 { left: 71%; top: 33%; }
+  .s-lens .l3 { left: 50%; top: 74%; }
+  .s-lens .label .sub { opacity: 0.6; font-size: 13px; display: block; margin-top: 3px; }
+  .s-lens .center-label {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); text-align: center;
+    z-index: 2;
+  }
+  .s-lens .center-label strong {
+    display: block; font-family: var(--f-serif); font-weight: 600;
+    font-size: 23px; color: var(--accent); line-height: 1.2;
+  }
+  .s-lens .center-label span {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+    display: block; margin-top: 3px;
+  }
+  .s-lens .subline {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 29px; color: var(--accent);
+    flex-shrink: 0; padding: 12px 0 0;
+    border-top: 1px solid var(--rule-light);
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 05, SURGEONS ARE ALREADY ATHLETES
+  ═══════════════════════════════════════════ */
+  .s-athletes { display: grid; grid-template-columns: 56% 44%; }
+  .s-athletes .left { padding: 72px 80px 68px 100px; display: flex; flex-direction: column; overflow: hidden; }
+  .s-athletes .right {
+    background-image: url('project/assets/surgeon-tying-cap.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-athletes .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.88) 0%, rgba(255,248,242,0) 55%);
+    z-index: 1;
+  }
+  .s-athletes .points { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; margin: 24px 0; }
+  .s-athletes .pt {
+    padding: 18px 0; border-bottom: 1px solid var(--rule-light);
+    font-family: var(--f-sans); font-size: 22px; line-height: 1.45;
+    color: var(--ink-2); display: flex; align-items: flex-start; gap: 14px;
+  }
+  .s-athletes .pt:first-child { border-top: 1px solid var(--rule-light); }
+  .s-athletes .pt::before {
+    content: ""; display: inline-block; flex-shrink: 0;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); margin-top: 9px;
+  }
+  .s-athletes .authority {
+    font-family: var(--f-sans); font-size: 17px; line-height: 1.6;
+    color: var(--mute); font-style: italic; flex-shrink: 0;
+    padding: 16px 0; border-top: 1px solid var(--rule-light);
+    overflow-wrap: break-word; max-width: 100%;
+  }
+  .s-athletes .pivot {
+    background: var(--accent); color: #fff;
+    padding: 18px 24px; margin-top: 0; flex-shrink: 0;
+    font-family: var(--f-sans); font-style: normal; font-weight: 500;
+    font-size: 21px; line-height: 1.4; letter-spacing: 0.02em;
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 06, PARADIGM SHIFT
+  ═══════════════════════════════════════════ */
+  .s-paradigm > .frame { position: absolute; inset: 0; z-index: 1; padding-top: 72px; }
+  .s-paradigm .grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    flex: 1; margin-top: 8px; border: 1px solid var(--rule-light);
+    overflow: hidden;
+  }
+  .s-paradigm .col { padding: 40px 44px; display: flex; flex-direction: column; }
+  .s-paradigm .col + .col { border-left: 1px solid var(--rule-light); }
+  .s-paradigm .col h4 {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mute); margin: 0 0 20px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .s-paradigm .col.to h4 { color: var(--accent); border-bottom-color: var(--accent); border-bottom-width: 2px; }
+  .s-paradigm .col ul {
+    margin: 0; padding: 0; list-style: none;
+    flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;
+  }
+  .s-paradigm .col ul li {
+    font-family: var(--f-sans); font-size: 23px; line-height: 1.5;
+    color: var(--ink); padding: 16px 0; border-bottom: 1px solid var(--rule-light);
+  }
+  .s-paradigm .col.to li { display: flex; gap: 12px; align-items: flex-start; }
+  .s-paradigm .col.to li::before {
+    content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); margin-top: 10px;
+  }
+  .s-paradigm .closing {
+    flex-shrink: 0; margin-top: 24px;
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 29px; color: var(--accent); text-align: center;
+    padding: 14px 0; border-top: 1px solid var(--rule-light);
+  }
+
+  /* ═════════════════════════════════════════════
+     SLIDE 07, STACK INTRO
+  ═════════════════════════════════════════════ */
+  .s-stack-intro {
+    display: grid !important;
+    grid-template-columns: 52% 48%;
+    background: var(--surface-dark);
+    position: relative;
+  }
+  .s-stack-intro .stack-intro-left {
+    padding: 72px 72px 80px 100px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(255,248,242,0.08);
+  }
+  .s-stack-intro .stack-intro-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .s-stack-intro .stack-intro-label {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent-2); margin-bottom: 8px;
+  }
+  .s-stack-intro .stack-intro-foot {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,248,242,0.2);
+  }
+  .s-stack-intro .stack-intro-right {
+    display: flex; align-items: center;
+    padding: 72px 100px 80px 72px;
+    background-image: url('project/assets/surgeon-ok-stack.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .s-stack-intro .stack-intro-right::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(28,15,10,0.62);
+  }
+  .s-stack-intro .stack-intro-list { position: relative; z-index: 1; }
+  .s-stack-intro .stack-intro-list {
+    width: 100%; display: flex; flex-direction: column;
+  }
+  .s-stack-intro .stack-row {
+    display: flex; align-items: baseline; gap: 24px;
+    padding: 18px 0; border-bottom: 1px solid rgba(255,248,242,0.08);
+  }
+  .s-stack-intro .stack-row:first-child { border-top: 1px solid rgba(255,248,242,0.08); }
+  .s-stack-intro .stack-n {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.2em; color: var(--accent-2);
+    font-weight: 600; flex-shrink: 0; width: 28px;
+  }
+  .s-stack-intro .stack-name {
+    font-family: var(--f-serif); font-size: 34px;
+    font-weight: 500; color: var(--paper);
+    letter-spacing: -0.01em; line-height: 1;
+  }
+
+  /* ═════════════════════════════════════════════
+     STACK SLIDES 08–15, split dark/light panel
+  ═════════════════════════════════════════════ */
+  .s-stack {
+    display: grid !important;
+    grid-template-columns: 40% 60%;
+  }
+  /* LEFT PANEL, dark, big lever statement */
+  .s-stack .stack-left {
+    background: var(--surface-dark);
+    padding: 72px 56px 72px 100px;
+    display: flex; flex-direction: column;
+    justify-content: flex-start;
+    position: relative; overflow: hidden;
+  }
+  .s-stack .stack-left .lever-num {
+    font-family: var(--f-mono); font-size: 20px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent-2); position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .s-stack .stack-left .lever-big {
+    font-family: var(--f-mono); font-size: 160px;
+    font-weight: 600; line-height: 1;
+    color: rgba(255,255,255,0.04);
+    position: absolute; bottom: 80px; right: 32px;
+    letter-spacing: -0.05em; z-index: 1;
+  }
+  .s-stack .stack-left .lever-text {
+    font-family: var(--f-serif); font-style: normal; font-weight: 600;
+    font-size: 64px; line-height: 1.15;
+    color: var(--paper); text-wrap: pretty;
+    position: relative; z-index: 1; flex-shrink: 0;
+    margin-top: auto; margin-bottom: auto;
+    text-shadow: 0 2px 16px rgba(28,15,10,0.6);
+  }
+  .s-stack .stack-left .lever-foot {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,248,242,0.3);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  /* RIGHT PANEL, light, evidence + in your week */
+  .s-stack .stack-right {
+    background: var(--paper);
+    display: flex; flex-direction: column;
+    padding: 36px 100px 72px 60px;
+    min-height: 0;
+  }
+  .s-stack .stack-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0; margin-bottom: 24px;
+  }
+  .s-stack .stack-section {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mute);
+  }
+  .s-stack .stack-page {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.16em; color: var(--mute-light);
+  }
+  .s-stack .stack-body {
+    flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border-top: 1px solid var(--rule-light); min-height: 0;
+  }
+  .s-stack .evidence {
+    padding: 24px 40px 24px 0;
+    border-right: 1px solid var(--rule-light);
+    display: flex; flex-direction: column;
+    justify-content: flex-start;
+  }
+  .s-stack .evidence h4 {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 14px; flex-shrink: 0;
+    padding-bottom: 12px; border-bottom: 2px solid var(--accent);
+  }
+  .s-stack .evidence .point {
+    font-family: var(--f-sans); font-size: 20px; line-height: 1.6;
+    color: var(--ink-2); padding: 16px 0;
+    border-bottom: 1px solid var(--rule-light);
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .s-stack .dim-label {
+    display: block;
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent-2); margin-bottom: 3px;
+  }
+  .s-stack .evidence .point cite {
+    display: block; font-style: italic;
+    font-size: 12px; color: var(--mute); margin-top: 4px;
+    font-family: var(--f-mono); letter-spacing: 0.04em;
+  }
+  .s-stack .inweek {
+    padding: 24px 0 24px 40px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .s-stack .inweek h4 {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 14px; flex-shrink: 0;
+    padding-bottom: 12px; border-bottom: 2px solid var(--accent);
+  }
+  .s-stack .inweek .action {
+    font-family: var(--f-sans); font-size: 20px; line-height: 1.5;
+    color: var(--ink); padding: 16px 0;
+    border-bottom: 1px solid var(--rule-light);
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .s-stack .inweek .action::before {
+    content: ""; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-2); margin-top: 8px;
+  }
+  .s-stack .warmth {
+    flex-shrink: 0;
+    padding: 16px 0 8px;
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 23px; color: var(--accent);
+    border-top: 2px solid var(--accent);
+    line-height: 1.4;
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 16, THE OPPORTUNITY
+  ═══════════════════════════════════════════ */
+  .s-opportunity > .frame { position: absolute; inset: 0; z-index: 1; padding-top: 72px; }
+  .s-opportunity .cards {
+    flex: 0 0 auto; display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0; margin-top: 36px;
+    border-top: 1px solid var(--rule-light);
+    border-left: 1px solid var(--rule-light);
+  }
+  .s-opportunity .card {
+    padding: 28px 28px;
+    border-right: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+    display: flex; flex-direction: column;
+  }
+  .s-opportunity .card .num {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px; font-weight: 600;
+  }
+  .s-opportunity .card h5 {
+    font-family: var(--f-serif); font-weight: 600;
+    font-size: 40px; color: var(--ink); margin: 0 0 12px; line-height: 1.1;
+  }
+  .s-opportunity .card p {
+    font-family: var(--f-sans); font-size: 19px; line-height: 1.5;
+    color: var(--ink-2); margin: 0 0 10px;
+  }
+  .s-opportunity .card-evidence {
+    font-family: var(--f-mono); font-size: 15px;
+    letter-spacing: 0.04em; color: var(--ink-3); font-style: italic;
+    line-height: 1.4; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid var(--rule-light);
+  }
+  .s-opportunity .banner {
+    flex-shrink: 0; margin-top: 24px;
+    padding: 16px 0 0;
+    font-family: var(--f-serif); font-style: italic; font-weight: 500;
+    font-size: 27px; text-align: center; line-height: 1.4;
+    color: var(--accent); border-top: 2px solid var(--accent);
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 17, SURGEON VOICES
+  ═══════════════════════════════════════════ */
+  .s-voices { display: grid !important; grid-template-columns: 60% 40%; }
+  .s-voices .quotes-side {
+    background: var(--surface-dark);
+    padding: 72px 72px 56px 100px;
+    display: flex; flex-direction: column;
+  }
+  .s-voices .image-side {
+    background-image: url('project/assets/surgical-team-smiling.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-voices .image-side::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(28,15,10,0.55) 0%, rgba(28,15,10,0) 50%);
+  }
+  .s-voices .quotes-grid {
+    flex: 1; display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0; margin-top: 24px;
+    border-top: 1px solid rgba(255,248,242,0.18);
+    min-height: 0;
+  }
+  .s-voices .anchor {
+    padding: 32px 48px 32px 0;
+    border-right: 1px solid rgba(255,248,242,0.12);
+    display: flex; flex-direction: column; justify-content: flex-start;
+  }
+  .s-voices .anchor .q-text {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 36px; line-height: 1.35;
+    color: var(--paper); text-wrap: pretty;
+  }
+  .s-voices .anchor .who {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent-2); margin-top: 20px;
+  }
+  .s-voices .supporting {
+    padding: 0 0 0 48px;
+    display: flex; flex-direction: column;
+  }
+  .s-voices .sq {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,248,242,0.1);
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+  }
+  .s-voices .sq:first-child { padding-top: 32px; }
+  .s-voices .sq .q-text {
+    font-family: var(--f-sans); font-size: 26px; line-height: 1.5;
+    color: rgba(255,248,242,0.92); font-style: italic;
+  }
+  .s-voices .sq .who {
+    font-family: var(--f-mono); font-size: 14px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent-2); margin-top: 10px;
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 18, WHERE YOUR INFLUENCE SITS
+  ═══════════════════════════════════════════ */
+  .s-influence {
+    display: grid !important; grid-template-columns: 55% 45%;
+    position: relative;
+  }
+  .s-influence .inf-content {
+    padding: 72px 80px 68px 100px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: var(--paper);
+  }
+  .s-influence .inf-right {
+    background-image: url('project/assets/discussion-team.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-influence .inf-right::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.7) 0%, rgba(255,248,242,0) 50%);
+  }
+  .s-influence .tiers {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: space-evenly; gap: 0; margin-top: 24px;
+  }
+  .s-influence .tier {
+    display: flex; align-items: flex-start; gap: 36px;
+    padding: 20px 0; border-bottom: 1px solid var(--rule-light);
+  }
+  .s-influence .tier:first-child { border-top: 1px solid var(--rule-light); }
+  .s-influence .tier .num {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    flex-shrink: 0; width: 44px; padding-top: 6px;
+  }
+  .s-influence .tier .content h5 {
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 36px; color: var(--ink); margin: 0 0 4px; line-height: 1.0;
+  }
+  .s-influence .tier .content p {
+    font-family: var(--f-sans); font-size: 19px;
+    line-height: 1.45; color: var(--ink-3); margin: 0;
+  }
+  .s-influence .closing {
+    flex-shrink: 0;
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 24px; color: var(--accent);
+    padding: 14px 0; border-top: 1px solid var(--rule-light);
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 19, NO LONGER A PARADOX
+  ═══════════════════════════════════════════ */
+  /* footer on image: add scrim strip at bottom of .right */
+  .s-synthesis .right::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 80px;
+    background: linear-gradient(180deg, rgba(28,15,10,0) 0%, rgba(28,15,10,0.7) 100%);
+    pointer-events: none;
+  }
+  .s-synthesis { display: grid; grid-template-columns: 50% 50%; }
+  .s-synthesis .left {
+    padding: 72px 80px 68px 100px;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--surface-dark);
+  }
+  .s-synthesis .right {
+    background-image: url('project/assets/surgical-team-hug.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-synthesis .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(28,15,10,0.7) 0%, rgba(28,15,10,0) 45%);
+  }
+  .s-synthesis .eyebrow-line {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent-2); margin-bottom: 24px;
+  }
+  .s-synthesis .body-text {
+    font-family: var(--f-serif); font-weight: 400;
+    font-size: 34px; line-height: 1.5;
+    color: var(--paper); text-wrap: pretty;
+  }
+  .s-synthesis .body-text em { font-style: italic; color: var(--accent-2); }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 20, CLOSE
+  ═══════════════════════════════════════════ */
+  .s-close { position: relative; }
+  .s-close .bg-img {
+    position: absolute; inset: 0;
+    background-image: url('project/assets/surgeon-overhead-quote.jpg');
+    background-size: cover; background-position: center;
+    filter: brightness(0.7) saturate(1.1);
+  }
+  .s-close .bg-img::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(28,15,10,0) 0%, rgba(28,15,10,0.65) 100%);
+  }
+  .s-close .frame {
+    position: relative; z-index: 2;
+    justify-content: center; align-items: center; text-align: center;
+  }
+  .s-close .q {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 76px; line-height: 1.15;
+    color: var(--paper); text-wrap: balance; max-width: 1050px;
+  }
+  .s-close .attr { margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .s-close .attr .dash { width: 36px; height: 1px; background: var(--accent-2); }
+  .s-close .attr .name {
+    font-family: var(--f-mono); font-size: 20px;
+    letter-spacing: var(--tk-wide); text-transform: uppercase;
+    color: var(--accent-2);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 21, DISCUSSION
+  ═══════════════════════════════════════════ */
+  .s-discussion { display: grid !important; grid-template-columns: 58% 42%; }
+  .s-discussion .disc-left {
+    padding: 72px 72px 56px 100px;
+    display: flex; flex-direction: column;
+    background: var(--paper);
+  }
+  .s-discussion .disc-right {
+    background-image: url('project/assets/surgical-team-corridor.jpg');
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .s-discussion .disc-right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.5) 0%, rgba(255,248,242,0) 40%);
+  }
+  .s-discussion .intro {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 48px; color: var(--accent); line-height: 1.1;
+    margin-top: 24px; flex-shrink: 0;
+  }
+  .s-discussion .qs {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: center; gap: 0; margin-top: 24px;
+  }
+  .s-discussion .dq {
+    padding: 22px 0; border-bottom: 1px solid var(--rule-light);
+    display: flex; gap: 28px; align-items: flex-start;
+  }
+  .s-discussion .dq:first-child { border-top: 1px solid var(--rule-light); }
+  .s-discussion .dq .num {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); flex-shrink: 0; padding-top: 6px; width: 28px; font-weight: 600;
+  }
+  .s-discussion .dq .text {
+    font-family: var(--f-serif); font-size: 30px;
+    line-height: 1.4; color: var(--ink); text-wrap: pretty; max-width: 1050px;
+  }
+
+  /* ═══════════════════════════════════════════
+     SLIDE 21, CONTACT
+  ═══════════════════════════════════════════ */
+  .s-contact { display: grid; grid-template-columns: 52% 48%; }
+  .s-contact .left {
+    padding: 72px 72px 68px 100px;
+    display: flex; flex-direction: column;
+  }
+  .s-contact .contact-qs {
+    position: absolute; inset: 0; z-index: 2;
+    background: rgba(28,15,10,0.72);
+    padding: 80px 72px;
+    display: flex; flex-direction: column; justify-content: center; gap: 36px;
+  }
+  .s-contact .cq {
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .s-contact .cq-num {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent-2); flex-shrink: 0; padding-top: 4px; width: 28px;
+  }
+  .s-contact .cq p {
+    font-family: var(--f-sans); font-size: 22px; line-height: 1.5;
+    color: var(--paper); margin: 0; text-wrap: pretty;
+  }
+
+  .s-contact .right {
+    background-image: url('project/assets/rachel-headshot.jpg');
+    background-size: cover;
+    background-position: center 15%;
+    position: relative;
+  }
+  .s-contact .right::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,248,242,0.75) 0%, rgba(255,248,242,0) 40%);
+  }
+  /* Big thank you */
+  .s-contact .thank-you {
+    font-family: var(--f-serif); font-style: italic; font-weight: 400;
+    font-size: 200px; line-height: 0.88;
+    color: var(--accent); letter-spacing: var(--tk-tight);
+    flex-shrink: 0;
+  }
+  .s-contact .name-block { flex-shrink: 0; margin-top: 72px; }
+  .s-contact .name-block .name {
+    font-family: var(--f-serif); font-weight: 500;
+    font-size: 44px; color: var(--ink); line-height: 1.0; margin-bottom: 6px;
+  }
+  .s-contact .name-block .creds {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .s-contact .rows {
+    flex: 0; display: flex; flex-direction: column;
+    justify-content: flex-start; gap: 0; margin-top: 40px;
+  }
+  .s-contact .row {
+    display: flex; gap: 24px; align-items: baseline;
+    padding: 10px 0;
+  }
+  .s-contact .row:first-child { margin-top: 4px; }
+  .s-contact .row .k {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mute); width: 80px; flex-shrink: 0;
+  }
+  .s-contact .row .v {
+    font-family: var(--f-sans); font-size: 21px;
+    color: var(--ink); font-weight: 400;
+  }
+  .s-contact .bottom-row {
+    display: flex; align-items: flex-end;
+    justify-content: space-between; flex-shrink: 0; padding-top: 24px;
+    margin-top: auto;
+  }
+  .s-contact .contact-details {
+    display: flex; flex-direction: column; gap: 0; flex: 1;
+  }
+  .s-contact .qr-img {
+    width: 160px; height: 160px;
+    object-fit: cover; display: block; flex-shrink: 0;
+  }
+  .s-contact .copy {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute-light);
+    margin-top: 8px;
+  }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<deck-stage width="1920" height="1080" noscale>
+<section class="s-stack">
+  <div class="stack-left" style="background-image:url('project/assets/msk-ergonomics.jpg'); background-size:cover; background-position:center; position:relative; overflow:hidden;"><div style="position:absolute;inset:0;background:rgba(28,15,10,0.62);z-index:0;"></div>
+    <div class="lever-num">05 of 08 · MSK + Ergonomics</div>
+    <div class="lever-text">The body that delivers the surgery is an asset. It needs to be protected.</div>
+    <div class="lever-foot">The Stack · Eight Determinants of Human Performance</div>
+    <div class="lever-big">05</div>
+  </div>
+  <div class="stack-right">
+    <div class="stack-meta">
+      <span class="stack-section">The Surgeon Athlete</span>
+      <span class="stack-page">12 / 21 · © Rachel Neylan 2026</span>
+    </div>
+    <div class="stack-body">
+      <div class="evidence">
+        <h4>The evidence</h4>
+        <div class="point">A multicentre RCT found that combining OR ergonomics with supervised exercise significantly reduced low back pain and halved analgesic use at six months.
+          <cite>Giagio et al., 2019</cite>
+        </div>
+        <div class="point">MSK pain prevalence ranges from 51.7 to 97 percent, with lower back, neck, and shoulder pain dominating.
+          <cite>Richard et al., 2025</cite>
+        </div>
+      </div>
+      <div class="inweek">
+        <h4>In your week</h4>
+        <div class="action">Table height calibrated to elbow, not assumption</div>
+        <div class="action">90 seconds of micro-movement between cases</div>
+        <div class="action">Helmet and headlamp ergonomic audit</div>
+        <div class="action">Impact mat on every list</div>
+      </div>
+    </div>
+    <div class="warmth">Career longevity is now a measurable and modifiable outcome.</div>
+  </div>
+</section>
+</deck-stage>
+</body>
+</html>
